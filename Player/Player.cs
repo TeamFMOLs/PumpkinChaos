@@ -1,21 +1,82 @@
 using Godot;
 using System;
 
-public class Player : KinematicBody2D
+public class Player : CharacterController
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
+    [Export]
+    NodePath AnimatorNodePath;
+    [Export]
+    NodePath MovementTimerNodePath;
+    private InputManager inputManager;
+    private AnimationPlayer animationPlayer;
+    [Export]
+    private float StepSize = 80f;
+    [Export]
+    private float StepTime = 0.5f;
+    private Timer MovementTimer;
+    private bool IsMoving = false;
+    private Vector2 lastPos ;
 
-    // Called when the node enters the scene tree for the first time.
+
     public override void _Ready()
     {
+        inputManager = GetNode<InputManager>("InputManager");
+        animationPlayer = GetNode<AnimationPlayer>(AnimatorNodePath);
+        MovementTimer = GetNode<Timer>(MovementTimerNodePath);
+        MovementTimer.Connect("timeout" , this , nameof(ResetMovement));
+        MovementTimer.WaitTime = StepTime;
+        ResetMovement();
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+        var vel = Vector2.Zero;
+        if (inputManager.MoveDown)
+        {
+            vel += Vector2.Down ;
+        }
+        if (inputManager.MoveRight)
+        {
+            vel += Vector2.Right ;
+        }
+        if (inputManager.MoveLeft)
+        {
+            vel += Vector2.Left ;
+        }
+        if (inputManager.MoveUp)
+        {
+            vel += Vector2.Up ;
+        }
+        if (vel != Vector2.Zero)
+        {
+            GD.Print("why") ;
+            Move(vel.Normalized());
+        }
         
     }
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+    void Move(Vector2 dir)
+    {
+        if (!IsMoving)
+        {
+            lastPos = GlobalPosition;
+            IsMoving = true;
+            animationPlayer.Play("SlightJump");
+            MovementTimer.Start(StepTime);
+            Velocity = StepSize/StepTime * dir;
+        }
+    }
+
+    void ResetMovement() {
+        GD.Print("a7a");
+        Velocity = Vector2.Zero;
+        IsMoving = false;
+    }
+
+    
+
+
+
+
 }
