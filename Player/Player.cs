@@ -24,6 +24,8 @@ public class Player : KinematicBody2D
     private Camera2D camera;
     // private SceneTreeTween MovementTween;
     private Vector2 lastPos;
+    private AnimatedSprite _animatedSprite,_Light,_Dark;
+    private int lastInput=0;
 
     public override void _EnterTree()
     {
@@ -31,6 +33,7 @@ public class Player : KinematicBody2D
         if (_hasSoul)
         {
             StaticRefs.CurrentPlayer = this;
+            _animatedSprite=_Light;
             StaticRefs.PlayerAgentIndex = StaticRefs.PlayerAgents.IndexOf(this);
         }
     }
@@ -39,6 +42,8 @@ public class Player : KinematicBody2D
     public override void _Ready()
     {
         inputManager = StaticRefs.inputManager;
+        _Dark = GetNode<AnimatedSprite>("AnimatedSprite");
+        _Light = GetNode<AnimatedSprite>("AnimatedSpriteL");
         animationPlayer = GetNode<AnimationPlayer>(AnimatorNodePath);
         MovementTimer = GetNode<Timer>(MovementTimerNodePath);
         stepsAudioPlayer = GetNode<AudioStreamPlayer2D>(StepsAudioPlayerPath);
@@ -48,31 +53,82 @@ public class Player : KinematicBody2D
         camera = GetNode<Camera2D>("Camera2D");
         camera.Current = _hasSoul;
         light.Enabled = _hasSoul;
+        if(_hasSoul)
+            _animatedSprite=_Light;
+        else
+            _animatedSprite=_Dark;
+
+        _animatedSprite.Visible=true;
 
         ResetMovement();
     }
 
     public override void _Process(float delta)
     {
+        
         if (_hasSoul)
         {
-
+            _animatedSprite=_Light;
+            _Light.Visible=true;
+            _Dark.Visible=false;
+            
             var vel = Vector2.Zero;
+            if (inputManager.MoveUp)
+            {
+                vel = Vector2.Up ;
+                switch (lastInput){
+                    case 2:
+                            _animatedSprite.Play("Right_Back");break;
+                    case 3:
+                            _animatedSprite.Play("Front_Back");break;
+                    case 4:
+                            _animatedSprite.Play("Left_Back");break;
+                }
+                lastInput=1;
+            }
+
+            if (inputManager.MoveRight)
+            {
+                vel = Vector2.Right ;
+                switch (lastInput){
+                    case 1:
+                            _animatedSprite.Play("Back_Right");break;
+                    case 3:
+                            _animatedSprite.Play("Front_Right");break;
+                    case 4:
+                            _animatedSprite.Play("Left_Right");break;
+                }
+                lastInput=2;
+            }
+
             if (inputManager.MoveDown)
             {
-                vel = Vector2.Down;
+                
+                vel = Vector2.Down ;
+                switch (lastInput){
+                    case 1:
+                            _animatedSprite.Play("Back_Front");break;
+                    case 2:
+                            _animatedSprite.Play("Right_Front");break;
+                    case 4:
+                            _animatedSprite.Play("Left_Front");break;
+                }
+                lastInput=3;
+
             }
-            else if (inputManager.MoveRight)
+
+            if (inputManager.MoveLeft)
             {
-                vel = Vector2.Right;
-            }
-            else if (inputManager.MoveLeft)
-            {
-                vel = Vector2.Left;
-            }
-            else if (inputManager.MoveUp)
-            {
-                vel = Vector2.Up;
+                vel = Vector2.Left ;
+                switch (lastInput){
+                    case 1:
+                            _animatedSprite.Play("Back_Left");break;
+                    case 2:
+                            _animatedSprite.Play("Right_Left");break;
+                    case 3:
+                            _animatedSprite.Play("Front_Left");break;
+                }
+                lastInput=4;
             }
 
             if (vel != Vector2.Zero)
@@ -81,6 +137,21 @@ public class Player : KinematicBody2D
                 Move(vel.Normalized());
             }
         }
+        else{
+                _animatedSprite=_Dark;
+                switch (lastInput){
+                    case 1:
+                            _animatedSprite.Play("Back_Front");_animatedSprite.Frame = 0;break;
+                    case 2:
+                            _animatedSprite.Play("Right_Front");_animatedSprite.Frame = 0;break;
+                    case 3:
+                            _animatedSprite.Play("Front_Back");_animatedSprite.Frame = 0;break;
+                    case 4: 
+                            _animatedSprite.Play("Left_Front");_animatedSprite.Frame = 0;break;      
+                }
+                _Light.Visible=false;
+                _Dark.Visible=true;
+            }
 
 
     }

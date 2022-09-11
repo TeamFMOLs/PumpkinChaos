@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Player_Light.png" type="Texture" id=2]
 [ext_resource path="res://Assets/download-white-circle-png-31629716484axd08oupl9.png" type="Texture" id=3]
 [ext_resource path="res://Sounds/steps/wood01.ogg" type="AudioStream" id=4]
 [ext_resource path="res://Player/SceneCamera.cs" type="Script" id=5]
+[ext_resource path="res://Assets/Player_Dark.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 32, 32 )
@@ -41,6 +42,202 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -20 ), Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 113, 120, 112, 117 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 1, 3, 112, 117 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 225, 120, 112, 117 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 1, 120, 112, 117 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 113, 3, 112, 117 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 225, 3, 112, 117 )
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ SubResource( 5 ) ],
+"loop": false,
+"name": "A_Start",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 5 ) ],
+"loop": false,
+"name": "Back_Front",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ) ],
+"loop": false,
+"name": "Back_Left",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 9 ) ],
+"loop": false,
+"name": "Back_Right",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 10 ), SubResource( 9 ), SubResource( 6 ) ],
+"loop": false,
+"name": "Front_Back",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 8 ), SubResource( 7 ) ],
+"loop": false,
+"name": "Front_Left",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 10 ), SubResource( 9 ) ],
+"loop": false,
+"name": "Front_Right",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 6 ) ],
+"loop": false,
+"name": "Left_Back",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 5 ) ],
+"loop": false,
+"name": "Left_Front",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 5 ), SubResource( 10 ), SubResource( 9 ) ],
+"loop": false,
+"name": "Left_Right",
+"speed": 15.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 6 ) ],
+"loop": false,
+"name": "Right_Back",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 5 ) ],
+"loop": false,
+"name": "Right_Front",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 5 ), SubResource( 8 ), SubResource( 7 ) ],
+"loop": false,
+"name": "Right_Left",
+"speed": 15.0
+} ]
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 113, 119, 113, 119 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 113, 119 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 113, 0, 113, 119 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 226, 0, 113, 119 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 226, 119, 113, 119 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 119, 113, 119 )
+
+[sub_resource type="SpriteFrames" id=18]
+animations = [ {
+"frames": [ SubResource( 19 ) ],
+"loop": true,
+"name": "A_Start",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 19 ) ],
+"loop": false,
+"name": "Back_Front",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 20 ), SubResource( 23 ) ],
+"loop": false,
+"name": "Back_Left",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 20 ), SubResource( 21 ) ],
+"loop": false,
+"name": "Back_Right",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 19 ), SubResource( 24 ), SubResource( 23 ), SubResource( 20 ) ],
+"loop": false,
+"name": "Front_Back",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 19 ), SubResource( 24 ), SubResource( 23 ) ],
+"loop": false,
+"name": "Front_Left",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 19 ), SubResource( 22 ), SubResource( 21 ) ],
+"loop": false,
+"name": "Front_Right",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 23 ), SubResource( 20 ) ],
+"loop": false,
+"name": "Left_Back",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 19 ) ],
+"loop": false,
+"name": "Left_Front",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 19 ), SubResource( 22 ), SubResource( 21 ) ],
+"loop": false,
+"name": "Left_Right",
+"speed": 15.0
+}, {
+"frames": [ SubResource( 21 ), SubResource( 20 ) ],
+"loop": false,
+"name": "Right_Back",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 19 ) ],
+"loop": false,
+"name": "Right_Front",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 19 ), SubResource( 24 ), SubResource( 23 ) ],
+"loop": false,
+"name": "Right_Left",
+"speed": 15.0
+} ]
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 AnimatorNodePath = NodePath("AnimationPlayer")
@@ -55,7 +252,6 @@ shape = SubResource( 4 )
 [node name="SpriteParent" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="SpriteParent"]
-texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
@@ -78,3 +274,15 @@ texture = ExtResource( 3 )
 texture_scale = 0.56
 color = Color( 0.992157, 0.847059, 0.34902, 1 )
 energy = 0.72
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+visible = false
+scale = Vector2( 0.566791, 0.526791 )
+frames = SubResource( 11 )
+animation = "A_Start"
+
+[node name="AnimatedSpriteL" type="AnimatedSprite" parent="."]
+visible = false
+scale = Vector2( 0.561261, 0.526182 )
+frames = SubResource( 18 )
+animation = "A_Start"
