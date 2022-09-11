@@ -12,7 +12,6 @@ config_version=4
 
 config/name="Pumpkineer"
 run/main_scene="res://Main/Main.tscn"
-config/windows_native_icon="res://icon.png"
 
 [display]
 

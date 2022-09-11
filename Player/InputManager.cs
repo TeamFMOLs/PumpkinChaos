@@ -14,7 +14,7 @@ public class InputManager : Node2D
 
     public override void _Ready()
     {
-
+        
     }
 
 

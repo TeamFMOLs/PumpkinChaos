@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Player : CharacterController
+public class Player : KinematicBody2D
 {
     [Export]
     NodePath AnimatorNodePath;
@@ -15,6 +15,7 @@ public class Player : CharacterController
     private float StepTime = 0.5f;
     private Timer MovementTimer;
     private bool IsMoving = false;
+   // private SceneTreeTween MovementTween;
     private Vector2 lastPos ;
 
 
@@ -25,6 +26,7 @@ public class Player : CharacterController
         MovementTimer = GetNode<Timer>(MovementTimerNodePath);
         MovementTimer.Connect("timeout" , this , nameof(ResetMovement));
         MovementTimer.WaitTime = StepTime;
+        
         ResetMovement();
     }
 
@@ -63,15 +65,21 @@ public class Player : CharacterController
             lastPos = GlobalPosition;
             IsMoving = true;
             animationPlayer.Play("SlightJump");
+            var newPos = GlobalPosition+dir*StepSize;
+            MoveToLoc(newPos,StepTime);
             MovementTimer.Start(StepTime);
-            Velocity = StepSize/StepTime * dir;
+            
         }
     }
 
     void ResetMovement() {
         GD.Print("a7a");
-        Velocity = Vector2.Zero;
         IsMoving = false;
+    }
+
+    void MoveToLoc(Vector2 loc , float t) {
+        var MovementTween= CreateTween();
+        MovementTween.TweenProperty(this ,"global_position",loc,t);
     }
 
     
