@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/RPG Nature Tileset Autumn.png" type="Texture" id=2]
 [ext_resource path="res://Objects/AirField.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Main/GameManager.cs" type="Script" id=4]
+[ext_resource path="res://Player/InputManager.cs" type="Script" id=5]
 
 [sub_resource type="TileSet" id=1]
 0/name = "RPG Nature Tileset Autumn.png 0"
@@ -59,4 +61,14 @@ position = Vector2( 296, 40 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -32, 32 )
 StepSize = 64.0
-StepTime = 0.4
+_hasSoul = true
+
+[node name="Player2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 544, 224 )
+StepSize = 64.0
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="InputManager" type="Node2D" parent="GameManager"]
+script = ExtResource( 5 )

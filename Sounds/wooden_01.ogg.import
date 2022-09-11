@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/wooden_01.ogg-2738acb24e23db0f41d572dc1f310022.oggstr"
+
+[deps]
+
+source_file="res://Sounds/wooden_01.ogg"
+dest_files=[ "res://.import/wooden_01.ogg-2738acb24e23db0f41d572dc1f310022.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

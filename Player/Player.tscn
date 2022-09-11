@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://Player/InputManager.cs" type="Script" id=3]
+[ext_resource path="res://Assets/download-white-circle-png-31629716484axd08oupl9.png" type="Texture" id=3]
+[ext_resource path="res://Sounds/steps/wood01.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Player/SceneCamera.cs" type="Script" id=5]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 37.4833
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 32, 32 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -24,7 +26,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "SlightJump"
-length = 0.4
+length = 0.3
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpriteParent:position")
 tracks/0/interp = 1
@@ -32,27 +35,27 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
+"times": PoolRealArray( 0, 0.15, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -27 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, -20 ), Vector2( 0, 0 ) ]
 }
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 AnimatorNodePath = NodePath("AnimationPlayer")
 MovementTimerNodePath = NodePath("MovementTimer")
+StepsAudioPlayerPath = NodePath("StepSoundStream")
+SoulLightPath = NodePath("Light2D")
+StepTime = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="SpriteParent" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="SpriteParent"]
 texture = ExtResource( 2 )
-
-[node name="InputManager" type="Node2D" parent="."]
-script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
@@ -65,3 +68,13 @@ one_shot = true
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2( 1, 3.2 )
 current = true
+script = ExtResource( 5 )
+
+[node name="StepSoundStream" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+texture_scale = 0.56
+color = Color( 0.992157, 0.847059, 0.34902, 1 )
+energy = 0.72

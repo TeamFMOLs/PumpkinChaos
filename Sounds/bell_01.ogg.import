@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bell_01.ogg-876aeb9cc71041d6eab60579aa906064.oggstr"
+
+[deps]
+
+source_file="res://Sounds/bell_01.ogg"
+dest_files=[ "res://.import/bell_01.ogg-876aeb9cc71041d6eab60579aa906064.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

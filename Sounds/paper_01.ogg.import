@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/paper_01.ogg-f37116a06db93fc345afefca09463e65.oggstr"
+
+[deps]
+
+source_file="res://Sounds/paper_01.ogg"
+dest_files=[ "res://.import/paper_01.ogg-f37116a06db93fc345afefca09463e65.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

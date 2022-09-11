@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/microwave_door_close.ogg-5a6ae3333caf6801bb5a715f38cab651.oggstr"
+
+[deps]
+
+source_file="res://Sounds/microwave_door_close.ogg"
+dest_files=[ "res://.import/microwave_door_close.ogg-5a6ae3333caf6801bb5a715f38cab651.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

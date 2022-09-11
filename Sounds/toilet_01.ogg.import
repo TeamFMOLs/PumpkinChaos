@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/toilet_01.ogg-74336371761065ccde4c988b6e12d7c3.oggstr"
+
+[deps]
+
+source_file="res://Sounds/toilet_01.ogg"
+dest_files=[ "res://.import/toilet_01.ogg-74336371761065ccde4c988b6e12d7c3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

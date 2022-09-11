@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/spring_02.ogg-bd41efa0ac24094d173426e6f1c3c3a0.oggstr"
+
+[deps]
+
+source_file="res://Sounds/spring_02.ogg"
+dest_files=[ "res://.import/spring_02.ogg-bd41efa0ac24094d173426e6f1c3c3a0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
