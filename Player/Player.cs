@@ -53,7 +53,7 @@ public class Player : KinematicBody2D
         camera = GetNode<Camera2D>("Camera2D");
         camera.Current = _hasSoul;
         light.Enabled = _hasSoul;
-<<<<<<< Updated upstream
+
         if(_hasSoul)
             _animatedSprite=_Light;
         else
@@ -61,8 +61,6 @@ public class Player : KinematicBody2D
 
         _animatedSprite.Visible=true;
 
-=======
->>>>>>> Stashed changes
         ResetMovement();
     }
 
