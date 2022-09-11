@@ -61,3 +61,6 @@ next/SlightJump = "RESET"
 
 [node name="MovementTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2( 1, 3.2 )
