@@ -24,8 +24,9 @@ public class Player : KinematicBody2D
     private Camera2D camera;
     // private SceneTreeTween MovementTween;
     private Vector2 lastPos;
-    private AnimatedSprite _animatedSprite,_Light,_Dark;
-    private int lastInput=0;
+    private AnimatedSprite _animatedSprite, _Light, _Dark;
+    
+    private int lastInput = 0;
 
     public override void _EnterTree()
     {
@@ -33,7 +34,7 @@ public class Player : KinematicBody2D
         if (_hasSoul)
         {
             StaticRefs.CurrentPlayer = this;
-            _animatedSprite=_Light;
+            _animatedSprite = _Light;
             StaticRefs.PlayerAgentIndex = StaticRefs.PlayerAgents.IndexOf(this);
         }
     }
@@ -42,8 +43,8 @@ public class Player : KinematicBody2D
     public override void _Ready()
     {
         inputManager = StaticRefs.inputManager;
-        _Dark = GetNode<AnimatedSprite>("AnimatedSprite");
-        _Light = GetNode<AnimatedSprite>("AnimatedSpriteL");
+        _Dark = GetNode<AnimatedSprite>("SpriteParent/AnimatedSprite");
+        _Light = GetNode<AnimatedSprite>("SpriteParent/AnimatedSpriteL");
         animationPlayer = GetNode<AnimationPlayer>(AnimatorNodePath);
         MovementTimer = GetNode<Timer>(MovementTimerNodePath);
         stepsAudioPlayer = GetNode<AudioStreamPlayer2D>(StepsAudioPlayerPath);
@@ -54,105 +55,110 @@ public class Player : KinematicBody2D
         camera.Current = _hasSoul;
         light.Enabled = _hasSoul;
 
-        if(_hasSoul)
-            _animatedSprite=_Light;
+        if (_hasSoul)
+            _animatedSprite = _Light;
         else
-            _animatedSprite=_Dark;
+            _animatedSprite = _Dark;
 
-        _animatedSprite.Visible=true;
+        _animatedSprite.Visible = true;
 
         ResetMovement();
     }
 
     public override void _Process(float delta)
     {
-        
+
         if (_hasSoul)
         {
-            _animatedSprite=_Light;
-            _Light.Visible=true;
-            _Dark.Visible=false;
-            
+            _animatedSprite = _Light;
+            _Light.Visible = true;
+            _Dark.Visible = false;
+
             var vel = Vector2.Zero;
             if (inputManager.MoveUp)
             {
-                vel = Vector2.Up ;
-                switch (lastInput){
+                vel = Vector2.Up;
+                switch (lastInput)
+                {
                     case 2:
-                            _animatedSprite.Play("Right_Back");break;
+                        _animatedSprite.Play("Right_Back"); break;
                     case 3:
-                            _animatedSprite.Play("Front_Back");break;
+                        _animatedSprite.Play("Front_Back"); break;
                     case 4:
-                            _animatedSprite.Play("Left_Back");break;
+                        _animatedSprite.Play("Left_Back"); break;
                 }
-                lastInput=1;
+                lastInput = 1;
             }
 
             if (inputManager.MoveRight)
             {
-                vel = Vector2.Right ;
-                switch (lastInput){
+                vel = Vector2.Right;
+                switch (lastInput)
+                {
                     case 1:
-                            _animatedSprite.Play("Back_Right");break;
+                        _animatedSprite.Play("Back_Right"); break;
                     case 3:
-                            _animatedSprite.Play("Front_Right");break;
+                        _animatedSprite.Play("Front_Right"); break;
                     case 4:
-                            _animatedSprite.Play("Left_Right");break;
+                        _animatedSprite.Play("Left_Right"); break;
                 }
-                lastInput=2;
+                lastInput = 2;
             }
 
             if (inputManager.MoveDown)
             {
-                
-                vel = Vector2.Down ;
-                switch (lastInput){
+
+                vel = Vector2.Down;
+                switch (lastInput)
+                {
                     case 1:
-                            _animatedSprite.Play("Back_Front");break;
+                        _animatedSprite.Play("Back_Front"); break;
                     case 2:
-                            _animatedSprite.Play("Right_Front");break;
+                        _animatedSprite.Play("Right_Front"); break;
                     case 4:
-                            _animatedSprite.Play("Left_Front");break;
+                        _animatedSprite.Play("Left_Front"); break;
                 }
-                lastInput=3;
+                lastInput = 3;
 
             }
 
             if (inputManager.MoveLeft)
             {
-                vel = Vector2.Left ;
-                switch (lastInput){
+                vel = Vector2.Left;
+                switch (lastInput)
+                {
                     case 1:
-                            _animatedSprite.Play("Back_Left");break;
+                        _animatedSprite.Play("Back_Left"); break;
                     case 2:
-                            _animatedSprite.Play("Right_Left");break;
+                        _animatedSprite.Play("Right_Left"); break;
                     case 3:
-                            _animatedSprite.Play("Front_Left");break;
+                        _animatedSprite.Play("Front_Left"); break;
                 }
-                lastInput=4;
+                lastInput = 4;
             }
 
             if (vel != Vector2.Zero)
             {
-                GD.Print("why");
                 Move(vel.Normalized());
             }
         }
-        else{
-                _animatedSprite=_Dark;
-                switch (lastInput){
-                    case 1:
-                            _animatedSprite.Play("Back_Front");_animatedSprite.Frame = 0;break;
-                    case 2:
-                            _animatedSprite.Play("Right_Front");_animatedSprite.Frame = 0;break;
-                    case 3:
-                            _animatedSprite.Play("Front_Back");_animatedSprite.Frame = 0;break;
-                    case 4: 
-                            _animatedSprite.Play("Left_Front");_animatedSprite.Frame = 0;break;      
-                }
-                _Light.Visible=false;
-                _Dark.Visible=true;
+        else
+        {
+            _animatedSprite = _Dark;
+            switch (lastInput)
+            {
+                case 1:
+                    _animatedSprite.Play("Back_Front"); _animatedSprite.Frame = 0; break;
+                case 2:
+                    _animatedSprite.Play("Right_Front"); _animatedSprite.Frame = 0; break;
+                case 3:
+                    _animatedSprite.Play("Front_Back"); _animatedSprite.Frame = 0; break;
+                case 4:
+                    _animatedSprite.Play("Left_Front"); _animatedSprite.Frame = 0; break;
             }
+            _Light.Visible = false;
+            _Dark.Visible = true;
+        }
 
 
     }
@@ -161,21 +167,26 @@ public class Player : KinematicBody2D
     {
         if (!IsMoving)
         {
-            (camera as SceneCamera).ShakeForSeconds(0.3f, 5);
-            lastPos = GlobalPosition;
-            IsMoving = true;
-            animationPlayer.Play("SlightJump");
             var newPos = GlobalPosition + dir * StepSize;
-            stepsAudioPlayer.Play();
-            MoveToLoc(newPos, StepTime);
-            MovementTimer.Start(StepTime);
+            if (!CheckCollision(newPos))
+            {
+                (camera as SceneCamera).ShakeForSeconds(0.3f, 5);
+                lastPos = GlobalPosition;
+                IsMoving = true;
+                animationPlayer.Play("SlightJump");
+
+                stepsAudioPlayer.Play();
+                MoveToLoc(newPos, StepTime);
+                MovementTimer.Start(StepTime);
+            }
+
 
         }
     }
 
     void ResetMovement()
     {
-        GD.Print("a7a");
+
         IsMoving = false;
     }
 
@@ -183,6 +194,13 @@ public class Player : KinematicBody2D
     {
         var MovementTween = CreateTween();
         MovementTween.TweenProperty(this, "global_position", loc, t);
+    }
+
+    private bool CheckCollision(Vector2 dir)
+    {
+        var spaceState = GetWorld2d().DirectSpaceState;
+        var result = spaceState.IntersectRay(GlobalPosition, dir);
+        return result.Count != 0;
     }
 
 

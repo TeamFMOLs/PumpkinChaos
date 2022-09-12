@@ -46,6 +46,6 @@ public class SceneCamera : Camera2D
     public void ShakeForSeconds(float time = 0.4f , float intensity = 10f ) {
         this.ShakeIntensity = intensity/100 ;
         shakeTime = time;
-        GD.Print("shake");
+        
     }
 }
