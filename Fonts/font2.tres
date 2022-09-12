@@ -6,4 +6,7 @@ font_path = "res://Fonts/prstart.ttf"
 
 [resource]
 resource_local_to_scene = true
+size = 24
+outline_size = 1
+outline_color = Color( 0.0666667, 0.0588235, 0.0588235, 1 )
 font_data = SubResource( 1 )
