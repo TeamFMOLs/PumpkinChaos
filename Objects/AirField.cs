@@ -24,6 +24,7 @@ public class AirField : Area2D
         if (other is Player)
         {
             // do st
+            GD.Print("a7a");
         }
     }
     

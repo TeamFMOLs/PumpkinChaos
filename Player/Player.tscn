@@ -1,7 +1,6 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
-[ext_resource path="res://Assets/Player_Light.png" type="Texture" id=2]
 [ext_resource path="res://Assets/dfa6770603ecf5afb82ee7e880375bc68c681ee5.png" type="Texture" id=3]
 [ext_resource path="res://Sounds/steps/wood01.ogg" type="AudioStream" id=4]
 [ext_resource path="res://Player/Soul.tscn" type="PackedScene" id=5]
@@ -109,99 +108,93 @@ animations = [ {
 "speed": 15.0
 } ]
 
-[sub_resource type="AtlasTexture" id=19]
-flags = 4
-atlas = ExtResource( 2 )
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 7 )
 region = Rect2( 113, 119, 113, 119 )
 
-[sub_resource type="AtlasTexture" id=20]
-flags = 4
-atlas = ExtResource( 2 )
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 113, 119 )
 
-[sub_resource type="AtlasTexture" id=21]
-flags = 4
-atlas = ExtResource( 2 )
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 7 )
 region = Rect2( 113, 0, 113, 119 )
 
-[sub_resource type="AtlasTexture" id=22]
-flags = 4
-atlas = ExtResource( 2 )
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 7 )
 region = Rect2( 226, 0, 113, 119 )
 
-[sub_resource type="AtlasTexture" id=23]
-flags = 4
-atlas = ExtResource( 2 )
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 7 )
 region = Rect2( 226, 119, 113, 119 )
 
-[sub_resource type="AtlasTexture" id=24]
-flags = 4
-atlas = ExtResource( 2 )
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 7 )
 region = Rect2( 0, 119, 113, 119 )
 
 [sub_resource type="SpriteFrames" id=18]
 animations = [ {
-"frames": [ SubResource( 19 ) ],
-"loop": true,
+"frames": [ SubResource( 28 ) ],
+"loop": false,
 "name": "A_Start",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 19 ) ],
+"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 28 ) ],
 "loop": false,
 "name": "Back_Front",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 20 ), SubResource( 23 ) ],
+"frames": [ SubResource( 29 ), SubResource( 32 ) ],
 "loop": false,
 "name": "Back_Left",
 "speed": 6.0
 }, {
-"frames": [ SubResource( 20 ), SubResource( 21 ) ],
+"frames": [ SubResource( 29 ), SubResource( 30 ) ],
 "loop": false,
 "name": "Back_Right",
 "speed": 6.0
 }, {
-"frames": [ SubResource( 19 ), SubResource( 24 ), SubResource( 23 ), SubResource( 20 ) ],
+"frames": [ SubResource( 28 ), SubResource( 33 ), SubResource( 32 ), SubResource( 29 ) ],
 "loop": false,
 "name": "Front_Back",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 19 ), SubResource( 24 ), SubResource( 23 ) ],
+"frames": [ SubResource( 28 ), SubResource( 33 ), SubResource( 32 ) ],
 "loop": false,
 "name": "Front_Left",
 "speed": 9.0
 }, {
-"frames": [ SubResource( 19 ), SubResource( 22 ), SubResource( 21 ) ],
+"frames": [ SubResource( 28 ), SubResource( 31 ), SubResource( 30 ) ],
 "loop": false,
 "name": "Front_Right",
 "speed": 9.0
 }, {
-"frames": [ SubResource( 23 ), SubResource( 20 ) ],
+"frames": [ SubResource( 32 ), SubResource( 29 ) ],
 "loop": false,
 "name": "Left_Back",
 "speed": 6.0
 }, {
-"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 19 ) ],
+"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 28 ) ],
 "loop": false,
 "name": "Left_Front",
 "speed": 9.0
 }, {
-"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 19 ), SubResource( 22 ), SubResource( 21 ) ],
+"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 28 ), SubResource( 31 ), SubResource( 30 ) ],
 "loop": false,
 "name": "Left_Right",
 "speed": 15.0
 }, {
-"frames": [ SubResource( 21 ), SubResource( 20 ) ],
+"frames": [ SubResource( 30 ), SubResource( 29 ) ],
 "loop": false,
 "name": "Right_Back",
 "speed": 6.0
 }, {
-"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 19 ) ],
+"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 28 ) ],
 "loop": false,
 "name": "Right_Front",
 "speed": 9.0
 }, {
-"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 19 ), SubResource( 24 ), SubResource( 23 ) ],
+"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 28 ), SubResource( 33 ), SubResource( 32 ) ],
 "loop": false,
 "name": "Right_Left",
 "speed": 15.0
@@ -273,6 +266,7 @@ shape = SubResource( 26 )
 [node name="SpriteParent" type="Node2D" parent="."]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="SpriteParent"]
+visible = false
 scale = Vector2( 0.45, 0.45 )
 frames = SubResource( 11 )
 animation = "A_Start"
@@ -286,7 +280,6 @@ animation = "A_Start"
 [node name="Sprite" type="Sprite" parent="SpriteParent"]
 visible = false
 scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 7 )
 hframes = 3
 vframes = 2
 frame = 4

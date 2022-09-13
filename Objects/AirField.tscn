@@ -9,16 +9,16 @@ emission_shape = 2
 emission_box_extents = Vector3( 1, 40, 1 )
 flag_disable_z = true
 direction = Vector3( -1, 0, 0 )
-spread = 5.79
+spread = 24.16
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 326.74
-initial_velocity_random = 0.6
-angular_velocity = 327.92
-angular_velocity_random = 0.35
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
+initial_velocity = 353.63
+initial_velocity_random = 1.0
+angular_velocity = 341.99
+angular_velocity_random = 0.43
+orbit_velocity = 0.13
+orbit_velocity_random = 1.0
 angle = 185.3
-scale = 0.5
+scale = 0.33
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 153.5, 54.5 )

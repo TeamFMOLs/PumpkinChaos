@@ -1,9 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/RPG Nature Tileset Autumn.png" type="Texture" id=2]
 [ext_resource path="res://Objects/AirField.tscn" type="PackedScene" id=3]
 [ext_resource path="res://General/GameManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/image.png" type="Texture" id=5]
+[ext_resource path="res://Assets/pixil-frame-0(1).png" type="Texture" id=6]
+[ext_resource path="res://Assets/Trees.png" type="Texture" id=7]
+[ext_resource path="res://Objects/Trap.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Objects/Trap.cs" type="Script" id=9]
 
 [sub_resource type="TileSet" id=1]
 0/name = "RPG Nature Tileset Autumn.png 0"
@@ -43,6 +48,76 @@
 1/shape_one_way_margin = 0.0
 1/shapes = [  ]
 1/z_index = 0
+24/name = "image.png 24"
+24/texture = ExtResource( 5 )
+24/tex_offset = Vector2( 0, 0 )
+24/modulate = Color( 1, 1, 1, 1 )
+24/region = Rect2( 128, 160, 128, 128 )
+24/tile_mode = 0
+24/occluder_offset = Vector2( 0, 0 )
+24/navigation_offset = Vector2( 0, 0 )
+24/shape_offset = Vector2( 0, 0 )
+24/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+24/shape_one_way = false
+24/shape_one_way_margin = 0.0
+24/shapes = [  ]
+24/z_index = 0
+25/name = "image.png 25"
+25/texture = ExtResource( 5 )
+25/tex_offset = Vector2( 0, 0 )
+25/modulate = Color( 1, 1, 1, 1 )
+25/region = Rect2( 64, 64, 64, 96 )
+25/tile_mode = 0
+25/occluder_offset = Vector2( 0, 0 )
+25/navigation_offset = Vector2( 0, 0 )
+25/shape_offset = Vector2( 0, 0 )
+25/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+25/shape_one_way = false
+25/shape_one_way_margin = 0.0
+25/shapes = [  ]
+25/z_index = 0
+26/name = "Trees.png 26"
+26/texture = ExtResource( 7 )
+26/tex_offset = Vector2( 0, 0 )
+26/modulate = Color( 1, 1, 1, 1 )
+26/region = Rect2( 0, 16, 80, 96 )
+26/tile_mode = 0
+26/occluder_offset = Vector2( 0, 0 )
+26/navigation_offset = Vector2( 0, 0 )
+26/shape_offset = Vector2( 0, 0 )
+26/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+26/shape_one_way = false
+26/shape_one_way_margin = 0.0
+26/shapes = [  ]
+26/z_index = 0
+27/name = "Trees.png 27"
+27/texture = ExtResource( 7 )
+27/tex_offset = Vector2( 0, 0 )
+27/modulate = Color( 1, 1, 1, 1 )
+27/region = Rect2( 80, 16, 80, 96 )
+27/tile_mode = 0
+27/occluder_offset = Vector2( 0, 0 )
+27/navigation_offset = Vector2( 0, 0 )
+27/shape_offset = Vector2( 0, 0 )
+27/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+27/shape_one_way = false
+27/shape_one_way_margin = 0.0
+27/shapes = [  ]
+27/z_index = 0
+28/name = "Trees.png 28"
+28/texture = ExtResource( 7 )
+28/tex_offset = Vector2( 0, 0 )
+28/modulate = Color( 1, 1, 1, 1 )
+28/region = Rect2( 160, 32, 48, 80 )
+28/tile_mode = 0
+28/occluder_offset = Vector2( 0, 0 )
+28/navigation_offset = Vector2( 0, 0 )
+28/shape_offset = Vector2( 0, 0 )
+28/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+28/shape_one_way = false
+28/shape_one_way_margin = 0.0
+28/shapes = [  ]
+28/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -50,14 +125,16 @@
 position = Vector2( 72, 0 )
 
 [node name="TileMap" type="TileMap" parent="."]
-modulate = Color( 0.494118, 0.592157, 0.439216, 1 )
+z_index = -1
 tile_set = SubResource( 1 )
 show_collision = true
 format = 1
-tile_data = PoolIntArray( 65535, -1073741824, 0, 2, -1073741824, 0, 3, -1073741824, 0, 131071, -1073741824, 0, 65538, -1073741824, 0, 65539, -1073741824, 0, 65540, -1073741824, 0, 65541, -1073741824, 0, 65542, -1073741824, 0, 65543, -1073741824, 0, 65544, -1073741824, 0, 196607, -1073741824, 0, 131072, -1073741824, 0, 131073, -1073741824, 0, 131074, -1073741824, 0, 131075, -1073741824, 0, 131078, -1073741824, 0, 131080, -1073741824, 0, 196608, -1073741824, 0, 196609, -1073741824, 0, 196610, -1073741824, 0, 196611, -1073741824, 0, 196612, -1073741824, 0, 196613, -1073741824, 0, 196614, -1073741824, 0, 196615, -1073741824, 0, 196616, -1073741824, 0, 262144, -1073741824, 0, 262147, -1073741824, 0, 262152, -1073741824, 0, 327680, -1073741824, 0, 327681, -1073741824, 0, 327682, -1073741824, 0, 327683, -1073741824, 0, 327688, -1073741824, 0, 393216, -1073741824, 0, 393219, -1073741824, 0, 393224, -1073741824, 0, 458752, -1073741824, 0, 458755, -1073741824, 0, 458760, -1073741824, 0, 524288, -1073741824, 0, 524289, -1073741824, 0, 524290, -1073741824, 0, 524291, -1073741824, 0, 524292, -1073741824, 0, 524293, -1073741824, 0, 524294, -1073741824, 0, 524295, -1073741824, 0, 524296, -1073741824, 0 )
+tile_data = PoolIntArray( -196612, 5, 0, -196611, 5, 0, -196610, 5, 0, -196609, 5, 0, -262144, 5, 0, -131079, 5, 0, -131078, 5, 0, -131077, 5, 0, -131076, 5, 0, -196603, 5, 0, -65543, 5, 0, -7, 5, 0, 65529, 5, 0, 65535, 0, 0, 11, 5, 0, 131065, 5, 0, 131071, -1073741824, 0, 65547, 5, 0, 196601, 5, 0, 196607, -1073741824, 0, 131072, -1073741824, 0, 131073, -1073741824, 0, 131074, 0, 0, 131075, 0, 0, 131080, 4, 0, 131081, 4, 0, 131083, 5, 0, 262137, 5, 0, 262138, 5, 0, 196608, -1073741824, 0, 196609, -1073741824, 0, 196610, -1073741824, 0, 196611, -1073741824, 0, 196612, -1073741824, 0, 196613, -1073741824, 0, 196614, -1073741824, 0, 196615, 0, 0, 196616, -1073741824, 0, 196617, 0, 0, 327672, 5, 0, 327673, 5, 0, 327674, 5, 0, 262154, 5, 0, 393210, 5, 0, 458746, 5, 0, 393225, 5, 0, 393226, 5, 0, 524282, 5, 0, 524283, 5, 0, 524284, 5, 0, 458762, 5, 0, 524296, 5, 0 )
 
 [node name="AirField" parent="." instance=ExtResource( 3 )]
-position = Vector2( 296, 40 )
+position = Vector2( 227, -267 )
+rotation = -1.57361
+scale = Vector2( 3.07988, 0.560003 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -32, 32 )
@@ -76,3 +153,20 @@ position = Vector2( 32, 224 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 scale = Vector2( 2.76, 2.76 )
 shape = SubResource( 2 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color( 0.152941, 0.0941176, 0.0941176, 1 )
+position = Vector2( 450, 154 )
+scale = Vector2( 55.6385, 82.9431 )
+z_index = -1
+texture = ExtResource( 6 )
+
+[node name="Trap" parent="." instance=ExtResource( 8 )]
+modulate = Color( 0.811765, 0.815686, 0.678431, 1 )
+position = Vector2( -32, 158 )
+scale = Vector2( 1.17339, 1.17339 )
+script = ExtResource( 9 )
