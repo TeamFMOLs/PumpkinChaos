@@ -33,7 +33,7 @@ public class Soul : Node2D
     //      
     //  }
 
-    public void TransfetToBody(Player player)
+    public void TransferToBody(Player player)
     {
         Visible = true;
         CurrentPlayer = player;

@@ -20,6 +20,10 @@ public class GameManager : Node2D
 //      
 //  }
 
+    public void OnPlayerReachedGoal() {
+        
+    }
+
     public void ChangePlayerAgent() {
         
         StaticRefs.ChangePlayer();

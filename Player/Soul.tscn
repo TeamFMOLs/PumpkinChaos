@@ -128,7 +128,7 @@ void fragment(){
 shader = SubResource( 1 )
 shader_param/intensity = 0.785
 shader_param/layers = 8.331
-shader_param/speed = 4.0
+shader_param/speed = 6.0
 
 [sub_resource type="OpenSimplexNoise" id=3]
 resource_local_to_scene = true

@@ -25,10 +25,11 @@ public class ScareCrow : Area2D
         {
             var newNode = GetNode("HeadPosition") as Node2D;
             var player = body2D as Player;
-            var tween = CreateTween();
+            var tween = CreateTween().SetTrans(trans :Tween.TransitionType.Quint);
             tween.TweenProperty(player,"global_position" ,newNode.GlobalPosition,0.8f);
             tween.TweenProperty(player,"global_rotation" ,newNode.GlobalRotation,0.8f);
             player.ReachedGoal();
+            player.StopMovement = true;
         }
         
     }

@@ -24,10 +24,16 @@ public class Player : KinematicBody2D
             animationPlayer.Play(value ? "Idle" : "NoSoul");
         }
     }
+    public bool StopMovement
+    {
+        get => _stopMovement;
+        set => _stopMovement = value;
+    }
     private Timer MovementTimer;
     private bool IsMoving = false;
     [Export]
     private bool _hasSoul;
+    private bool _stopMovement;
     private Light2D light;
 
     private Camera2D camera;
@@ -81,7 +87,7 @@ public class Player : KinematicBody2D
     public override void _Process(float delta)
     {
 
-        if (_hasSoul)
+        if (_hasSoul && !StopMovement)
         {
             _animatedSprite = _Light;
             _Light.Visible = true;
@@ -197,13 +203,15 @@ public class Player : KinematicBody2D
         }
     }
 
-    public void ReachedGoal() {
+    public void ReachedGoal()
+    {
+        animationPlayer.Play("SlightJump");
         _animatedSprite.Play("Back_Front");
     }
 
     void ResetMovement()
     {
-        
+
         IsMoving = false;
     }
 

@@ -20,6 +20,6 @@ public static class StaticRefs
             PlayerAgentIndex = 0;
         }
         CurrentPlayer =  PlayerAgents[PlayerAgentIndex];
-        PlayerSoul.TransfetToBody(CurrentPlayer);
+        PlayerSoul.TransferToBody(CurrentPlayer);
     }
 }
