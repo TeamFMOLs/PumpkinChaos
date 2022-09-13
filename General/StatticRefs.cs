@@ -6,7 +6,9 @@ public static class StaticRefs
 {
     public static InputManager inputManager;
     public static Player CurrentPlayer;
-    
+    public static SceneCamera CurrentCamera;
+    public static GameManager gameManager;
+    public static Soul PlayerSoul;
     public static List<Player> PlayerAgents = new List<Player>();
     public static int PlayerAgentIndex = 0; 
 
@@ -17,7 +19,7 @@ public static class StaticRefs
         {
             PlayerAgentIndex = 0;
         }
-        PlayerAgents[PlayerAgentIndex].HasSoul = true;
         CurrentPlayer =  PlayerAgents[PlayerAgentIndex];
+        PlayerSoul.TransfetToBody(CurrentPlayer);
     }
 }

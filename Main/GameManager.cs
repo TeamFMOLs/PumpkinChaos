@@ -3,7 +3,12 @@ using System;
 
 public class GameManager : Node2D
 {
-    
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        StaticRefs.gameManager = this;
+    }
     public override void _Ready()
     {
         StaticRefs.inputManager.ChangePlayer += ChangePlayerAgent;

@@ -11,10 +11,7 @@ public class SceneCamera : Camera2D
     OpenSimplexNoise noise = new OpenSimplexNoise();
     private float shakeTime = 0;
     int ny = 0;
-    public override void _EnterTree()
-    {
-        
-    }
+    
     public override void _Ready()
     {
         var random = new Random();

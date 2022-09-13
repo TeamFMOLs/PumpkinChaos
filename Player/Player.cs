@@ -14,18 +14,27 @@ public class Player : KinematicBody2D
     private float StepSize = 80f;
     [Export]
     private float StepTime = 0.5f;
-    public bool HasSoul { get { return _hasSoul; } set { _hasSoul = value; light.Enabled = value; camera.Current = value; } }
+    public bool HasSoul
+    {
+        get { return _hasSoul; }
+        set
+        {
+            _hasSoul = value;
+            light.Enabled = value;
+            animationPlayer.Play(value ? "Idle" : "NoSoul");
+        }
+    }
     private Timer MovementTimer;
     private bool IsMoving = false;
     [Export]
     private bool _hasSoul;
     private Light2D light;
-    public Camera2D PlayerCamera { get { return camera; } }
+
     private Camera2D camera;
     // private SceneTreeTween MovementTween;
     private Vector2 lastPos;
     private AnimatedSprite _animatedSprite, _Light, _Dark;
-    
+
     private int lastInput = 0;
 
     public override void _EnterTree()
@@ -34,9 +43,9 @@ public class Player : KinematicBody2D
         if (_hasSoul)
         {
             StaticRefs.CurrentPlayer = this;
-            _animatedSprite = _Light;
             StaticRefs.PlayerAgentIndex = StaticRefs.PlayerAgents.IndexOf(this);
         }
+
     }
 
 
@@ -51,14 +60,18 @@ public class Player : KinematicBody2D
         light = GetNode<Light2D>(SoulLightPath);
         MovementTimer.Connect("timeout", this, nameof(ResetMovement));
         MovementTimer.WaitTime = StepTime;
-        camera = GetNode<Camera2D>("Camera2D");
-        camera.Current = _hasSoul;
         light.Enabled = _hasSoul;
-
         if (_hasSoul)
+        {
+            GetNode<Soul>("Soul").SetCurrent();
             _animatedSprite = _Light;
+        }
         else
+        {
+            GetNode<Soul>("Soul").QueueFree();
             _animatedSprite = _Dark;
+        }
+        camera = StaticRefs.CurrentCamera;
 
         _animatedSprite.Visible = true;
 
@@ -184,13 +197,17 @@ public class Player : KinematicBody2D
         }
     }
 
+    public void ReachedGoal() {
+        _animatedSprite.Play("Back_Front");
+    }
+
     void ResetMovement()
     {
-
+        
         IsMoving = false;
     }
 
-    void MoveToLoc(Vector2 loc, float t)
+    public void MoveToLoc(Vector2 loc, float t)
     {
         var MovementTween = CreateTween();
         MovementTween.TweenProperty(this, "global_position", loc, t);
