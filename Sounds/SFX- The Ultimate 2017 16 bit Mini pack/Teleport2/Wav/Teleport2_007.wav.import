@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Teleport2_007.wav-2e576f5c6d7e84a6c4fe9a27e099f289.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Teleport2/Wav/Teleport2_007.wav"
+dest_files=[ "res://.import/Teleport2_007.wav-2e576f5c6d7e84a6c4fe9a27e099f289.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

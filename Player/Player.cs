@@ -14,6 +14,7 @@ public class Player : KinematicBody2D
     private float StepSize = 80f;
     [Export]
     private float StepTime = 0.5f;
+    private bool _isDead = false;
     public bool HasSoul
     {
         get { return _hasSoul; }
@@ -21,7 +22,8 @@ public class Player : KinematicBody2D
         {
             _hasSoul = value;
             light.Enabled = value;
-            animationPlayer.Play(value ? "Idle" : "NoSoul");
+            animationPlayer.Play(value ? "Idle" : "RESET");
+
         }
     }
     public bool StopMovement
@@ -213,6 +215,18 @@ public class Player : KinematicBody2D
     {
 
         IsMoving = false;
+    }
+
+    public void Die()
+    {
+        if (!_isDead)
+        {
+            animationPlayer.Play("Die");
+            GetNode<AudioStreamPlayer2D>("DeathSound").Play();
+            _isDead = true;
+            StaticRefs.gameManager.OnPlayerDie();
+        }
+
     }
 
     public void MoveToLoc(Vector2 loc, float t)

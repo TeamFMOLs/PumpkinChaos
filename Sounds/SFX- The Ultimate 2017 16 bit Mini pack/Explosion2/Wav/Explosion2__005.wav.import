@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Explosion2__005.wav-6169a2814830e086aa2c965c1221ceac.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Explosion2/Wav/Explosion2__005.wav"
+dest_files=[ "res://.import/Explosion2__005.wav-6169a2814830e086aa2c965c1221ceac.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

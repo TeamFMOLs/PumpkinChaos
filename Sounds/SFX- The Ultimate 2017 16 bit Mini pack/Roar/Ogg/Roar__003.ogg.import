@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Roar__003.ogg-432ac123516e71f1f0936f8b631ebed9.oggstr"
+
+[deps]
+
+source_file="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Roar/Ogg/Roar__003.ogg"
+dest_files=[ "res://.import/Roar__003.ogg-432ac123516e71f1f0936f8b631ebed9.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

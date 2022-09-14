@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Menu__006.wav-cc308d9ccad9afbf5c5ca5f05b9b1155.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Menu/Wav/Menu__006.wav"
+dest_files=[ "res://.import/Menu__006.wav-cc308d9ccad9afbf5c5ca5f05b9b1155.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Explosion2__005.ogg-4a62776beec65fc388d66ef57cbba7b0.oggstr"
+
+[deps]
+
+source_file="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Explosion2/Ogg/Explosion2__005.ogg"
+dest_files=[ "res://.import/Explosion2__005.ogg-4a62776beec65fc388d66ef57cbba7b0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Teleport__005.ogg-2b3a497d2f25dfaa0e0938aee79462b1.oggstr"
+
+[deps]
+
+source_file="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Teleport/Ogg/Teleport__005.ogg"
+dest_files=[ "res://.import/Teleport__005.ogg-2b3a497d2f25dfaa0e0938aee79462b1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

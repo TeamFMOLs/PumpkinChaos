@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Punch__003.ogg-878b0ea79e5f03659a8c14c809be0c5f.oggstr"
+
+[deps]
+
+source_file="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Punch/Ogg/Punch__003.ogg"
+dest_files=[ "res://.import/Punch__003.ogg-878b0ea79e5f03659a8c14c809be0c5f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,14 +1,36 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
+[ext_resource path="res://Assets/player_dark_PXL_2.png" type="Texture" id=2]
 [ext_resource path="res://Assets/dfa6770603ecf5afb82ee7e880375bc68c681ee5.png" type="Texture" id=3]
 [ext_resource path="res://Sounds/steps/wood01.ogg" type="AudioStream" id=4]
 [ext_resource path="res://Player/Soul.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Player_Dark.png" type="Texture" id=6]
 [ext_resource path="res://Assets/player_LIGHT_PXL.png" type="Texture" id=7]
+[ext_resource path="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Ouch/Ogg/Ouch__001.ogg" type="AudioStream" id=8]
 
 [sub_resource type="CircleShape2D" id=26]
 radius = 24.0
+
+[sub_resource type="Shader" id=34]
+code = "shader_type canvas_item;
+
+uniform float white_progress : hint_range(0,1) = 0;
+
+vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
+    return start + (end - start) * delta;
+}
+
+void fragment(){
+    vec4 origin = texture(TEXTURE, UV);
+    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,1,1), white_progress);
+    COLOR.a = origin.a;
+}"
+
+[sub_resource type="ShaderMaterial" id=35]
+resource_local_to_scene = true
+shader = SubResource( 34 )
+shader_param/white_progress = 0.0
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
@@ -200,6 +222,69 @@ animations = [ {
 "speed": 15.0
 } ]
 
+[sub_resource type="Animation" id=36]
+resource_name = "Die"
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteParent/Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpriteParent/AnimatedSpriteL:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpriteParent/AnimatedSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SpriteParent:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 0.517632, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -48 ), Vector2( 0, 336 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("SpriteParent:material:shader_param/white_progress")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+
 [sub_resource type="Animation" id=25]
 resource_name = "Idle"
 loop = true
@@ -233,6 +318,54 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpriteParent/Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpriteParent/AnimatedSpriteL:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SpriteParent/AnimatedSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("SpriteParent:material:shader_param/white_progress")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "SlightJump"
@@ -264,6 +397,7 @@ StepTime = 0.3
 shape = SubResource( 26 )
 
 [node name="SpriteParent" type="Node2D" parent="."]
+material = SubResource( 35 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="SpriteParent"]
 visible = false
@@ -279,13 +413,16 @@ animation = "A_Start"
 
 [node name="Sprite" type="Sprite" parent="SpriteParent"]
 visible = false
-scale = Vector2( 0.4, 0.4 )
+use_parent_material = true
+scale = Vector2( 0.44, 0.44 )
+texture = ExtResource( 2 )
 hframes = 3
 vframes = 2
 frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
+anims/Die = SubResource( 36 )
 anims/Idle = SubResource( 25 )
 anims/NoSoul = SubResource( 27 )
 anims/RESET = SubResource( 2 )
@@ -295,6 +432,9 @@ next/SlightJump = "Idle"
 
 [node name="MovementTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
 
 [node name="StepSoundStream" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )

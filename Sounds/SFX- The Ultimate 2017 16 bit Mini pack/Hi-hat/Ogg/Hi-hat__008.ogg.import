@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Hi-hat__008.ogg-f62a699123b7cc6c3462bf31caa280bb.oggstr"
+
+[deps]
+
+source_file="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Hi-hat/Ogg/Hi-hat__008.ogg"
+dest_files=[ "res://.import/Hi-hat__008.ogg-f62a699123b7cc6c3462bf31caa280bb.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Space__003.ogg-6a69aece84e3434c99e5b28211e0bf34.oggstr"
+
+[deps]
+
+source_file="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Space/Ogg/Space__003.ogg"
+dest_files=[ "res://.import/Space__003.ogg-6a69aece84e3434c99e5b28211e0bf34.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Snare__002.ogg-9c834311ef1176d8995576902ff1ee3d.oggstr"
+
+[deps]
+
+source_file="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Snare/Ogg/Snare__002.ogg"
+dest_files=[ "res://.import/Snare__002.ogg-9c834311ef1176d8995576902ff1ee3d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

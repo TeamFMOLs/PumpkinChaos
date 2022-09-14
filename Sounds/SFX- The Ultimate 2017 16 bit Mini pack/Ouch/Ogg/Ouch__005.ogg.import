@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Ouch__005.ogg-55d15a0b571472cdc559521b3a1bd314.oggstr"
+
+[deps]
+
+source_file="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Ouch/Ogg/Ouch__005.ogg"
+dest_files=[ "res://.import/Ouch__005.ogg-55d15a0b571472cdc559521b3a1bd314.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

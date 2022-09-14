@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Footstep__002.ogg-c2c5d05fda3f4d1ea1a6d8c0dfb0df7e.oggstr"
+
+[deps]
+
+source_file="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Footstep/Ogg/Footstep__002.ogg"
+dest_files=[ "res://.import/Footstep__002.ogg-c2c5d05fda3f4d1ea1a6d8c0dfb0df7e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

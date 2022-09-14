@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Bass Drum__008.ogg-afd5493ee3f87c30eeb4a53bf320484f.oggstr"
+
+[deps]
+
+source_file="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Bass Drum/Ogg/Bass Drum__008.ogg"
+dest_files=[ "res://.import/Bass Drum__008.ogg-afd5493ee3f87c30eeb4a53bf320484f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

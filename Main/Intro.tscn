@@ -282,7 +282,7 @@ position = Vector2( -712, 1136 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -672, 1440 )
-collision_layer = 3
+collision_layer = 1
 StepSize = 64.0
 _hasSoul = true
 

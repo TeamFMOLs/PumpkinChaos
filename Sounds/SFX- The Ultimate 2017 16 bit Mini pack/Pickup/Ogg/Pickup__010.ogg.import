@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Pickup__010.ogg-6cf981f208b69ed77653caea87512a71.oggstr"
+
+[deps]
+
+source_file="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Pickup/Ogg/Pickup__010.ogg"
+dest_files=[ "res://.import/Pickup__010.ogg-6cf981f208b69ed77653caea87512a71.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

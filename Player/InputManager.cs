@@ -13,6 +13,7 @@ public class InputManager : Node2D
     private bool _down;
     
     public event Action ChangePlayer;
+    public event Action ContinueScene;
 
     public override void _EnterTree()
     {
@@ -34,6 +35,10 @@ public class InputManager : Node2D
         if (Input.IsActionJustPressed("change_player"))
         {
             ChangePlayer?.Invoke();
+        }
+        if (Input.IsActionJustPressed("scene_continue"))
+        {
+            ContinueScene?.Invoke();
         }
     }
 }

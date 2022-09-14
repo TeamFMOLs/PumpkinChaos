@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Pew__006.ogg-3fddaa17666d11ef3a6c654b09016fc6.oggstr"
+
+[deps]
+
+source_file="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Pew/Ogg/Pew__006.ogg"
+dest_files=[ "res://.import/Pew__006.ogg-3fddaa17666d11ef3a6c654b09016fc6.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
