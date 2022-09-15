@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/glow-png-3.png" type="Texture" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.015873, 0.777778, 0.984127, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.975586, 0.721678, 0.0266762, 1, 0.875304, 0.650156, 0.0338741, 1, 0.764648, 0.571235, 0.0418167, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+min_value = 0.05
+max_value = 0.2
+_data = [ Vector2( 0.00937499, 0.00920248 ), 0.0, 0.0, 0, 0, Vector2( 0.646875, 0.794478 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+lifetime_randomness = 0.8
+emission_shape = 5
+emission_ring_radius = 3500.0
+emission_ring_inner_radius = 0.0
+emission_ring_height = 0.0
+emission_ring_axis = Vector3( 0, -4.581, 0 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, -100 )
+angular_velocity = -3.0
+angular_velocity_random = 1.0
+orbit_velocity = -5.0
+orbit_velocity_random = 1.0
+scale = 0.1
+scale_random = 0.79
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+anim_speed = 5.22
+anim_speed_random = 1.0
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 64, 64 )
+
+[node name="Area2D" type="Area2D"]
+
+[node name="Particles2D" type="Particles2D" parent="."]
+scale = Vector2( -0.0200377, -0.0201993 )
+amount = 4000
+lifetime = 0.5
+speed_scale = 0.5
+explosiveness = 0.25
+randomness = 0.25
+process_material = SubResource( 5 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 6 )
