@@ -208,7 +208,10 @@ public class Player : KinematicBody2D
     public void ReachedGoal()
     {
         animationPlayer.Play("SlightJump");
-        _animatedSprite.Play("Back_Front");
+        GD.Print(_animatedSprite==_Light);
+        _animatedSprite.Play("Front_Back");
+        _animatedSprite.Frame = 1;
+         GD.Print(HasSoul);
     }
 
     void ResetMovement()

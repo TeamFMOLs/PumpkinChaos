@@ -168,21 +168,13 @@ texture = ExtResource( 6 )
 modulate = Color( 0.811765, 0.815686, 0.678431, 1 )
 position = Vector2( -32, 158 )
 scale = Vector2( 1.17339, 1.17339 )
-trapType = 1
-SpikesDownTime = 2.0
 
 [node name="Trap2" parent="." instance=ExtResource( 8 )]
 modulate = Color( 0.811765, 0.815686, 0.678431, 1 )
 position = Vector2( 32, 158 )
 scale = Vector2( 1.17339, 1.17339 )
-trapType = 1
-TimeToStart = 2.0
-SpikesDownTime = 2.0
 
 [node name="Trap3" parent="." instance=ExtResource( 8 )]
 modulate = Color( 0.811765, 0.815686, 0.678431, 1 )
 position = Vector2( 96, 158 )
 scale = Vector2( 1.17339, 1.17339 )
-trapType = 1
-TimeToStart = 3.0
-SpikesDownTime = 2.0
