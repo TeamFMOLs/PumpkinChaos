@@ -209,6 +209,7 @@ public class Player : KinematicBody2D
     {
         animationPlayer.Play("SlightJump");
         _animatedSprite.Play("Back_Front");
+        
     }
 
     void ResetMovement()
