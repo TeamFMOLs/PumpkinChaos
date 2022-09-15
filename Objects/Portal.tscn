@@ -36,8 +36,6 @@ scale = 0.1
 scale_random = 0.79
 scale_curve = SubResource( 4 )
 color_ramp = SubResource( 2 )
-anim_speed = 5.22
-anim_speed_random = 1.0
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 64, 64 )
@@ -46,7 +44,7 @@ extents = Vector2( 64, 64 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 scale = Vector2( -0.0200377, -0.0201993 )
-amount = 4000
+amount = 2000
 lifetime = 0.5
 speed_scale = 0.5
 explosiveness = 0.25

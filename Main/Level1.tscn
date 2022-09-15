@@ -55,10 +55,7 @@ tracks/1/keys = {
 
 [node name="LevelTemplate" instance=ExtResource( 1 )]
 
-[node name="ScareCrow" parent="LevelMap" index="0"]
-position = Vector2( 488, 16 )
-
-[node name="TileMap" type="TileMap" parent="LevelMap" index="1"]
+[node name="TileMap" type="TileMap" parent="LevelMap" index="0"]
 z_index = -2
 tile_set = ExtResource( 3 )
 show_collision = true
@@ -97,6 +94,9 @@ trapType = 1
 [node name="Trap2" parent="LevelMap/TileMap" index="2" instance=ExtResource( 2 )]
 position = Vector2( 283, 22 )
 trapType = 1
+
+[node name="ScareCrow" parent="LevelMap" index="1"]
+position = Vector2( 432, 16 )
 
 [node name="Player" parent="LevelMap" index="2"]
 position = Vector2( -32, -32 )
