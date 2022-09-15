@@ -391,6 +391,7 @@ AnimatorNodePath = NodePath("AnimationPlayer")
 MovementTimerNodePath = NodePath("MovementTimer")
 StepsAudioPlayerPath = NodePath("StepSoundStream")
 SoulLightPath = NodePath("Light2D")
+StepSize = 64.0
 StepTime = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
