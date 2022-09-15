@@ -137,12 +137,10 @@ scale = Vector2( 3.07988, 0.560003 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -32, 32 )
-StepSize = 64.0
 _hasSoul = true
 
 [node name="Player2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 544, 224 )
-StepSize = 64.0
 
 [node name="GameManager" parent="." instance=ExtResource( 4 )]
 

@@ -8,17 +8,52 @@
 
 [node name="TileMap" type="TileMap" parent="LevelMap" index="0"]
 tile_set = ExtResource( 3 )
+show_collision = true
 format = 1
-tile_data = PoolIntArray( 5, 0, 0, 6, 0, 4, 7, 0, 1, 8, 0, 5, 131071, 6, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 65540, 2, 0, 65541, 0, 196608, 65542, 0, 131076, 65543, 0, 65540, 65544, 0, 196613, 196607, 3, 0, 131072, 10, 0, 131073, 10, 0, 131074, 10, 0, 131075, 10, 0, 131076, 10, 0, 131077, 0, 262144, 131078, 0, 262148, 131079, 0, 262147, 131080, 0, 262149, 262143, 3, 0, 196613, 10, 0, 196614, 11, 0, 196615, 11, 0, 196616, 12, 0, 327678, 0, 0, 327679, 0, 4, 262144, 0, 5, 393214, 0, 131072, 393215, 0, 131076, 327680, 0, 131073, 458750, 0, 196608, 458751, 0, 65540, 393216, 0, 196613, 524286, 0, 65536, 524287, 0, 65540, 458752, 0, 65541, 589822, 0, 262144, 589823, 0, 262148, 524288, 0, 262149, 655358, 10, 0, 655359, 10, 0, 589824, 12, 0 )
+tile_data = PoolIntArray( 5, 19, 0, 6, 0, 0, 7, 0, 0, 8, 16, 0, 131071, 6, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 9, 0, 65542, 9, 0, 65543, 9, 0, 65544, 13, 0, 196607, 3, 0, 131072, 10, 0, 131073, 10, 0, 131074, 10, 0, 131075, 10, 0, 131076, 10, 0, 131077, 21, 0, 131078, 18, 0, 131079, 18, 0, 131080, 17, 0, 262143, 3, 0, 196613, 10, 0, 196614, 11, 0, 196615, 11, 0, 196616, 12, 0, 327678, 19, 0, 327679, 9, 0, 262144, 16, 0, 393214, 20, 0, 393215, 9, 0, 327680, 13, 0, 458750, 20, 0, 458751, 9, 0, 393216, 13, 0, 524286, 20, 0, 524287, 9, 0, 458752, 13, 0, 589822, 21, 0, 589823, 18, 0, 524288, 17, 0, 655358, 10, 0, 655359, 10, 0, 589824, 12, 0 )
 
 [node name="Trap" parent="LevelMap" index="1" instance=ExtResource( 1 )]
 position = Vector2( -32, 224 )
+trapType = 1
+SpikesDownTime = 2.0
 
 [node name="Trap2" parent="LevelMap" index="2" instance=ExtResource( 1 )]
-position = Vector2( -32, 176 )
+position = Vector2( -32, 160 )
+trapType = 1
+SpikesDownTime = 2.0
 
-[node name="ScareCrow" parent="LevelMap" index="3"]
+[node name="Trap3" parent="LevelMap" index="3" instance=ExtResource( 1 )]
+position = Vector2( -32, 96 )
+trapType = 1
+TimeToStart = 2.0
+SpikesDownTime = 2.0
+
+[node name="Trap4" parent="LevelMap" index="4" instance=ExtResource( 1 )]
+position = Vector2( 32, 88 )
+trapType = 1
+TimeToStart = 3.0
+SpikesDownTime = 2.0
+
+[node name="Trap5" parent="LevelMap" index="5" instance=ExtResource( 1 )]
+position = Vector2( 160, 88 )
+trapType = 1
+TimeToStart = 4.0
+SpikesDownTime = 2.0
+
+[node name="Trap6" parent="LevelMap" index="6" instance=ExtResource( 1 )]
+position = Vector2( 224, 88 )
+trapType = 1
+TimeToStart = 4.0
+SpikesDownTime = 2.0
+
+[node name="Trap7" parent="LevelMap" index="7" instance=ExtResource( 1 )]
+position = Vector2( 288, 88 )
+trapType = 1
+TimeToStart = 4.0
+SpikesDownTime = 2.0
+
+[node name="ScareCrow" parent="LevelMap" index="8"]
 position = Vector2( 472, 96 )
 
-[node name="Player" parent="." index="3"]
-position = Vector2( 0, 416 )
+[node name="Player" parent="LevelMap" index="9"]
+position = Vector2( -96, 415 )
