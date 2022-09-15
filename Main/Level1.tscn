@@ -11,19 +11,19 @@ font_data = ExtResource( 4 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Label"
-length = 0.5
+length = 0.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("LevelMap/Trap/Node2D:position")
+tracks/0/path = NodePath("LevelMap/TileMap/Trap/Node2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 117, -65 ), Vector2( 116, -69 ), Vector2( 117, -79 ), Vector2( 117, -72 ), Vector2( 116, -64 ) ]
+"values": [ Vector2( 117, -65 ), Vector2( 117, -96 ), Vector2( 117, -65 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -35,6 +35,18 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 117, -65 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LevelMap/TileMap/Trap/Node2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
