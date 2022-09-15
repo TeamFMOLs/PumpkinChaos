@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Assets/TileSet data/Intro.tres" type="TileSet" id=1]
+[ext_resource path="res://Assets/TileSet data/tile1_with_col.tres" type="TileSet" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://General/GameManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Fonts/font2.tres" type="DynamicFont" id=4]
@@ -23,7 +23,6 @@ position = Vector2( -712, 1136 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -672, 1440 )
 collision_layer = 1
-StepSize = 64.0
 _hasSoul = true
 
 [node name="Soul" parent="Player" instance=ExtResource( 5 )]
