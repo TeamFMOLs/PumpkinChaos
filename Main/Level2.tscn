@@ -56,4 +56,4 @@ SpikesDownTime = 2.0
 position = Vector2( 472, 96 )
 
 [node name="Player" parent="LevelMap" index="9"]
-position = Vector2( -32, 488 )
+position = Vector2( -32, 480 )
