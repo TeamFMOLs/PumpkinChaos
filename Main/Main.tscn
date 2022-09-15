@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/RPG Nature Tileset Autumn.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/pixil-frame-0(1).png" type="Texture" id=6]
 [ext_resource path="res://Assets/Trees.png" type="Texture" id=7]
 [ext_resource path="res://Objects/Trap.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Objects/Portal.tscn" type="PackedScene" id=9]
 
 [sub_resource type="TileSet" id=1]
 0/name = "RPG Nature Tileset Autumn.png 0"
@@ -176,3 +177,7 @@ scale = Vector2( 1.17339, 1.17339 )
 modulate = Color( 0.811765, 0.815686, 0.678431, 1 )
 position = Vector2( 96, 158 )
 scale = Vector2( 1.17339, 1.17339 )
+
+[node name="Area2D" parent="." instance=ExtResource( 9 )]
+position = Vector2( -32, 97 )
+scale = Vector2( 0.44667, 0.44667 )
