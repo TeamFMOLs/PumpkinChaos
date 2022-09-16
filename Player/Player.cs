@@ -26,6 +26,7 @@ public class Player : KinematicBody2D
 
         }
     }
+    public bool _Teleport;
     public bool StopMovement
     {
         get => _stopMovement;
@@ -60,6 +61,7 @@ public class Player : KinematicBody2D
     public override void _Ready()
     {
         inputManager = StaticRefs.inputManager;
+        _Teleport=false;
         _Dark = GetNode<AnimatedSprite>("SpriteParent/AnimatedSprite");
         _Light = GetNode<AnimatedSprite>("SpriteParent/AnimatedSpriteL");
         animationPlayer = GetNode<AnimationPlayer>(AnimatorNodePath);
@@ -88,7 +90,6 @@ public class Player : KinematicBody2D
 
     public override void _Process(float delta)
     {
-
         if (_hasSoul && !StopMovement)
         {
             _animatedSprite = _Light;
@@ -208,10 +209,8 @@ public class Player : KinematicBody2D
     public void ReachedGoal()
     {
         animationPlayer.Play("SlightJump");
-        GD.Print(_animatedSprite==_Light);
         _animatedSprite.Play("Front_Back");
         _animatedSprite.Frame = 1;
-         GD.Print(HasSoul);
     }
 
     void ResetMovement()
@@ -230,6 +229,15 @@ public class Player : KinematicBody2D
             StaticRefs.gameManager.OnPlayerDie();
         }
 
+    }
+    public void Teleport(Vector2 pos)
+    {
+        if(!_Teleport){
+            animationPlayer.Play("Teleport");
+            _Teleport=true;
+            GlobalPosition=pos;
+            //GetNode<AudioStreamPlayer2D>("TeleportSound").Play();
+        }
     }
 
     public void MoveToLoc(Vector2 loc, float t)

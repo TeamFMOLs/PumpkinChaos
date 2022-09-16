@@ -170,6 +170,13 @@ position = Vector2( 32, 158 )
 scale = Vector2( 1.17339, 1.17339 )
 trapType = 1
 
+[node name="Portal" parent="." instance=ExtResource( 9 )]
+position = Vector2( -32, 97 )
+TargetObjectPath = NodePath("../Portal2")
+
+[node name="Portal2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 161, 222 )
+TargetObjectPath = NodePath("../Portal")
 [node name="Trap3" parent="." instance=ExtResource( 8 )]
 modulate = Color( 0.811765, 0.815686, 0.678431, 1 )
 position = Vector2( 96, 158 )
