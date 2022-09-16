@@ -53,6 +53,7 @@ tracks/0/keys = {
 }
 
 [node name="GameManager" type="Node2D"]
+z_index = 5
 script = ExtResource( 2 )
 GameOverNodePath = NodePath("UI/GameOver")
 
