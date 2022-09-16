@@ -39,7 +39,7 @@ public class Trap : Area2D
         if (other is Player && _animatedSprite.GetFrame() >= 7 && _animatedSprite.GetFrame() <= 11)
         {
             // do st
-            GD.Print("a7a");
+            GD.Print("liol");
         }
     }
 
