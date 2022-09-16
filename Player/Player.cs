@@ -15,6 +15,7 @@ public class Player : KinematicBody2D
     [Export]
     private float StepTime = 0.5f;
     private bool _isDead = false;
+    private SceneTreeTween _currentMovementTween;
     public bool HasSoul
     {
         get { return _hasSoul; }
@@ -90,8 +91,10 @@ public class Player : KinematicBody2D
 
     public override void _Process(float delta)
     {
+        
         if (_hasSoul && !StopMovement)
         {
+            //GD.Print(GlobalPosition);
             _animatedSprite = _Light;
             _Light.Visible = true;
             _Dark.Visible = false;
@@ -235,7 +238,9 @@ public class Player : KinematicBody2D
         if(!_Teleport){
             animationPlayer.Play("Teleport");
             _Teleport=true;
+            _currentMovementTween?.Stop();
             GlobalPosition=pos;
+            
             //GetNode<AudioStreamPlayer2D>("TeleportSound").Play();
         }
     }
@@ -244,6 +249,7 @@ public class Player : KinematicBody2D
     {
         var MovementTween = CreateTween();
         MovementTween.TweenProperty(this, "global_position", loc, t);
+        _currentMovementTween = MovementTween;
     }
 
     private bool CheckCollision(Vector2 dir)

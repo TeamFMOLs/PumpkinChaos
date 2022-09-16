@@ -150,7 +150,7 @@ z_index = -1
 script = ExtResource( 66 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
-scale = Vector2( -0.0127497, -0.0127497 )
+scale = Vector2( -0.005, -0.005 )
 z_index = 1
 amount = 2000
 lifetime = 0.5
@@ -174,7 +174,7 @@ modulate = Color( 0.988235, 0.752941, 0.329412, 1 )
 scale = Vector2( 0.496327, 0.506795 )
 frames = SubResource( 10 )
 animation = "portal"
-frame = 53
+frame = 8
 playing = true
 
 [node name="Light2D" type="Light2D" parent="."]
