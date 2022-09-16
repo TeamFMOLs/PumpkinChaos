@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/RPG Nature Tileset Autumn.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Objects/Trap.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Objects/Portal.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Objects/GroundSwitch.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/TileSet data/new_tileset2.tres" type="TileSet" id=11]
 
 [sub_resource type="TileSet" id=1]
 0/name = "RPG Nature Tileset Autumn.png 0"
@@ -190,3 +191,8 @@ _hasSoul = true
 
 [node name="Player2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 544, 224 )
+
+[node name="TileMap2" type="TileMap" parent="."]
+tile_set = ExtResource( 11 )
+cell_size = Vector2( 16, 16 )
+format = 1
