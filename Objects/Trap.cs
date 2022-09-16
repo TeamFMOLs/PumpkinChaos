@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Trap : Area2D
+public class Trap : Area2D ,IRemoteControledObject
 {
     [Export]
     private TrapType trapType;
@@ -82,6 +82,19 @@ public class Trap : Area2D
         _SpikesSound.Play();
         _animatedSprite.Play("spikes_down");
         _isSpikesUp = false;
+    }
+
+    public void OnSwitchStateChanged() {
+        if (trapType == TrapType.SWITCH_CONTROLED)
+        {
+            if (_isSpikesUp)
+            {
+                TrapsDown();
+            } else {
+                TrapsUp();
+            }
+
+        }
     }
 
 
