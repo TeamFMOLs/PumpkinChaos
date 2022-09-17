@@ -100,3 +100,4 @@ position = Vector2( 432, 16 )
 
 [node name="Player" parent="LevelMap" index="2"]
 position = Vector2( -32, -32 )
+scale = Vector2( 1, 1 )

@@ -68,8 +68,8 @@
 [ext_resource path="res://Objects/Portal.cs" type="Script" id=66]
 
 [sub_resource type="Gradient" id=7]
-offsets = PoolRealArray( 0, 0.59116, 0.745856, 0.883978 )
-colors = PoolColorArray( 1, 1, 0.882353, 1, 1, 0.847059, 0.662745, 1, 1, 0.701961, 0.4, 1, 1, 0.356863, 0.309804, 1 )
+offsets = PoolRealArray( 0.237569, 0.447514, 0.596685, 0.701657, 0.839779 )
+colors = PoolColorArray( 0.457031, 0.457031, 0.457031, 1, 0.953125, 0.953125, 0.953125, 1, 0.702154, 0.700378, 0.703125, 1, 0.914063, 0.914063, 0.914063, 1, 0.57393, 0.514175, 0.689001, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 7 )
@@ -133,7 +133,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1.5, 3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -0.005, -0.005 ), Vector2( -0.018, -0.018 ), Vector2( -0.005, -0.005 ) ]
+"values": [ Vector2( -0.007, -0.007 ), Vector2( -0.018, -0.018 ), Vector2( -0.007, -0.007 ) ]
 }
 
 [sub_resource type="SpriteFrames" id=10]
@@ -150,10 +150,10 @@ z_index = -1
 script = ExtResource( 66 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
-scale = Vector2( -0.005, -0.005 )
+scale = Vector2( -0.018, -0.018 )
 z_index = 1
-amount = 2000
-lifetime = 0.5
+amount = 500
+lifetime = 0.3
 preprocess = 1.0
 speed_scale = 0.2
 explosiveness = 0.7
@@ -166,20 +166,22 @@ shape = SubResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"
+reset_on_save = false
 playback_speed = 0.5
 anims/RESET = SubResource( 8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-modulate = Color( 0.988235, 0.752941, 0.329412, 1 )
+modulate = Color( 0, 0, 0, 0.631373 )
 scale = Vector2( 0.496327, 0.506795 )
 frames = SubResource( 10 )
 animation = "portal"
-frame = 8
+frame = 9
 playing = true
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 0, 4.64916e-06 )
 scale = Vector2( 0.159138, 0.203046 )
 texture = ExtResource( 1 )
-color = Color( 1, 0.14902, 0, 1 )
-energy = 1.42
+texture_scale = 0.25
+color = Color( 0.717647, 0, 1, 1 )
+energy = 2.31

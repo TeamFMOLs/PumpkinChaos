@@ -58,6 +58,7 @@ position = Vector2( 472, 96 )
 
 [node name="Player" parent="LevelMap" index="2"]
 position = Vector2( -32, 480 )
+scale = Vector2( 1, 1 )
 
 [node name="TileMap2" type="TileMap" parent="LevelMap" index="3"]
 tile_set = ExtResource( 3 )

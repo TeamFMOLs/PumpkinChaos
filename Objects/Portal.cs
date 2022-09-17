@@ -12,6 +12,7 @@ public class Portal : Area2D
         Monitoring = true;
         OtherPortal = GetNode(TargetObjectPath) as Portal;
         Connect("body_entered", this, nameof(OnObjectEntered));
+        Connect("body_entered", this, nameof(OnObjectExit));
     }
 
     void OnObjectEntered(PhysicsBody2D other)
@@ -20,11 +21,20 @@ public class Portal : Area2D
         {
             if(!StaticRefs.CurrentPlayer._Teleport){
                 OtherPortal.IsDisabled = true;
-                GD.Print(StaticRefs.CurrentPlayer.GlobalPosition);
                 var portalpos=OtherPortal.GlobalPosition;
                 StaticRefs.CurrentPlayer.Teleport(portalpos);
             }
         }
     }
-
+    void OnObjectExit(PhysicsBody2D other)
+    {
+        if (other is Player && IsDisabled)
+        {
+            if(StaticRefs.CurrentPlayer._Teleport){
+                OtherPortal.IsDisabled = false;
+                StaticRefs.CurrentPlayer._Teleport=false;
+                IsDisabled=false;
+            }
+        }
+    }
 }

@@ -45,7 +45,7 @@ public class Player : KinematicBody2D
     private Vector2 lastPos;
     private AnimatedSprite _animatedSprite, _Light, _Dark;
 
-    private int lastInput = 0;
+    private int lastInput = 3;
 
     public override void _EnterTree()
     {

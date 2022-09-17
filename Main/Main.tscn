@@ -191,10 +191,12 @@ switchType = 1
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -32, 32 )
+scale = Vector2( 1, 1 )
 _hasSoul = true
 
 [node name="Player2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 544, 224 )
+scale = Vector2( 1, 1 )
 
 [node name="TileMap2" type="TileMap" parent="."]
 tile_set = ExtResource( 11 )
