@@ -63,7 +63,7 @@ public class Weapon : Node2D
         StaticRefs.PlayerUi.UpdateAmmoNumber(ammo);
         bullet.GlobalPosition = WeaponHead.GlobalPosition;
         bullet.GlobalRotation = WeaponHead.GlobalRotation;
-        bullet.Velocity = BulletSpeed * (taget - WeaponHead.GlobalPosition).Normalized();
+        bullet.Velocity = BulletSpeed * (taget - GlobalPosition).Normalized();
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.

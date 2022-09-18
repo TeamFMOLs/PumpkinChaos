@@ -45,7 +45,8 @@ public class BasicEnemy : CharacterController, IDestructible
         QueueFree();
     }
 
-    private void OnHurt() {
+    private void OnHurt()
+    {
         GetNode<AnimationPlayer>("AnimationPlayer").Play("get_hurt");
     }
 
@@ -67,8 +68,8 @@ public class BasicEnemy : CharacterController, IDestructible
             GetTree().Root.AddChild(blt);
             var vec = (pos - GlobalPosition).Normalized();
             var angle = vec.Angle();
-            angle +=Mathf.Pi/6*i*Mathf.Pow(-1,i);
-            vec = new Vector2(Mathf.Cos(angle),Mathf.Sin(angle));
+            angle += Mathf.Pi / 6 * i * Mathf.Pow(-1, i);
+            vec = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
             blt.GlobalPosition = GlobalPosition;
             blt.GlobalRotation = vec.Angle();
             blt.Velocity = ProjectileSpeed * vec;
@@ -79,7 +80,6 @@ public class BasicEnemy : CharacterController, IDestructible
     {
         var choice = rnd.RandfRange(0, 1);
         if (choice > SpreadAttackProb)
-
             SpreadAttack(StaticRefs.CurrentPlayer.GlobalPosition, SpreadAttackNumber);
         else
             AttackPos(StaticRefs.CurrentPlayer.GlobalPosition);

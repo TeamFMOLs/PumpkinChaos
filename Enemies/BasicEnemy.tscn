@@ -26,6 +26,7 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=40]
+resource_local_to_scene = true
 shader = SubResource( 39 )
 shader_param/white_progress = 0.0
 

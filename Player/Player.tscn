@@ -578,6 +578,7 @@ position = Vector2( 0, -0.519893 )
 position = Vector2( 0, -0.519893 )
 
 [node name="Ui" type="Node2D" parent="."]
+z_index = 8
 script = ExtResource( 5 )
 
 [node name="BulletsNum" type="Label" parent="Ui"]
@@ -587,7 +588,7 @@ margin_right = -256.0
 margin_bottom = 214.0
 custom_fonts/font = SubResource( 39 )
 
-[node name="Label" type="Label" parent="Ui"]
+[node name="Score" type="Label" parent="Ui"]
 margin_left = -304.0
 margin_top = -224.0
 margin_right = -264.0
@@ -595,7 +596,7 @@ margin_bottom = -210.0
 custom_fonts/font = SubResource( 44 )
 text = "SCORE:"
 
-[node name="ScoreLabel" type="Label" parent="Ui/Label"]
+[node name="ScoreLabel" type="Label" parent="Ui/Score"]
 margin_top = 40.0
 margin_right = 40.0
 margin_bottom = 54.0

@@ -50,7 +50,7 @@ public class Player : CharacterController, IDestructible
     public void Attack(Vector2 target) {
         if (Weapon.Attack(target))
         {
-            // play animation
+            StaticRefs.CurrentCamera.ShakeForSeconds(0.2f,6f);
         }
     }
     public void AddAmmo(Ammo it) {
@@ -60,6 +60,7 @@ public class Player : CharacterController, IDestructible
 
     private void OnTakeDamage() {
         animationPlayer.Play("get_hurt");
+        StaticRefs.CurrentCamera.ShakeForSeconds(0.35f,10f);
     }
 
 }
