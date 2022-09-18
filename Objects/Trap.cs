@@ -9,6 +9,8 @@ public class Trap : Area2D ,IRemoteControledObject
     private float TimeToStart = 1f, SpikesUpTime = 1f, SpikesDownTime = 1f;
     [Export]
     private bool StartSpikesUp = false;
+    [Export]
+    private int Damage;
     private bool _isSpikesUp;
     private AnimatedSprite _animatedSprite;
     private AudioStreamPlayer2D _SpikesSound;
@@ -48,7 +50,7 @@ public class Trap : Area2D ,IRemoteControledObject
         var it = GetOverlappingBodies();
         if (_isSpikesUp && it.Count != 0 && it.Contains(StaticRefs.CurrentPlayer))
         {
-            StaticRefs.CurrentPlayer.Die();
+            StaticRefs.CurrentPlayer.healthSystem.TakeDamage(Damage);
         }
 
 

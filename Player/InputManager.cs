@@ -3,17 +3,9 @@ using System;
 
 public class InputManager : Node2D
 {
-    public bool MoveRight { get { return _right; } }
-    public bool MoveLeft { get { return _left; } }
-    public bool MoveUp { get { return _up; } }
-    public bool MoveDown { get { return _down; } }
-    private bool _right;
-    private bool _left;
-    private bool _up;
-    private bool _down;
-    
-    public event Action ChangePlayer;
-    public event Action ContinueScene;
+    public Vector2 MoventDir {get; private set;} = Vector2.Zero;
+    public Vector2 MousePos {get; private set;} = Vector2.Zero;
+    public event Action<Vector2> OnAttack;
 
     public override void _EnterTree()
     {
@@ -24,21 +16,16 @@ public class InputManager : Node2D
 
     }
 
-
+    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        _down = Input.IsActionPressed("move_down");
-        _right = Input.IsActionPressed("move_right") ;
-        _left = Input.IsActionPressed("move_left");
-        _up = Input.IsActionPressed("move_up");
-
-        if (Input.IsActionJustPressed("change_player"))
+        var left = Vector2.Left * (Input.GetActionStrength("move_left") - Input.GetActionStrength("move_right"));
+        var up = Vector2.Up * (Input.GetActionStrength("move_up") - Input.GetActionStrength("move_down"));
+        MoventDir = left + up;
+        MousePos = GetGlobalMousePosition();
+        if (Input.IsActionJustPressed("attack"))
         {
-            ChangePlayer?.Invoke();
-        }
-        if (Input.IsActionJustPressed("scene_continue"))
-        {
-            ContinueScene?.Invoke();
+            OnAttack?.Invoke(MousePos);
         }
     }
 }

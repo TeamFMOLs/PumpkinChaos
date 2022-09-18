@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pixilart-drawing.png-ceb9bc96e8ed7685fdaba528c4278444.stex"
+path="res://.import/5.png-9faf78c2817bd6edb56cff2f7856bd76.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/leafs/pixilart-drawing.png"
-dest_files=[ "res://.import/pixilart-drawing.png-ceb9bc96e8ed7685fdaba528c4278444.stex" ]
+source_file="res://Assets/PNG/5.png"
+dest_files=[ "res://.import/5.png-9faf78c2817bd6edb56cff2f7856bd76.stex" ]
 
 [params]
 

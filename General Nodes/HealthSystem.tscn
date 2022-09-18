@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://General Nodes/HealthSystem.cs" type="Script" id=1]
+
+[sub_resource type="Animation" id=2]
+resource_name = "FadeInFadeOut"
+length = 0.7
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+
+[node name="HealthSystem" type="Node2D"]
+script = ExtResource( 1 )
+MaxHealth = 400
+AnimationNodePath = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/FadeInFadeOut = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+next/RESET = "RESET"

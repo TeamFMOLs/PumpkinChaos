@@ -15,8 +15,7 @@ public class GameManager : Node2D
     }
     public override void _Ready()
     {
-        StaticRefs.inputManager.ChangePlayer += ChangePlayerAgent;
-        StaticRefs.inputManager.ContinueScene += ContinueScene;
+        
         GameOverNode = GetNode(GameOverNodePath) as Node2D;
     }
 
@@ -30,12 +29,12 @@ public class GameManager : Node2D
         _isPlayerDead = true;
     }
 
-    private void ChangePlayerAgent() {
+    /* private void ChangePlayerAgent() {
         if (!_isPlayerDead)
         {
            StaticRefs.ChangePlayer(); 
         }    
-    }
+    } */
 
     private void ContinueScene() {
         if (_isPlayerDead)
@@ -45,12 +44,12 @@ public class GameManager : Node2D
     }
 
     private void PlayerDeathComplete() {
-        StaticRefs.PlayerSoul.GetParent().RemoveChild(StaticRefs.PlayerSoul);
+        /* StaticRefs.PlayerSoul.GetParent().RemoveChild(StaticRefs.PlayerSoul);
         GetTree().Root.AddChild(StaticRefs.PlayerSoul);
         StaticRefs.PlayerSoul.GlobalPosition = StaticRefs.CurrentPlayer.GlobalPosition;
         StaticRefs.CurrentPlayer.QueueFree();
         StaticRefs.CurrentPlayer = null;
-        SetNotifierState(GameOverNode , true);
+        SetNotifierState(GameOverNode , true); */
     }
 
     void SetNotifierState(Node2D it , bool state) {

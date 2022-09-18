@@ -1,0 +1,119 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Enemies/BasicEnemy.cs" type="Script" id=1]
+[ext_resource path="res://General Nodes/Navigator.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/player_LIGHT_PXL.png" type="Texture" id=3]
+[ext_resource path="res://General Nodes/HealthSystem.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=34]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 3 )
+region = Rect2( 113, 119, 113, 119 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 113, 119 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 3 )
+region = Rect2( 113, 0, 113, 119 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 3 )
+region = Rect2( 226, 0, 113, 119 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 3 )
+region = Rect2( 226, 119, 113, 119 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 119, 113, 119 )
+
+[sub_resource type="SpriteFrames" id=35]
+animations = [ {
+"frames": [ SubResource( 28 ) ],
+"loop": false,
+"name": "A_Start",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 28 ) ],
+"loop": false,
+"name": "Back_Front",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 29 ), SubResource( 32 ) ],
+"loop": false,
+"name": "Back_Left",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 29 ), SubResource( 30 ) ],
+"loop": false,
+"name": "Back_Right",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 28 ), SubResource( 33 ), SubResource( 32 ), SubResource( 29 ) ],
+"loop": false,
+"name": "Front_Back",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 28 ), SubResource( 33 ), SubResource( 32 ) ],
+"loop": false,
+"name": "Front_Left",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 28 ), SubResource( 31 ), SubResource( 30 ) ],
+"loop": false,
+"name": "Front_Right",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 32 ), SubResource( 29 ) ],
+"loop": false,
+"name": "Left_Back",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 28 ) ],
+"loop": false,
+"name": "Left_Front",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 28 ), SubResource( 31 ), SubResource( 30 ) ],
+"loop": false,
+"name": "Left_Right",
+"speed": 15.0
+}, {
+"frames": [ SubResource( 30 ), SubResource( 29 ) ],
+"loop": false,
+"name": "Right_Back",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 28 ) ],
+"loop": false,
+"name": "Right_Front",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 28 ), SubResource( 33 ), SubResource( 32 ) ],
+"loop": false,
+"name": "Right_Left",
+"speed": 15.0
+} ]
+
+[node name="BasicEnemy" type="KinematicBody2D"]
+collision_layer = 8
+collision_mask = 15
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 34 )
+
+[node name="EnemySprite" type="AnimatedSprite" parent="CollisionShape2D"]
+position = Vector2( 0, -2 )
+scale = Vector2( 0.45, 0.45 )
+frames = SubResource( 35 )
+animation = "A_Start"
+
+[node name="Navigator" parent="." instance=ExtResource( 2 )]
+
+[node name="HealthSystem" parent="." instance=ExtResource( 4 )]

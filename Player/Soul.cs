@@ -3,7 +3,7 @@ using System;
 
 public class Soul : Node2D
 {
-    // Declare member variables here. Examples:
+   /*  // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
 
@@ -51,7 +51,7 @@ public class Soul : Node2D
         StaticRefs.CurrentPlayer.AddChild(this);
         CurrentPlayer.HasSoul = true;
 
-    }
+    } */
 
 
 }

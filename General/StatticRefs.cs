@@ -8,7 +8,7 @@ public static class StaticRefs
     public static Player CurrentPlayer;
     public static SceneCamera CurrentCamera;
     public static GameManager gameManager;
-    public static Soul PlayerSoul;
+   /*  public static Soul PlayerSoul;
     public static List<Player> PlayerAgents = new List<Player>();
     public static int PlayerAgentIndex = 0; 
 
@@ -21,5 +21,5 @@ public static class StaticRefs
         }
         CurrentPlayer =  PlayerAgents[PlayerAgentIndex];
         PlayerSoul.TransferToBody(CurrentPlayer);
-    }
+    } */
 }

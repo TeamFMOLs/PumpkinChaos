@@ -3,7 +3,7 @@ using System;
 
 public class ScareCrow : Area2D
 {
-    // Declare member variables here. Examples:
+    /* // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
 
@@ -32,5 +32,5 @@ public class ScareCrow : Area2D
             player.StopMovement = true;
         }
         
-    }
+    } */
 }

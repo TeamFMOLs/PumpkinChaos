@@ -3,7 +3,7 @@ using System;
 
 public class Portal : Area2D
 {
-    [Export]
+   /*  [Export]
     private NodePath TargetObjectPath;
     private Portal OtherPortal;
     public bool IsDisabled = false;
@@ -36,5 +36,5 @@ public class Portal : Area2D
                 IsDisabled=false;
             }
         }
-    }
+    } */
 }

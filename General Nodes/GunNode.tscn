@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Weapon/Weapon.cs" type="Script" id=1]
+[ext_resource path="res://Assets/PNG/gun_modifided_1.png" type="Texture" id=2]
+[ext_resource path="res://General Nodes/LeafBullet.tscn" type="PackedScene" id=3]
+
+[node name="GunNode" type="Node2D"]
+position = Vector2( 0, -0.519894 )
+script = ExtResource( 1 )
+BulletSpeed = 600.0
+BulletScene = ExtResource( 3 )
+
+[node name="GunParent" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="GunParent"]
+position = Vector2( 40, 0.519897 )
+rotation = 0.640916
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 2 )
+
+[node name="GunHead" type="Node2D" parent="GunParent"]
+position = Vector2( 64, -3.48011 )
+
+[node name="Timer" type="Timer" parent="."]
