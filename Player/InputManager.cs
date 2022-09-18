@@ -23,7 +23,7 @@ public class InputManager : Node2D
         var up = Vector2.Up * (Input.GetActionStrength("move_up") - Input.GetActionStrength("move_down"));
         MoventDir = left + up;
         MousePos = GetGlobalMousePosition();
-        if (Input.IsActionJustPressed("attack"))
+        if (Input.IsActionPressed("attack"))
         {
             OnAttack?.Invoke(MousePos);
         }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/GunNode.tscn" type="PackedScene" id=2]
@@ -15,6 +15,25 @@
 [sub_resource type="CircleShape2D" id=26]
 radius = 24.0
 
+[sub_resource type="Shader" id=40]
+code = "shader_type canvas_item;
+
+uniform float white_progress : hint_range(0,1) = 0;
+
+vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
+    return start + (end - start) * delta;
+}
+
+void fragment(){
+    vec4 origin = texture(TEXTURE, UV);
+    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,0,0), white_progress);
+    COLOR.a = origin.a;
+}"
+
+[sub_resource type="ShaderMaterial" id=41]
+shader = SubResource( 40 )
+shader_param/white_progress = 0.0
+
 [sub_resource type="Shader" id=34]
 code = "shader_type canvas_item;
 
@@ -26,7 +45,7 @@ vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
 
 void fragment(){
     vec4 origin = texture(TEXTURE, UV);
-    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,1,1), white_progress);
+    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,0,0), white_progress);
     COLOR.a = origin.a;
 }"
 
@@ -304,9 +323,6 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -8 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=27]
-resource_name = "NoSoul"
-
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
@@ -364,6 +380,18 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -439,11 +467,43 @@ tracks/1/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
+[sub_resource type="Animation" id=42]
+resource_name = "get_hurt"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.6 ]
+}
+
 [sub_resource type="DynamicFontData" id=38]
 font_path = "res://Fonts/Minecraft.ttf"
 
 [sub_resource type="DynamicFont" id=39]
 font_data = SubResource( 38 )
+
+[sub_resource type="DynamicFontData" id=43]
+font_path = "res://Fonts/Minecraft.ttf"
+
+[sub_resource type="DynamicFont" id=44]
+size = 32
+outline_size = 1
+outline_color = Color( 0.831373, 0.505882, 0.933333, 1 )
+font_data = SubResource( 43 )
+
+[sub_resource type="DynamicFontData" id=45]
+font_path = "res://Fonts/Minecraft.ttf"
+
+[sub_resource type="DynamicFont" id=46]
+size = 24
+font_data = SubResource( 45 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -454,12 +514,16 @@ WeaponNodePath = NodePath("GunNode")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 26 )
 
-[node name="Sprite2" type="Sprite" parent="CollisionShape2D"]
+[node name="SpriteParent" type="Node2D" parent="CollisionShape2D"]
+material = SubResource( 41 )
+
+[node name="Sprite2" type="Sprite" parent="CollisionShape2D/SpriteParent"]
 use_parent_material = true
 texture = ExtResource( 9 )
 
 [node name="SpriteParent" type="Node2D" parent="."]
 material = SubResource( 35 )
+rotation = 6.28319
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="SpriteParent"]
 visible = false
@@ -484,12 +548,13 @@ texture = ExtResource( 9 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Die = SubResource( 36 )
 anims/Idle = SubResource( 25 )
-anims/NoSoul = SubResource( 27 )
 anims/RESET = SubResource( 2 )
 anims/SlightJump = SubResource( 3 )
 anims/Teleport = SubResource( 37 )
+anims/get_hurt = SubResource( 42 )
 next/Idle = "Idle"
 next/SlightJump = "Idle"
+next/get_hurt = "RESET"
 
 [node name="MovementTimer" type="Timer" parent="."]
 one_shot = true
@@ -521,3 +586,18 @@ margin_top = 200.0
 margin_right = -256.0
 margin_bottom = 214.0
 custom_fonts/font = SubResource( 39 )
+
+[node name="Label" type="Label" parent="Ui"]
+margin_left = -304.0
+margin_top = -224.0
+margin_right = -264.0
+margin_bottom = -210.0
+custom_fonts/font = SubResource( 44 )
+text = "SCORE:"
+
+[node name="ScoreLabel" type="Label" parent="Ui/Label"]
+margin_top = 40.0
+margin_right = 40.0
+margin_bottom = 54.0
+custom_fonts/font = SubResource( 46 )
+text = "0"

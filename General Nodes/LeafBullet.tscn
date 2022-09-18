@@ -39,7 +39,7 @@ tracks/0/keys = {
 "values": [ 90.0, 450.0 ]
 }
 
-[node name="LeafBullet" type="KinematicBody2D"]
+[node name="LeafBullet" type="Area2D"]
 collision_layer = 4
 collision_mask = 9
 script = ExtResource( 2 )

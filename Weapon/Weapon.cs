@@ -33,7 +33,7 @@ public class Weapon : Node2D
         else
             Scale = new Vector2(1,- 1);
         GlobalRotation = angle;
-        GD.Print(GlobalRotation * 180 / Mathf.Pi);
+        
     }
 
     public bool Attack(Vector2 target)

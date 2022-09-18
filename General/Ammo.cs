@@ -16,9 +16,6 @@ public class Ammo : Area2D
     private void OnContactWithPlayer(PhysicsBody2D other) {
         if(other is Player) {
             GetNode<AnimationPlayer>("AnimationPlayer").Play("shrink");
-            Monitoring = false;
-            //GetParent().RemoveChild(this);
-            //other.AddChild(this);
             (other as Player).AddAmmo(this);
             GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D").Play();
             isFollowing = true;
@@ -34,6 +31,7 @@ public class Ammo : Area2D
     public override void _Process(float delta) {
         if (isFollowing)
         {
+            Monitoring = false;
             if (t<1)
             {
                 GlobalPosition = GlobalPosition.LinearInterpolate(Target.GlobalPosition,t);  

@@ -1,16 +1,33 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Enemies/BasicEnemy.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/Navigator.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/player_LIGHT_PXL.png" type="Texture" id=3]
 [ext_resource path="res://General Nodes/HealthSystem.tscn" type="PackedScene" id=4]
+[ext_resource path="res://General Nodes/EnemyProjectile.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemies/SpriteAnimationController.cs" type="Script" id=6]
 
 [sub_resource type="CircleShape2D" id=34]
 radius = 16.0
 
-[sub_resource type="AtlasTexture" id=28]
-atlas = ExtResource( 3 )
-region = Rect2( 113, 119, 113, 119 )
+[sub_resource type="Shader" id=39]
+code = "shader_type canvas_item;
+
+uniform float white_progress : hint_range(0,1) = 0;
+
+vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
+    return start + (end - start) * delta;
+}
+
+void fragment(){
+    vec4 origin = texture(TEXTURE, UV);
+    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,0,0), white_progress);
+    COLOR.a = origin.a;
+}"
+
+[sub_resource type="ShaderMaterial" id=40]
+shader = SubResource( 39 )
+shader_param/white_progress = 0.0
 
 [sub_resource type="AtlasTexture" id=29]
 atlas = ExtResource( 3 )
@@ -24,7 +41,11 @@ region = Rect2( 113, 0, 113, 119 )
 atlas = ExtResource( 3 )
 region = Rect2( 226, 0, 113, 119 )
 
-[sub_resource type="AtlasTexture" id=32]
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 3 )
+region = Rect2( 113, 119, 113, 119 )
+
+[sub_resource type="AtlasTexture" id=38]
 atlas = ExtResource( 3 )
 region = Rect2( 226, 119, 113, 119 )
 
@@ -32,88 +53,148 @@ region = Rect2( 226, 119, 113, 119 )
 atlas = ExtResource( 3 )
 region = Rect2( 0, 119, 113, 119 )
 
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 3 )
+region = Rect2( 226, 119, 113, 119 )
+
 [sub_resource type="SpriteFrames" id=35]
 animations = [ {
-"frames": [ SubResource( 28 ) ],
+"frames": [ SubResource( 29 ) ],
 "loop": false,
-"name": "A_Start",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 28 ) ],
-"loop": false,
-"name": "Back_Front",
-"speed": 12.0
-}, {
-"frames": [ SubResource( 29 ), SubResource( 32 ) ],
-"loop": false,
-"name": "Back_Left",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 29 ), SubResource( 30 ) ],
-"loop": false,
-"name": "Back_Right",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 28 ), SubResource( 33 ), SubResource( 32 ), SubResource( 29 ) ],
-"loop": false,
-"name": "Front_Back",
-"speed": 12.0
-}, {
-"frames": [ SubResource( 28 ), SubResource( 33 ), SubResource( 32 ) ],
-"loop": false,
-"name": "Front_Left",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 28 ), SubResource( 31 ), SubResource( 30 ) ],
-"loop": false,
-"name": "Front_Right",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 32 ), SubResource( 29 ) ],
-"loop": false,
-"name": "Left_Back",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 28 ) ],
-"loop": false,
-"name": "Left_Front",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 28 ), SubResource( 31 ), SubResource( 30 ) ],
-"loop": false,
-"name": "Left_Right",
-"speed": 15.0
-}, {
-"frames": [ SubResource( 30 ), SubResource( 29 ) ],
-"loop": false,
-"name": "Right_Back",
+"name": "back",
 "speed": 6.0
 }, {
 "frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 28 ) ],
 "loop": false,
-"name": "Right_Front",
+"name": "back_front",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 38 ) ],
+"loop": true,
+"name": "back_left",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 30 ) ],
+"loop": false,
+"name": "back_right",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 28 ) ],
+"loop": false,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 28 ), SubResource( 33 ), SubResource( 32 ), SubResource( 29 ) ],
+"loop": false,
+"name": "front_back",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 33 ), SubResource( 32 ) ],
+"loop": false,
+"name": "front_left",
 "speed": 9.0
 }, {
-"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 28 ), SubResource( 33 ), SubResource( 32 ) ],
+"frames": [ SubResource( 31 ), SubResource( 30 ) ],
 "loop": false,
-"name": "Right_Left",
+"name": "front_right",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 33 ), SubResource( 28 ) ],
+"loop": false,
+"name": "left_front",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 33 ), SubResource( 28 ), SubResource( 31 ), SubResource( 30 ) ],
+"loop": false,
+"name": "left_right",
+"speed": 15.0
+}, {
+"frames": [ SubResource( 31 ), SubResource( 28 ) ],
+"loop": false,
+"name": "right_front",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 31 ), SubResource( 28 ), SubResource( 33 ), SubResource( 32 ) ],
+"loop": false,
+"name": "right_left",
 "speed": 15.0
 } ]
+
+[sub_resource type="Animation" id=41]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:render_priority")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=42]
+resource_name = "get_hurt"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.6 ]
+}
 
 [node name="BasicEnemy" type="KinematicBody2D"]
 collision_layer = 8
 collision_mask = 15
 script = ExtResource( 1 )
+MinMaxAttackInterval = Vector2( 1, 6 )
+EnemyProjectile = ExtResource( 5 )
+ProjectileSpeed = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 34 )
 
-[node name="EnemySprite" type="AnimatedSprite" parent="CollisionShape2D"]
+[node name="SpriteParent" type="Node2D" parent="CollisionShape2D"]
+material = SubResource( 40 )
+
+[node name="EnemySprite" type="AnimatedSprite" parent="CollisionShape2D/SpriteParent"]
+use_parent_material = true
 position = Vector2( 0, -2 )
 scale = Vector2( 0.45, 0.45 )
 frames = SubResource( 35 )
-animation = "A_Start"
 
 [node name="Navigator" parent="." instance=ExtResource( 2 )]
 
 [node name="HealthSystem" parent="." instance=ExtResource( 4 )]
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="SpriteAnimationController" type="Node2D" parent="."]
+script = ExtResource( 6 )
+AnimatedSpriteNodePath = NodePath("../CollisionShape2D/SpriteParent/EnemySprite")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 41 )
+anims/get_hurt = SubResource( 42 )
+next/get_hurt = "RESET"
