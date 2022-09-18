@@ -55,8 +55,6 @@ public class EnemyNavigator : Node2D
             CalculateWeaights();
             var DesiredIndex = GetBestWeight();
             var DesiredDirection = _rays[DesiredIndex].Normalized();
-
-
             _characterController.Velocity = DesiredDirection * _movementSpeed;
 
         }

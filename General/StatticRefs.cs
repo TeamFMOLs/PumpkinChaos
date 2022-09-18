@@ -8,6 +8,7 @@ public static class StaticRefs
     public static Player CurrentPlayer;
     public static SceneCamera CurrentCamera;
     public static GameManager gameManager;
+    public static PlayerUi PlayerUi;
    /*  public static Soul PlayerSoul;
     public static List<Player> PlayerAgents = new List<Player>();
     public static int PlayerAgentIndex = 0; 

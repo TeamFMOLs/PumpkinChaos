@@ -1,9 +1,10 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/GunNode.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/dfa6770603ecf5afb82ee7e880375bc68c681ee5.png" type="Texture" id=3]
 [ext_resource path="res://Sounds/steps/wood01.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Player/PlayerUi.cs" type="Script" id=5]
 [ext_resource path="res://Assets/Player_Dark.png" type="Texture" id=6]
 [ext_resource path="res://Assets/player_LIGHT_PXL.png" type="Texture" id=7]
 [ext_resource path="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Ouch/Ogg/Ouch__001.ogg" type="AudioStream" id=8]
@@ -438,6 +439,12 @@ tracks/1/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
+[sub_resource type="DynamicFontData" id=38]
+font_path = "res://Fonts/Minecraft.ttf"
+
+[sub_resource type="DynamicFont" id=39]
+font_data = SubResource( 38 )
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 25
@@ -494,14 +501,23 @@ stream = ExtResource( 8 )
 stream = ExtResource( 4 )
 
 [node name="Light2D" type="Light2D" parent="."]
+visible = false
 texture = ExtResource( 3 )
 color = Color( 0.992157, 0.847059, 0.34902, 1 )
 energy = 0.5
 
 [node name="PlayerCamera" parent="." instance=ExtResource( 10 )]
 position = Vector2( 0, -0.519893 )
-scale = Vector2( 1, 3.2 )
 
 [node name="HealthSystem" parent="." instance=ExtResource( 11 )]
 position = Vector2( 0, -0.519893 )
-scale = Vector2( 1, 1 )
+
+[node name="Ui" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="BulletsNum" type="Label" parent="Ui"]
+margin_left = -296.0
+margin_top = 200.0
+margin_right = -256.0
+margin_bottom = 214.0
+custom_fonts/font = SubResource( 39 )

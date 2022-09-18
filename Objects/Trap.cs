@@ -38,11 +38,11 @@ public class Trap : Area2D ,IRemoteControledObject
 
     void OnObjectEntered(PhysicsBody2D other)
     {
-        if (other is Player && _animatedSprite.GetFrame() >= 7 && _animatedSprite.GetFrame() <= 11)
+        /* if (other is Player && _animatedSprite.GetFrame() >= 7 && _animatedSprite.GetFrame() <= 11)
         {
             // do st
             GD.Print("liol");
-        }
+        } */
     }
 
     public override void _PhysicsProcess(float delta)
