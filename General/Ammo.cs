@@ -1,48 +1,24 @@
 using Godot;
 using System;
 
-public class Ammo : Area2D
+public class Ammo : PickableObject
 {
-    float t = 0;
-    Node2D Target;
-    bool isFollowing = false;
-    public SceneTreeTween currentTween;
+    
     public override void _Ready()
     {
-        Monitoring = true;
-        Connect("body_entered" , this , nameof(OnContactWithPlayer));
+        base._Ready(); 
     }
 
-    private void OnContactWithPlayer(PhysicsBody2D other) {
-        if(other is Player) {
-            GetNode<AnimationPlayer>("AnimationPlayer").Play("shrink");
-            (other as Player).AddAmmo(this);
-            GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D").Play();
-            isFollowing = true;
-            Target = (other as Player).Weapon;
-            currentTween.Stop();
-        }
+    protected override void OnContactWithPlayer(PhysicsBody2D other) {
+        base.OnContactWithPlayer(other);
+        (other as Player)?.AddAmmo(this);
     }
 
-    public void OnLand() {
-        GetNode<AnimationPlayer>("AnimationPlayer").Play("RESET");
-    }
+    
 
-    public override void _Process(float delta) {
-        if (isFollowing)
-        {
-            Monitoring = false;
-            if (t<1)
-            {
-                GlobalPosition = GlobalPosition.LinearInterpolate(Target.GlobalPosition,t);  
-                t +=delta/0.4f;
-            }
-            else
-            {
-                QueueFree();
-            }
-        }
-    }
+    
+
+    
 
     
 }

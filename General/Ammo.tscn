@@ -5,8 +5,8 @@
 [ext_resource path="res://Sounds/paper_01.ogg" type="AudioStream" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 10.8451
-height = 12.025
+radius = 15.9999
+height = 26.3098
 
 [sub_resource type="Animation" id=2]
 length = 0.001

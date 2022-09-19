@@ -1,15 +1,19 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Enemies/BasicEnemy.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/Navigator.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/player_LIGHT_PXL.png" type="Texture" id=3]
+[ext_resource path="res://Assets/pump_2.png" type="Texture" id=3]
 [ext_resource path="res://General Nodes/HealthSystem.tscn" type="PackedScene" id=4]
 [ext_resource path="res://General Nodes/EnemyProjectile.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/SpriteAnimationController.cs" type="Script" id=6]
-[ext_resource path="res://Sounds/slash.mp3" type="AudioStream" id=7]
+[ext_resource path="res://General Nodes/pumpPie.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/SmokeEffect.png" type="Texture" id=8]
+[ext_resource path="res://Sounds/effects/222373__qubodup__balloon-pop.mp3" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/effects/525096__jomse__plasticimpacta7.wav" type="AudioStream" id=10]
+[ext_resource path="res://General Nodes/PumpDrink.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CircleShape2D" id=34]
-radius = 16.0
+radius = 35.0
 
 [sub_resource type="Shader" id=39]
 code = "shader_type canvas_item;
@@ -22,109 +26,101 @@ vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
 
 void fragment(){
     vec4 origin = texture(TEXTURE, UV);
-    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,0,0), white_progress);
+    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,1,1), white_progress);
     COLOR.a = origin.a;
 }"
 
 [sub_resource type="ShaderMaterial" id=40]
+resource_local_to_scene = true
 shader = SubResource( 39 )
 shader_param/white_progress = 0.0
 
-[sub_resource type="AtlasTexture" id=29]
+[sub_resource type="AtlasTexture" id=49]
 atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 113, 119 )
+region = Rect2( 384, 128, 128, 128 )
 
-[sub_resource type="AtlasTexture" id=30]
+[sub_resource type="AtlasTexture" id=50]
 atlas = ExtResource( 3 )
-region = Rect2( 113, 0, 113, 119 )
+region = Rect2( 128, 256, 128, 128 )
 
-[sub_resource type="AtlasTexture" id=31]
+[sub_resource type="AtlasTexture" id=51]
 atlas = ExtResource( 3 )
-region = Rect2( 226, 0, 113, 119 )
+region = Rect2( 256, 256, 128, 128 )
 
-[sub_resource type="AtlasTexture" id=28]
+[sub_resource type="AtlasTexture" id=52]
 atlas = ExtResource( 3 )
-region = Rect2( 113, 119, 113, 119 )
+region = Rect2( 0, 128, 128, 128 )
 
-[sub_resource type="AtlasTexture" id=38]
+[sub_resource type="AtlasTexture" id=53]
 atlas = ExtResource( 3 )
-region = Rect2( 226, 119, 113, 119 )
+region = Rect2( 128, 128, 128, 128 )
 
-[sub_resource type="AtlasTexture" id=33]
+[sub_resource type="AtlasTexture" id=54]
 atlas = ExtResource( 3 )
-region = Rect2( 0, 119, 113, 119 )
+region = Rect2( 256, 128, 128, 128 )
 
-[sub_resource type="AtlasTexture" id=32]
+[sub_resource type="AtlasTexture" id=55]
 atlas = ExtResource( 3 )
-region = Rect2( 226, 119, 113, 119 )
+region = Rect2( 0, 0, 128, 128 )
 
-[sub_resource type="SpriteFrames" id=35]
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 3 )
+region = Rect2( 256, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=58]
+atlas = ExtResource( 3 )
+region = Rect2( 384, 0, 128, 128 )
+
+[sub_resource type="SpriteFrames" id=59]
 animations = [ {
-"frames": [ SubResource( 29 ) ],
-"loop": false,
-"name": "back",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 28 ) ],
-"loop": false,
-"name": "back_front",
-"speed": 12.0
-}, {
-"frames": [ SubResource( 38 ) ],
+"frames": [ SubResource( 49 ), SubResource( 50 ), SubResource( 51 ) ],
 "loop": true,
-"name": "back_left",
+"name": "back",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 30 ) ],
-"loop": false,
-"name": "back_right",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 28 ) ],
-"loop": false,
-"name": "default",
+"frames": [ SubResource( 52 ), SubResource( 53 ), SubResource( 54 ) ],
+"loop": true,
+"name": "front",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 28 ), SubResource( 33 ), SubResource( 32 ), SubResource( 29 ) ],
-"loop": false,
-"name": "front_back",
-"speed": 12.0
-}, {
-"frames": [ SubResource( 33 ), SubResource( 32 ) ],
-"loop": false,
-"name": "front_left",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 31 ), SubResource( 30 ) ],
-"loop": false,
-"name": "front_right",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 33 ), SubResource( 28 ) ],
-"loop": false,
-"name": "left_front",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 33 ), SubResource( 28 ), SubResource( 31 ), SubResource( 30 ) ],
-"loop": false,
-"name": "left_right",
-"speed": 15.0
-}, {
-"frames": [ SubResource( 31 ), SubResource( 28 ) ],
-"loop": false,
-"name": "right_front",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 31 ), SubResource( 28 ), SubResource( 33 ), SubResource( 32 ) ],
-"loop": false,
-"name": "right_left",
-"speed": 15.0
+"frames": [ SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ) ],
+"loop": true,
+"name": "side",
+"speed": 5.01
 } ]
+
+[sub_resource type="Gradient" id=47]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.6 )
+
+[sub_resource type="GradientTexture" id=48]
+gradient = SubResource( 47 )
+
+[sub_resource type="Curve" id=43]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.177273 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=44]
+curve = SubResource( 43 )
+
+[sub_resource type="ParticlesMaterial" id=45]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 177.21
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle_random = 0.92
+scale = 0.4
+scale_curve = SubResource( 44 )
+color_ramp = SubResource( 48 )
 
 [sub_resource type="Animation" id=41]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:render_priority")
+tracks/0/path = NodePath("SpriteParent:material:render_priority")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -136,7 +132,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
+tracks/1/path = NodePath("SpriteParent:material:shader_param/white_progress")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -147,13 +143,79 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Deathparticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SpriteParent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=46]
+resource_name = "die"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Deathparticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpriteParent:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("SoundPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
 [sub_resource type="Animation" id=42]
 resource_name = "get_hurt"
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
+tracks/0/path = NodePath("SpriteParent:material:shader_param/white_progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -166,6 +228,8 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("CollisionShape2D/SpriteParent:position")
+tracks/1/type = "audio"
+tracks/1/path = NodePath("SoundPlayer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -181,21 +245,24 @@ tracks/1/keys = {
 collision_layer = 8
 collision_mask = 15
 script = ExtResource( 1 )
-MinMaxAttackInterval = Vector2( 1, 6 )
+Score = 60
+MinMaxAttackInterval = Vector2( 2.5, 15 )
 EnemyProjectile = ExtResource( 5 )
 ProjectileSpeed = 200.0
+PrizesToDrop = [ ExtResource( 7 ), ExtResource( 11 ) ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 34 )
 
-[node name="SpriteParent" type="Node2D" parent="CollisionShape2D"]
+[node name="SpriteParent" type="Node2D" parent="."]
 material = SubResource( 40 )
 
-[node name="EnemySprite" type="AnimatedSprite" parent="CollisionShape2D/SpriteParent"]
+[node name="EnemySprite" type="AnimatedSprite" parent="SpriteParent"]
 use_parent_material = true
-position = Vector2( 0, -2 )
-scale = Vector2( 0.45, 0.45 )
-frames = SubResource( 35 )
+position = Vector2( 4, -1 )
+frames = SubResource( 59 )
+animation = "front"
+playing = true
 
 [node name="Navigator" parent="." instance=ExtResource( 2 )]
 
@@ -205,13 +272,27 @@ frames = SubResource( 35 )
 
 [node name="SpriteAnimationController" type="Node2D" parent="."]
 script = ExtResource( 6 )
-AnimatedSpriteNodePath = NodePath("../CollisionShape2D/SpriteParent/EnemySprite")
+AnimatedSpriteNodePath = NodePath("../SpriteParent/EnemySprite")
+TimeToChangeAnimationInterval = 0.2
+
+[node name="Deathparticles" type="Particles2D" parent="."]
+scale = Vector2( 1.02304, 1.04898 )
+emitting = false
+amount = 15
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 45 )
+texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
 anims/RESET = SubResource( 41 )
+anims/die = SubResource( 46 )
 anims/get_hurt = SubResource( 42 )
+next/die = "RESET"
 next/get_hurt = "RESET"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 7 )
+[node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
 volume_db = -5.0

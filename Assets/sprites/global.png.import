@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/plains.png-ceb4684495eb02d942b622ff80f126b1.stex"
+path="res://.import/global.png-fcbd4c52f16a2ae12262525dce0efd7a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/tilesets/plains.png"
-dest_files=[ "res://.import/plains.png-ceb4684495eb02d942b622ff80f126b1.stex" ]
+source_file="res://Assets/sprites/global.png"
+dest_files=[ "res://.import/global.png-fcbd4c52f16a2ae12262525dce0efd7a.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

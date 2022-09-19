@@ -1,10 +1,14 @@
 using Godot;
 using System;
 
-public class BasicEnemy : CharacterController, IDestructible
+public class BasicEnemy : CharacterController, IDestructible , IScoreObject
 {
     [Export]
     public float Speed = 100;
+    [Export]
+    public int Score {get; set;}    
+    [Export]
+    public int OnHitDamage;
     [Export]
     protected Vector2 MinMaxAttackInterval;
     [Export]
@@ -15,6 +19,10 @@ public class BasicEnemy : CharacterController, IDestructible
     protected PackedScene EnemyProjectile;
     [Export]
     protected float ProjectileSpeed;
+    [Export]
+    protected PackedScene[] PrizesToDrop;
+    [Export]
+    protected int NumberOfPrizes = 3;
     protected RandomNumberGenerator rnd = new RandomNumberGenerator();
     protected EnemyNavigator _navigator;
     public HealthSystem healthSystem { get; private set; }
@@ -40,12 +48,28 @@ public class BasicEnemy : CharacterController, IDestructible
         _navigator.GoToLocation(StaticRefs.CurrentPlayer.GlobalPosition, Speed);
     }
 
-    private void Death()
+    public override void _PhysicsProcess(float delta)
     {
-        QueueFree();
+        base._PhysicsProcess(delta);
+        var it = GetLastSlideCollision();
+        if (it != null && it.Collider is Player)
+        {
+            var plyr = it.Collider as Player;
+            plyr.GetPushed((plyr.GlobalPosition-GlobalPosition),OnHitDamage);
+        }
     }
 
-    private void OnHurt() {
+    protected void Death()
+    {
+        GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
+        DropPrizes();
+        GiveScore();
+        GetNode<AnimationPlayer>("AnimationPlayer").Play("die");
+        CreateTween().TweenCallback(this,"queue_free").SetDelay(0.4f);
+    }
+
+    protected void OnHurt()
+    {
         GetNode<AnimationPlayer>("AnimationPlayer").Play("get_hurt");
         GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D").Play();
         GD.Print("a7a");
@@ -69,8 +93,8 @@ public class BasicEnemy : CharacterController, IDestructible
             GetTree().Root.AddChild(blt);
             var vec = (pos - GlobalPosition).Normalized();
             var angle = vec.Angle();
-            angle +=Mathf.Pi/6*i*Mathf.Pow(-1,i);
-            vec = new Vector2(Mathf.Cos(angle),Mathf.Sin(angle));
+            angle += Mathf.Pi / 6 * i * Mathf.Pow(-1, i);
+            vec = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
             blt.GlobalPosition = GlobalPosition;
             blt.GlobalRotation = vec.Angle();
             blt.Velocity = ProjectileSpeed * vec;
@@ -81,11 +105,26 @@ public class BasicEnemy : CharacterController, IDestructible
     {
         var choice = rnd.RandfRange(0, 1);
         if (choice > SpreadAttackProb)
-
             SpreadAttack(StaticRefs.CurrentPlayer.GlobalPosition, SpreadAttackNumber);
         else
             AttackPos(StaticRefs.CurrentPlayer.GlobalPosition);
         _attackTimer.Start(rnd.RandfRange(MinMaxAttackInterval.x, MinMaxAttackInterval.y));
 
+    }
+
+    public  void GiveScore() {
+        StaticRefs.CurrentPlayer.IncreaseScore(Score);
+    }
+
+    protected void DropPrizes() {
+        for (int i = 0; i < NumberOfPrizes; i++)
+        {
+            var index = rnd.RandiRange(0,PrizesToDrop.Length-1);
+            var pos = Vector2.Right*rnd.RandfRange(-64,64) + Vector2.Up*rnd.RandfRange(-64,64)  + GlobalPosition;
+            var prize = PrizesToDrop[index].Instance<Loot>();
+            GetTree().Root.AddChild(prize);
+            prize.GlobalPosition = GlobalPosition;
+            prize.StartTweenPos(pos , 0.6f); 
+        }
     }
 }

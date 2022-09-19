@@ -9,6 +9,9 @@
 
 [node name="Main" type="Node2D"]
 position = Vector2( 72, 0 )
+__meta__ = {
+"_edit_vertical_guides_": [ -232.0 ]
+}
 
 [node name="Level" type="Node2D" parent="."]
 
@@ -31,7 +34,7 @@ z_index = 3
 tile_set = ExtResource( 11 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( -458740, 19, 0, -327684, 24, 0, -262143, 22, 0, -262141, 23, 0, -131077, 19, 0, 65550, 20, 0, 196600, 22, 0, 196601, 22, 0, 196613, 26, 0, 196614, 26, 0, 393224, 20, 0, 655352, 22, 0 )
+tile_data = PoolIntArray( -458740, 19, 0, -196613, 30, 0, -131079, 19, 0, 65550, 20, 0 )
 
 [node name="Player" parent="Level" instance=ExtResource( 1 )]
 

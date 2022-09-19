@@ -9,6 +9,9 @@ public class Player : CharacterController, IDestructible
     NodePath WeaponNodePath;
     [Export]
     private int MaxHealth ;
+    [Export]
+    private float PushDistance = 64 ,PushTime = 0.6f , ShieldOnTime = 1f;
+    private int _score = 0;
     
     private InputManager _inputHandler;
     private Weapon _weapon;
@@ -17,6 +20,7 @@ public class Player : CharacterController, IDestructible
 
     public bool StopMovement;
     private AnimationPlayer animationPlayer;
+    private SceneTreeTween MovementTween;
 
     public override void _EnterTree()
     {
@@ -45,12 +49,22 @@ public class Player : CharacterController, IDestructible
     {
         Velocity = _inputHandler.MoventDir * speed;
         base._PhysicsProcess(delta);
+        var it = GetLastSlideCollision();
+        if (it != null  )
+        {
+            if (it.Collider is BasicEnemy)
+            {
+                var enemy =    it.Collider as BasicEnemy;
+            GetPushed(GlobalPosition-enemy.GlobalPosition,enemy.OnHitDamage);
+            }
+            
+        }
     }
 
     public void Attack(Vector2 target) {
         if (Weapon.Attack(target))
         {
-            // play animation
+            StaticRefs.CurrentCamera.ShakeForSeconds(0.2f,6f);
         }
     }
     public void AddAmmo(Ammo it) {
@@ -60,6 +74,27 @@ public class Player : CharacterController, IDestructible
 
     private void OnTakeDamage() {
         animationPlayer.Play("get_hurt");
+        StaticRefs.CurrentCamera.ShakeForSeconds(0.35f,10f);
+    }
+
+    public void IncreaseScore(int amount) {
+        _score+= amount;
+        StaticRefs.PlayerUi.UpdateScore(_score);
+    }
+
+    public void GetPushed(Vector2 dir , int damage) {
+        healthSystem.TakeDamage(damage);
+        healthSystem.IsShielded = true;
+        MovementTween = CreateTween();
+        var pos = GlobalPosition + dir.Normalized()*PushDistance;
+        MovementTween.TweenProperty(this,"global_position",pos,PushTime);
+        CreateTween().TweenCallback(this,nameof(DisableShield)).SetDelay(ShieldOnTime);
+        
+    }
+
+    private void DisableShield() {
+        healthSystem.IsShielded = false;
+        MovementTween = null;
     }
 
 }

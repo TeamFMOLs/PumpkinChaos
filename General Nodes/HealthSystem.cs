@@ -11,13 +11,13 @@ public class HealthSystem : Node2D
     // Called when the node enters the scene tree for the first time.
     [Export]
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
-
+    public bool IsShielded { get => _isShielded; set => _isShielded = value; }
 
     public event Action OnDeath;
     public event Action OnTakeDamage;
     private int _health;
     private int _maxHealth;
-    private bool _isDead;
+    private bool _isDead , _isShielded;
     private Label _damageLabel;
     [Export]
     private NodePath AnimationNodePath;
@@ -25,7 +25,7 @@ public class HealthSystem : Node2D
 
     public override void _Ready()
     {
-        base._Ready();
+        
         _health = _maxHealth;
         //_damageLabel = GetNode<Label>("Label");
         //_damageLabel.Text = "";
@@ -37,22 +37,14 @@ public class HealthSystem : Node2D
         OnDeath?.Invoke();
     }
 
-    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    //  public override void _Process(float delta)
-    //  {
-    //      
-    //  }
-
     public void TakeDamage(int damage)
     {
-        if (_isDead)
+        if (_isDead || _isShielded)
             return;
-           
         _health -= damage;
         //_damageLabel.Text = damage.ToString();
         //_animationPlayer.Play("FadeInFadeOut");
         OnTakeDamage?.Invoke();
-        
         if (_health <= 0)
         {
             _health = 0;
@@ -60,6 +52,4 @@ public class HealthSystem : Node2D
             Die();
         }
     }
-
-
 }
