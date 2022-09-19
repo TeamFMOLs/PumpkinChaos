@@ -201,6 +201,72 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0.0, 0.6 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpriteParent:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 10, 10 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpriteParent:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.788235, 0.0352941, 0.0352941, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Particles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.19 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Gradient" id=60]
+offsets = PoolRealArray( 0.0276243, 0.342541, 0.436464, 0.751381, 0.812155, 0.983425 )
+colors = PoolColorArray( 1, 0.600281, 0.308594, 1, 0.964844, 0.814087, 0, 1, 1, 0.749298, 0.394531, 1, 0.972656, 0.571073, 0.353348, 1, 0.980469, 0.784423, 0.0153198, 1, 0.988281, 0.198694, 0.0694885, 1 )
+
+[sub_resource type="GradientTexture" id=61]
+gradient = SubResource( 60 )
+
+[sub_resource type="ParticlesMaterial" id=62]
+lifetime_randomness = 0.36
+emission_shape = 5
+emission_ring_radius = 564.49
+emission_ring_inner_radius = 562.5
+emission_ring_height = 0.0
+emission_ring_axis = Vector3( 0, 1, 0 )
+flag_align_y = true
+flag_disable_z = true
+direction = Vector3( 0, 500, 0 )
+spread = 171.94
+flatness = 1.0
+gravity = Vector3( 0, 500, 0 )
+initial_velocity = 30.0
+initial_velocity_random = 0.63
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 100.0
+linear_accel_random = 1.0
+scale = 7.0
+scale_random = 0.81
+color_ramp = SubResource( 61 )
 
 [node name="BasicEnemy" type="KinematicBody2D"]
 collision_layer = 8
@@ -256,3 +322,15 @@ next/get_hurt = "RESET"
 [node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 9 )
 volume_db = -5.0
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 0, -28 )
+scale = Vector2( 0.112465, 0.112465 )
+emitting = false
+amount = 10
+lifetime = 0.2
+speed_scale = 0.5
+explosiveness = 0.32
+randomness = 0.39
+local_coords = false
+process_material = SubResource( 62 )

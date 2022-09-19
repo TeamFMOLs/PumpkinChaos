@@ -65,10 +65,10 @@ texture = ExtResource( 4 )
 position = Vector2( 80, -9.48011 )
 
 [node name="Retro Explosion" parent="GunParent" instance=ExtResource( 5 )]
+unique_name_in_owner = true
 position = Vector2( 61, -9.48011 )
 scale = Vector2( 0.0790876, 0.0790876 )
 emitting = false
-lifetime = 0.3
 speed_scale = 0.7
 
 [node name="Timer" type="Timer" parent="."]
