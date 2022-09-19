@@ -20,6 +20,8 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
     [Export]
     protected float ProjectileSpeed;
     [Export]
+    public int ProjectileDamage = 40;
+    [Export]
     protected PackedScene[] PrizesToDrop;
     [Export]
     protected int NumberOfPrizes = 3;
@@ -81,6 +83,7 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
         blt.GlobalPosition = GlobalPosition;
         blt.GlobalRotation = vec.Angle();
         blt.Velocity = ProjectileSpeed * vec;
+        blt.Damage = ProjectileDamage;
         GD.Print(ProjectileSpeed);
 
     }

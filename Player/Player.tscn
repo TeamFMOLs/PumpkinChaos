@@ -573,6 +573,7 @@ energy = 0.5
 
 [node name="PlayerCamera" parent="." instance=ExtResource( 10 )]
 position = Vector2( 0, -0.519893 )
+zoom = Vector2( 1.5, 1.5 )
 
 [node name="HealthSystem" parent="." instance=ExtResource( 11 )]
 position = Vector2( 0, -0.519893 )
