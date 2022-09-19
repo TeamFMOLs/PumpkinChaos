@@ -212,7 +212,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=42]
 resource_name = "get_hurt"
-length = 0.2
+length = 0.15
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpriteParent:material:shader_param/white_progress")
@@ -221,13 +221,11 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
+"times": PoolRealArray( 0, 0.15 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 0.6 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D/SpriteParent:position")
 tracks/1/type = "audio"
 tracks/1/path = NodePath("SoundPlayer")
 tracks/1/interp = 1
@@ -235,10 +233,12 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 2, 2 ), Vector2( 0, 0 ) ]
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 10 )
+} ],
+"times": PoolRealArray( 0 )
 }
 
 [node name="BasicEnemy" type="KinematicBody2D"]
