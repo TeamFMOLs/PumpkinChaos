@@ -52,9 +52,7 @@ public class HealthSystem : Node2D
         //_damageLabel.Text = damage.ToString();
         //_animationPlayer.Play("FadeInFadeOut");
         OnTakeDamage?.Invoke();
-
         
-
         if (_health <= 0)
         {
             _health = 0;

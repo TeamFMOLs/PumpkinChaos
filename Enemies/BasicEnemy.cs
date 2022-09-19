@@ -47,6 +47,8 @@ public class BasicEnemy : CharacterController, IDestructible
 
     private void OnHurt() {
         GetNode<AnimationPlayer>("AnimationPlayer").Play("get_hurt");
+        GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D").Play();
+        GD.Print("a7a");
     }
 
     public virtual void AttackPos(Vector2 pos)

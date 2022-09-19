@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Enemies/BasicEnemy.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/Navigator.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://General Nodes/HealthSystem.tscn" type="PackedScene" id=4]
 [ext_resource path="res://General Nodes/EnemyProjectile.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/SpriteAnimationController.cs" type="Script" id=6]
+[ext_resource path="res://Sounds/slash.mp3" type="AudioStream" id=7]
 
 [sub_resource type="CircleShape2D" id=34]
 radius = 16.0
@@ -149,7 +150,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=42]
 resource_name = "get_hurt"
-length = 0.15
+length = 0.2
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
@@ -158,10 +159,22 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 0.6 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D/SpriteParent:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 2, 2 ), Vector2( 0, 0 ) ]
 }
 
 [node name="BasicEnemy" type="KinematicBody2D"]
@@ -198,3 +211,7 @@ AnimatedSpriteNodePath = NodePath("../CollisionShape2D/SpriteParent/EnemySprite"
 anims/RESET = SubResource( 41 )
 anims/get_hurt = SubResource( 42 )
 next/get_hurt = "RESET"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+volume_db = -5.0
