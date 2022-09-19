@@ -1,10 +1,12 @@
 using Godot;
 using System;
 
-public class BasicEnemy : CharacterController, IDestructible
+public class BasicEnemy : CharacterController, IDestructible , IScoreObject
 {
     [Export]
     public float Speed = 100;
+    [Export]
+    public int Score {get; set;}    
     [Export]
     protected Vector2 MinMaxAttackInterval;
     [Export]
@@ -15,6 +17,10 @@ public class BasicEnemy : CharacterController, IDestructible
     protected PackedScene EnemyProjectile;
     [Export]
     protected float ProjectileSpeed;
+    [Export]
+    protected PackedScene[] PrizesToDrop;
+    [Export]
+    protected int NumberOfPrizes = 3;
     protected RandomNumberGenerator rnd = new RandomNumberGenerator();
     protected EnemyNavigator _navigator;
     public HealthSystem healthSystem { get; private set; }
@@ -40,12 +46,16 @@ public class BasicEnemy : CharacterController, IDestructible
         _navigator.GoToLocation(StaticRefs.CurrentPlayer.GlobalPosition, Speed);
     }
 
-    private void Death()
+    protected void Death()
     {
-        QueueFree();
+        GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
+        DropPrizes();
+        GiveScore();
+        GetNode<AnimationPlayer>("AnimationPlayer").Play("die");
+        CreateTween().TweenCallback(this,"queue_free").SetDelay(0.4f);
     }
 
-    private void OnHurt()
+    protected void OnHurt()
     {
         GetNode<AnimationPlayer>("AnimationPlayer").Play("get_hurt");
     }
@@ -85,5 +95,21 @@ public class BasicEnemy : CharacterController, IDestructible
             AttackPos(StaticRefs.CurrentPlayer.GlobalPosition);
         _attackTimer.Start(rnd.RandfRange(MinMaxAttackInterval.x, MinMaxAttackInterval.y));
 
+    }
+
+    public  void GiveScore() {
+        StaticRefs.CurrentPlayer.IncreaseScore(Score);
+    }
+
+    protected void DropPrizes() {
+        for (int i = 0; i < NumberOfPrizes; i++)
+        {
+            var index = rnd.RandiRange(0,PrizesToDrop.Length-1);
+            var pos = Vector2.Right*rnd.RandfRange(-64,64) + Vector2.Up*rnd.RandfRange(-64,64)  + GlobalPosition;
+            var prize = PrizesToDrop[index].Instance<Loot>();
+            GetTree().Root.AddChild(prize);
+            prize.GlobalPosition = GlobalPosition;
+            prize.StartTweenPos(pos , 0.6f); 
+        }
     }
 }

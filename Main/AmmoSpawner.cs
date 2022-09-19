@@ -41,10 +41,7 @@ public class AmmoSpawner : Node2D
         it.GlobalPosition = startPos;
         GetTree().Root.AddChild(it); 
         
-        (it as Ammo).currentTween = it.CreateTween();
-        (it as Ammo).currentTween.TweenProperty(it,"global_position" ,endPos,FallTime );
-        (it as Ammo).currentTween.TweenCallback(it,"OnLand"  );
-        
+        (it as Ammo).StartTweenPos(endPos,FallTime);
         GetTree().CreateTimer(rnd.RandfRange(MinMaxTimeToSpawn.x,MinMaxTimeToSpawn.y)).Connect("timeout" , this , nameof(SpawnAmmo));
 
     }

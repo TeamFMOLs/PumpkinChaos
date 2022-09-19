@@ -9,6 +9,7 @@ public class Player : CharacterController, IDestructible
     NodePath WeaponNodePath;
     [Export]
     private int MaxHealth ;
+    private int _score = 0;
     
     private InputManager _inputHandler;
     private Weapon _weapon;
@@ -61,6 +62,11 @@ public class Player : CharacterController, IDestructible
     private void OnTakeDamage() {
         animationPlayer.Play("get_hurt");
         StaticRefs.CurrentCamera.ShakeForSeconds(0.35f,10f);
+    }
+
+    public void IncreaseScore(int amount) {
+        _score+= amount;
+        StaticRefs.PlayerUi.UpdateScore(_score);
     }
 
 }
