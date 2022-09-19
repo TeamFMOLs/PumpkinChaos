@@ -62,7 +62,7 @@ scale = Vector2( 0.542714, 0.542714 )
 texture = ExtResource( 4 )
 
 [node name="GunHead" type="Node2D" parent="GunParent"]
-position = Vector2( 64, -3.48011 )
+position = Vector2( 80, -9.48011 )
 
 [node name="Retro Explosion" parent="GunParent" instance=ExtResource( 5 )]
 position = Vector2( 61, -9.48011 )

@@ -30,6 +30,7 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=40]
+resource_local_to_scene = true
 shader = SubResource( 39 )
 shader_param/white_progress = 0.0
 
@@ -221,6 +222,7 @@ use_parent_material = true
 position = Vector2( 4, -1 )
 frames = SubResource( 59 )
 animation = "front"
+frame = 2
 playing = true
 
 [node name="Navigator" parent="." instance=ExtResource( 2 )]

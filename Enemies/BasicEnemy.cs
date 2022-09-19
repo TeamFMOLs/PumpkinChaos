@@ -80,7 +80,6 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
         var vec = (pos - GlobalPosition).Normalized();
         blt.GlobalPosition = GlobalPosition;
         blt.GlobalRotation = vec.Angle();
-
         blt.Velocity = ProjectileSpeed * vec;
         GD.Print(ProjectileSpeed);
 
