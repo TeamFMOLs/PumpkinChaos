@@ -510,8 +510,6 @@ collision_layer = 2
 collision_mask = 25
 script = ExtResource( 1 )
 WeaponNodePath = NodePath("GunNode")
-PushDistance = 60.0
-PushTime = 0.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 26 )

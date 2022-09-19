@@ -37,30 +37,40 @@ format = 1
 tile_data = PoolIntArray( -458740, 19, 0, -196613, 30, 0, -131079, 19, 0, 65550, 20, 0 )
 
 [node name="Player" parent="Level" instance=ExtResource( 1 )]
+PushDistance = 64.0
+PushTime = 0.6
 
 [node name="BasicEnemy" parent="." instance=ExtResource( 2 )]
 position = Vector2( 380, 0 )
+Score = 0
 MinMaxAttackInterval = Vector2( 0, 0 )
 EnemyProjectile = null
 ProjectileSpeed = 0.0
+PrizesToDrop = null
 
 [node name="BasicEnemy2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 699, 177 )
+Score = 0
 MinMaxAttackInterval = Vector2( 0, 0 )
 EnemyProjectile = null
 ProjectileSpeed = 0.0
+PrizesToDrop = null
 
 [node name="BasicEnemy3" parent="." instance=ExtResource( 2 )]
 position = Vector2( -119, 442 )
+Score = 0
 MinMaxAttackInterval = Vector2( 0, 0 )
 EnemyProjectile = null
 ProjectileSpeed = 0.0
+PrizesToDrop = null
 
 [node name="BasicEnemy4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 359, 469 )
+Score = 0
 MinMaxAttackInterval = Vector2( 0, 0 )
 EnemyProjectile = null
 ProjectileSpeed = 0.0
+PrizesToDrop = null
 
 [node name="GameManager" parent="." instance=ExtResource( 4 )]
 scale = Vector2( 0.1, 0.1 )
