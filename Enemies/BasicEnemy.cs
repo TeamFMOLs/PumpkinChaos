@@ -71,8 +71,6 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
     protected void OnHurt()
     {
         GetNode<AnimationPlayer>("AnimationPlayer").Play("get_hurt");
-
-        GD.Print("a7a");
     }
 
     public virtual void AttackPos(Vector2 pos)
@@ -83,6 +81,7 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
         blt.GlobalPosition = GlobalPosition;
         blt.GlobalRotation = vec.Angle();
         blt.Velocity = ProjectileSpeed * vec;
+        GD.Print(ProjectileSpeed);
 
     }
     public virtual void SpreadAttack(Vector2 pos, int n)
