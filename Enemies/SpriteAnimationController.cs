@@ -43,47 +43,66 @@ public class SpriteAnimationController : Node2D
 
     private void ChangeAnimation(Vector2 vec)
     {
-        GD.Print("hmm");
-        if (vec == Vector2.Up)
-        {
+        /*  GD.Print("hmm");
+         if (vec == Vector2.Up)
+         {
 
-            if (lastDir == Vector2.Down)
-                animatedSprite.Play("front_back");
-            else
-                animatedSprite.Play("back");
-        }
-        else if (lastDir == Vector2.Up)
-        {
+             if (lastDir == Vector2.Down)
+                 animatedSprite.Play("front_back");
+             else
+                 animatedSprite.Play("back");
+         }
+         else if (lastDir == Vector2.Up)
+         {
 
-            if (vec == Vector2.Right)
-                animatedSprite.Play("back_right");
-            else if (vec == Vector2.Left)
-                animatedSprite.Play("back_left");
-            else if (vec == Vector2.Down)
-                animatedSprite.Play("back_front");
+             if (vec == Vector2.Right)
+                 animatedSprite.Play("back_right");
+             else if (vec == Vector2.Left)
+                 animatedSprite.Play("back_left");
+             else if (vec == Vector2.Down)
+                 animatedSprite.Play("back_front");
+         }
+         else if (lastDir == Vector2.Right)
+         {
+             if (vec == Vector2.Down)
+                 animatedSprite.Play("right_front");
+             else if (vec == Vector2.Left)
+                 animatedSprite.Play("right_left");
+         }
+         else if (lastDir == Vector2.Left)
+         {
+             if (vec == Vector2.Down)
+                 animatedSprite.Play("left_front");
+             else if (vec == Vector2.Right)
+                 animatedSprite.Play("left_right");
+         } 
+         else if (lastDir == Vector2.Down)
+         {
+             if (vec == Vector2.Left)
+                 animatedSprite.Play("front_left");
+             else if (vec == Vector2.Right)
+                 animatedSprite.Play("front_right");
+         }  */
+        if (vec == Vector2.Down)
+        {
+            animatedSprite.Play("front");
         }
-        else if (lastDir == Vector2.Right)
+        else if (vec == Vector2.Up)
         {
-            if (vec == Vector2.Down)
-                animatedSprite.Play("right_front");
-            else if (vec == Vector2.Left)
-                animatedSprite.Play("right_left");
+            animatedSprite.Play("back");
         }
-        else if (lastDir == Vector2.Left)
+        else if (vec == Vector2.Left)
         {
-            if (vec == Vector2.Down)
-                animatedSprite.Play("left_front");
-            else if (vec == Vector2.Right)
-                animatedSprite.Play("left_right");
-        } 
-        else if (lastDir == Vector2.Down)
+            animatedSprite.Play("side");
+            animatedSprite.FlipH = false;
+        }
+        else if (vec == Vector2.Right)
         {
-            if (vec == Vector2.Left)
-                animatedSprite.Play("front_left");
-            else if (vec == Vector2.Right)
-                animatedSprite.Play("front_right");
-        } 
-        
+            animatedSprite.Play("side");
+            animatedSprite.FlipH = true;
+        }
+
+
 
         lastChangeTime = 0;
         lastDir = vec;

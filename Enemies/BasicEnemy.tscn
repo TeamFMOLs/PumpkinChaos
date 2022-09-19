@@ -1,8 +1,8 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Enemies/BasicEnemy.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/Navigator.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/player_LIGHT_PXL.png" type="Texture" id=3]
+[ext_resource path="res://Assets/pump_2.png" type="Texture" id=3]
 [ext_resource path="res://General Nodes/HealthSystem.tscn" type="PackedScene" id=4]
 [ext_resource path="res://General Nodes/EnemyProjectile.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/SpriteAnimationController.cs" type="Script" id=6]
@@ -34,95 +34,62 @@ resource_local_to_scene = true
 shader = SubResource( 39 )
 shader_param/white_progress = 0.0
 
-[sub_resource type="AtlasTexture" id=29]
+[sub_resource type="AtlasTexture" id=49]
 atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 113, 119 )
+region = Rect2( 384, 128, 128, 128 )
 
-[sub_resource type="AtlasTexture" id=30]
+[sub_resource type="AtlasTexture" id=50]
 atlas = ExtResource( 3 )
-region = Rect2( 113, 0, 113, 119 )
+region = Rect2( 128, 256, 128, 128 )
 
-[sub_resource type="AtlasTexture" id=31]
+[sub_resource type="AtlasTexture" id=51]
 atlas = ExtResource( 3 )
-region = Rect2( 226, 0, 113, 119 )
+region = Rect2( 256, 256, 128, 128 )
 
-[sub_resource type="AtlasTexture" id=28]
+[sub_resource type="AtlasTexture" id=52]
 atlas = ExtResource( 3 )
-region = Rect2( 113, 119, 113, 119 )
+region = Rect2( 0, 128, 128, 128 )
 
-[sub_resource type="AtlasTexture" id=38]
+[sub_resource type="AtlasTexture" id=53]
 atlas = ExtResource( 3 )
-region = Rect2( 226, 119, 113, 119 )
+region = Rect2( 128, 128, 128, 128 )
 
-[sub_resource type="AtlasTexture" id=33]
+[sub_resource type="AtlasTexture" id=54]
 atlas = ExtResource( 3 )
-region = Rect2( 0, 119, 113, 119 )
+region = Rect2( 256, 128, 128, 128 )
 
-[sub_resource type="AtlasTexture" id=32]
+[sub_resource type="AtlasTexture" id=55]
 atlas = ExtResource( 3 )
-region = Rect2( 226, 119, 113, 119 )
+region = Rect2( 0, 0, 128, 128 )
 
-[sub_resource type="SpriteFrames" id=35]
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 3 )
+region = Rect2( 256, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=58]
+atlas = ExtResource( 3 )
+region = Rect2( 384, 0, 128, 128 )
+
+[sub_resource type="SpriteFrames" id=59]
 animations = [ {
-"frames": [ SubResource( 29 ) ],
-"loop": false,
-"name": "back",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 28 ) ],
-"loop": false,
-"name": "back_front",
-"speed": 12.0
-}, {
-"frames": [ SubResource( 38 ) ],
+"frames": [ SubResource( 49 ), SubResource( 50 ), SubResource( 51 ) ],
 "loop": true,
-"name": "back_left",
+"name": "back",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 30 ) ],
-"loop": false,
-"name": "back_right",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 28 ) ],
-"loop": false,
-"name": "default",
+"frames": [ SubResource( 52 ), SubResource( 53 ), SubResource( 54 ) ],
+"loop": true,
+"name": "front",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 28 ), SubResource( 33 ), SubResource( 32 ), SubResource( 29 ) ],
-"loop": false,
-"name": "front_back",
-"speed": 12.0
-}, {
-"frames": [ SubResource( 33 ), SubResource( 32 ) ],
-"loop": false,
-"name": "front_left",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 31 ), SubResource( 30 ) ],
-"loop": false,
-"name": "front_right",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 33 ), SubResource( 28 ) ],
-"loop": false,
-"name": "left_front",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 33 ), SubResource( 28 ), SubResource( 31 ), SubResource( 30 ) ],
-"loop": false,
-"name": "left_right",
-"speed": 15.0
-}, {
-"frames": [ SubResource( 31 ), SubResource( 28 ) ],
-"loop": false,
-"name": "right_front",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 31 ), SubResource( 28 ), SubResource( 33 ), SubResource( 32 ) ],
-"loop": false,
-"name": "right_left",
-"speed": 15.0
+"frames": [ SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ) ],
+"loop": true,
+"name": "side",
+"speed": 5.01
 } ]
 
 [sub_resource type="Gradient" id=47]
@@ -292,8 +259,9 @@ material = SubResource( 40 )
 [node name="EnemySprite" type="AnimatedSprite" parent="CollisionShape2D/SpriteParent"]
 use_parent_material = true
 position = Vector2( 0, -2 )
-scale = Vector2( 0.45, 0.45 )
-frames = SubResource( 35 )
+frames = SubResource( 59 )
+animation = "front"
+playing = true
 
 [node name="Navigator" parent="." instance=ExtResource( 2 )]
 
