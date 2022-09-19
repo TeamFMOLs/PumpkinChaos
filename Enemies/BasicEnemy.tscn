@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Enemies/BasicEnemy.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/Navigator.tscn" type="PackedScene" id=2]
@@ -10,9 +10,10 @@
 [ext_resource path="res://Assets/SmokeEffect.png" type="Texture" id=8]
 [ext_resource path="res://Sounds/effects/222373__qubodup__balloon-pop.mp3" type="AudioStream" id=9]
 [ext_resource path="res://Sounds/effects/525096__jomse__plasticimpacta7.wav" type="AudioStream" id=10]
+[ext_resource path="res://General Nodes/PumpDrink.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CircleShape2D" id=34]
-radius = 16.0
+radius = 35.0
 
 [sub_resource type="Shader" id=39]
 code = "shader_type canvas_item;
@@ -119,7 +120,7 @@ color_ramp = SubResource( 48 )
 [sub_resource type="Animation" id=41]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:render_priority")
+tracks/0/path = NodePath("SpriteParent:material:render_priority")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -131,7 +132,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
+tracks/1/path = NodePath("SpriteParent:material:shader_param/white_progress")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -155,7 +156,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("CollisionShape2D/SpriteParent:visible")
+tracks/3/path = NodePath("SpriteParent:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -183,7 +184,7 @@ tracks/0/keys = {
 "values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D/SpriteParent:visible")
+tracks/1/path = NodePath("SpriteParent:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -214,7 +215,7 @@ resource_name = "get_hurt"
 length = 0.15
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
+tracks/0/path = NodePath("SpriteParent:material:shader_param/white_progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -248,17 +249,17 @@ Score = 60
 MinMaxAttackInterval = Vector2( 2.5, 15 )
 EnemyProjectile = ExtResource( 5 )
 ProjectileSpeed = 200.0
-PrizesToDrop = [ ExtResource( 7 ) ]
+PrizesToDrop = [ ExtResource( 7 ), ExtResource( 11 ) ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 34 )
 
-[node name="SpriteParent" type="Node2D" parent="CollisionShape2D"]
+[node name="SpriteParent" type="Node2D" parent="."]
 material = SubResource( 40 )
 
-[node name="EnemySprite" type="AnimatedSprite" parent="CollisionShape2D/SpriteParent"]
+[node name="EnemySprite" type="AnimatedSprite" parent="SpriteParent"]
 use_parent_material = true
-position = Vector2( 0, -2 )
+position = Vector2( 4, -1 )
 frames = SubResource( 59 )
 animation = "front"
 playing = true
@@ -271,7 +272,8 @@ playing = true
 
 [node name="SpriteAnimationController" type="Node2D" parent="."]
 script = ExtResource( 6 )
-AnimatedSpriteNodePath = NodePath("../CollisionShape2D/SpriteParent/EnemySprite")
+AnimatedSpriteNodePath = NodePath("../SpriteParent/EnemySprite")
+TimeToChangeAnimationInterval = 0.2
 
 [node name="Deathparticles" type="Particles2D" parent="."]
 scale = Vector2( 1.02304, 1.04898 )

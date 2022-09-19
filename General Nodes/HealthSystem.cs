@@ -11,13 +11,13 @@ public class HealthSystem : Node2D
     // Called when the node enters the scene tree for the first time.
     [Export]
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
-
+    public bool IsShielded { get => _isShielded; set => _isShielded = value; }
 
     public event Action OnDeath;
     public event Action OnTakeDamage;
     private int _health;
     private int _maxHealth;
-    private bool _isDead;
+    private bool _isDead , _isShielded;
     private Label _damageLabel;
     [Export]
     private NodePath AnimationNodePath;
@@ -39,7 +39,7 @@ public class HealthSystem : Node2D
 
     public void TakeDamage(int damage)
     {
-        if (_isDead)
+        if (_isDead || _isShielded)
             return;
         _health -= damage;
         //_damageLabel.Text = damage.ToString();

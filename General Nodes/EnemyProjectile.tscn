@@ -55,7 +55,7 @@ texture = ExtResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="Sprite"]
 self_modulate = Color( 0.976471, 0.635294, 0.341176, 1 )
-amount = 25
+amount = 15
 lifetime = 0.5
 local_coords = false
 process_material = SubResource( 6 )

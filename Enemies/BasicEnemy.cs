@@ -8,6 +8,8 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
     [Export]
     public int Score {get; set;}    
     [Export]
+    public int OnHitDamage;
+    [Export]
     protected Vector2 MinMaxAttackInterval;
     [Export]
     protected float SpreadAttackProb = 0.33f;
@@ -44,6 +46,17 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
     {
         base._Process(delta);
         _navigator.GoToLocation(StaticRefs.CurrentPlayer.GlobalPosition, Speed);
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        base._PhysicsProcess(delta);
+        var it = GetLastSlideCollision();
+        if (it != null && it.Collider is Player)
+        {
+            var plyr = it.Collider as Player;
+            plyr.GetPushed((plyr.GlobalPosition-GlobalPosition),OnHitDamage);
+        }
     }
 
     protected void Death()

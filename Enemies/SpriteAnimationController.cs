@@ -9,7 +9,7 @@ public class SpriteAnimationController : Node2D
     private float TimeToChangeAnimationInterval = 0.3f;
     private AnimatedSprite animatedSprite;
     public CharacterController characterController;
-    private Vector2 lastDir = Vector2.Down;
+    private Vector2 lastDir = Vector2.Up;
     private float lastChangeTime = 0;
     public override void _Ready()
     {

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class PlayerUi : Node2D
+public class PlayerUi : CanvasLayer
 {
     private Label ammoLabel ,scoreLabel;
     public override void _EnterTree() {

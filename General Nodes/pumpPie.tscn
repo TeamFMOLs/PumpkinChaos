@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/pump_pie1.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 20.0
+radius = 30.0
 
 [node name="pumpPie" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -15,5 +15,5 @@ _score = 50
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="CollisionShape2D" index="0"]
-scale = Vector2( 0.6, 0.6 )
+scale = Vector2( 0.914866, 0.934674 )
 texture = ExtResource( 3 )
