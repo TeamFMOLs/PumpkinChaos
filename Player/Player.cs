@@ -4,13 +4,13 @@ using System;
 public class Player : CharacterController, IDestructible
 {
     [Export]
-    private float speed = 200;
+    private float speed = 200,speedCopy,dashSpeed=600;
     [Export]
     NodePath WeaponNodePath;
     [Export]
     private int MaxHealth ;
     [Export]
-    private float PushDistance = 64 ,PushTime = 0.6f , ShieldOnTime = 1f;
+    private float PushDistance = 64 ,PushTime = 0.6f , ShieldOnTime = 1f,DashCd=4f, DashingTime=0.5f;
     private int _score = 0 , AmmoAdditionalpickUp = 0;
     
     private InputManager _inputHandler;
@@ -22,6 +22,8 @@ public class Player : CharacterController, IDestructible
     public bool StopMovement;
     private AnimationPlayer animationPlayer;
     private SceneTreeTween MovementTween;
+    protected Timer DashTimer,DashCdTimer;
+    protected bool _Dashing=false, _CanDash=true;
 
     public override void _EnterTree()
     {
@@ -31,12 +33,24 @@ public class Player : CharacterController, IDestructible
     public override void _Ready()
     {
         _inputHandler = StaticRefs.inputManager;
-        
+        speedCopy=speed;
+
+        DashTimer = GetNode("DashingTimer") as Timer;
+        DashTimer.WaitTime = DashingTime;
+        DashTimer.Connect("timeout", this, nameof(StopDash));
+
+        DashCdTimer = GetNode("DashCdTimer") as Timer;
+        DashCdTimer.WaitTime = DashCd;
+        DashCdTimer.Connect("timeout", this, nameof(ReEnableDash));
+
         Weapon = GetNode<Weapon>(WeaponNodePath);
         healthSystem = GetNode<HealthSystem>("HealthSystem");
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+
         _inputHandler.OnAttack += Attack;
         _inputHandler.OnMelee += Melee;
+        _inputHandler.OnDash += Dash;
+
         healthSystem.OnTakeDamage += OnTakeDamage ;
         healthSystem.ResetHealth(MaxHealth);
         StaticRefs.PlayerUi.UpdateAmmoNumber(Weapon.Ammo);
@@ -58,7 +72,9 @@ public class Player : CharacterController, IDestructible
             if (it.Collider is BasicEnemy)
             {
                 var enemy =    it.Collider as BasicEnemy;
-            GetPushed(GlobalPosition-enemy.GlobalPosition,enemy.OnHitDamage);
+                if(!_Dashing){
+                    GetPushed(GlobalPosition-enemy.GlobalPosition,enemy.OnHitDamage);
+                }
             }
             
         }
@@ -73,17 +89,40 @@ public class Player : CharacterController, IDestructible
     public void Melee() {
         Weapon.Melee();
     }
+    public void Dash() {
+        if(_Dashing||!_CanDash){return;}
+        DashTimer.Start();
+        DashCdTimer.Start();
+        GD.Print("Iam SPEEEED!:Dash");
+        speed=dashSpeed;
+        _Dashing=true;
+        _CanDash=false;
+        animationPlayer.Play("Dash");
+    }
+    public void ReEnableDash()
+    {
+        _CanDash = true;
+        GD.Print("You Can Dash Again ******!:DashReEnable");
+    }
+    public void StopDash()
+    {
+        _Dashing = false;
+        GD.Print("Iam SPEEEED Demorgen-ed!:DashStopeeee");
+        speed=speedCopy;
+    }
     public void AddAmmo(Ammo it) {
         Weapon.Ammo += 1+AmmoAdditionalpickUp;
         StaticRefs.PlayerUi.UpdateAmmoNumber(Weapon.Ammo) ;
     }
 
     private void OnTakeDamage() {
-        animationPlayer.Play("get_hurt");
-        StaticRefs.CurrentCamera.ShakeForSeconds(0.35f,10f);
-        GD.Print(healthSystem.Health);
-        GD.Print(healthSystem.MaxHealth);
-        StaticRefs.PlayerUi.UpdateHp(((float)healthSystem.Health)/((float)healthSystem.MaxHealth)*100f);
+        if(!_Dashing){
+            animationPlayer.Play("get_hurt");
+            StaticRefs.CurrentCamera.ShakeForSeconds(0.35f,10f);
+            GD.Print(healthSystem.Health);
+            GD.Print(healthSystem.MaxHealth);
+            StaticRefs.PlayerUi.UpdateHp(((float)healthSystem.Health)/((float)healthSystem.MaxHealth)*100f);
+        }
     }
 
     public void IncreaseScore(int amount) {

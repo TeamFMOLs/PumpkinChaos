@@ -26,62 +26,62 @@ resource_local_to_scene = true
 shader = SubResource( 39 )
 shader_param/white_progress = 0.0
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=60]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 47, 54 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=61]
 atlas = ExtResource( 4 )
 region = Rect2( 47, 0, 47, 54 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=62]
 atlas = ExtResource( 4 )
 region = Rect2( 94, 0, 47, 54 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=63]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 47, 54 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=64]
 atlas = ExtResource( 3 )
 region = Rect2( 47, 0, 47, 54 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=65]
 atlas = ExtResource( 3 )
 region = Rect2( 94, 0, 47, 54 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=66]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 47, 54 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=67]
 atlas = ExtResource( 5 )
 region = Rect2( 47, 0, 47, 54 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=68]
 atlas = ExtResource( 5 )
 region = Rect2( 94, 0, 47, 54 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=69]
 atlas = ExtResource( 5 )
 region = Rect2( 141, 0, 47, 54 )
 
-[sub_resource type="SpriteFrames" id=11]
+[sub_resource type="SpriteFrames" id=59]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
+"frames": [ SubResource( 60 ), SubResource( 61 ), SubResource( 62 ) ],
 "loop": true,
 "name": "back",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"frames": [ SubResource( 63 ), SubResource( 64 ), SubResource( 65 ) ],
 "loop": true,
 "name": "front",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"frames": [ SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ) ],
 "loop": true,
 "name": "side",
-"speed": 5.0
+"speed": 5.01
 } ]
 
 [node name="KogEnemy" instance=ExtResource( 1 )]
@@ -90,17 +90,12 @@ script = ExtResource( 6 )
 [node name="SpriteParent" parent="." index="1"]
 material = SubResource( 40 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="SpriteParent" index="0"]
-frames = SubResource( 11 )
-animation = "front"
-frame = 1
-playing = true
-
-[node name="EnemySprite" parent="SpriteParent" index="1"]
-visible = false
+[node name="EnemySprite" parent="SpriteParent" index="0"]
+frames = SubResource( 59 )
+frame = 0
 
 [node name="AttackTimer" parent="." index="4"]
 wait_time = 3.0
 
 [node name="SpriteAnimationController" parent="." index="5"]
-AnimatedSpriteNodePath = NodePath("../SpriteParent/AnimatedSprite")
+AnimatedSpriteNodePath = NodePath("")
