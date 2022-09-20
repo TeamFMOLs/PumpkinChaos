@@ -36,6 +36,7 @@ public class Player : CharacterController, IDestructible
         healthSystem = GetNode<HealthSystem>("HealthSystem");
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         _inputHandler.OnAttack += Attack;
+        _inputHandler.OnMelee += Melee;
         healthSystem.OnTakeDamage += OnTakeDamage ;
         healthSystem.ResetHealth(MaxHealth);
         StaticRefs.PlayerUi.UpdateAmmoNumber(Weapon.Ammo);
@@ -68,6 +69,9 @@ public class Player : CharacterController, IDestructible
         {
             StaticRefs.CurrentCamera.ShakeForSeconds(0.2f,6f);
         }
+    }
+    public void Melee() {
+        Weapon.Melee();
     }
     public void AddAmmo(Ammo it) {
         Weapon.Ammo += 1+AmmoAdditionalpickUp;

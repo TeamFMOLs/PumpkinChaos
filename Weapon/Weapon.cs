@@ -9,8 +9,8 @@ public class Weapon : Node2D
     protected PackedScene BulletScene;
     [Export]
     public int ammo = 20, BulletDamage = 60;
-    protected Timer FireTimer;
-    protected bool _canFire = true;
+    protected Timer FireTimer,MeleeTimer;
+    protected bool _canFire = true, _canMelee=true;
     private Node2D WeaponHead;
     private RandomNumberGenerator rnd = new RandomNumberGenerator();
 
@@ -19,9 +19,12 @@ public class Weapon : Node2D
     public override void _Ready()
     {
         FireTimer = GetNode("Timer") as Timer;
+        MeleeTimer = GetNode("MeleeTimer") as Timer;
         WeaponHead = GetNode("GunParent/GunHead") as Node2D;
         FireTimer.WaitTime = 1 / AttackSpeed;
         FireTimer.Connect("timeout", this, nameof(ReEnableFire));
+        MeleeTimer.WaitTime = 1 / (AttackSpeed*2);
+        MeleeTimer.Connect("timeout", this, nameof(ReEnableMelee));
         rnd.Randomize();
     }
     public void WeaponPointAt(Vector2 target)
@@ -40,19 +43,35 @@ public class Weapon : Node2D
 
     public bool Attack(Vector2 target)
     {
-        if (_canFire && ammo > 0)
+        if (_canFire && _canMelee && ammo > 0)
         {
             Fire(target);
             _canFire = false;
+            _canMelee = false;
             FireTimer.Start(1/AttackSpeed);
             return true;
         }
         return false;
     }
-
+    public void Melee()
+    {
+        if (_canFire && _canMelee)
+        {
+            _canFire = false;
+            _canMelee = false;
+            MeleeTimer.Start();
+            GetNode<AnimationPlayer>("AnimationPlayer").Play("Melee");
+        }
+    }
+    public void ReEnableMelee()
+    {
+        _canMelee = true;
+        _canFire =true;
+    }
     public void ReEnableFire()
     {
-        _canFire = true;
+        _canMelee = true;
+        _canFire =true;
     }
 
 

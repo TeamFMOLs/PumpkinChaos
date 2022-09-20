@@ -6,6 +6,7 @@ public class InputManager : Node2D
     public Vector2 MoventDir {get; private set;} = Vector2.Zero;
     public Vector2 MousePos {get; private set;} = Vector2.Zero;
     public event Action<Vector2> OnAttack;
+    public event Action OnMelee;
 
     public override void _EnterTree()
     {
@@ -26,6 +27,10 @@ public class InputManager : Node2D
         if (Input.IsActionPressed("attack"))
         {
             OnAttack?.Invoke(MousePos);
+        }
+        else if (Input.IsActionPressed("melee"))
+        {
+            OnMelee?.Invoke();
         }
     }
 }
