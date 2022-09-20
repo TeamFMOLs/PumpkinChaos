@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Weapon/Weapon.cs" type="Script" id=1]
 [ext_resource path="res://Assets/PNG/gun_modifided_1.png" type="Texture" id=2]
@@ -6,6 +6,25 @@
 [ext_resource path="res://Weapon/gun.png" type="Texture" id=4]
 [ext_resource path="res://Objects/Retro Explosion.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Sounds/Shot.wav" type="AudioStream" id=6]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.00552486, 0.303867, 0.552486, 0.635359, 0.79558, 0.845304, 1 )
+colors = PoolColorArray( 0.749023, 0.746098, 0.746098, 1, 0.486188, 0.486188, 0.486188, 1, 0.807617, 0.807617, 0.807617, 1, 0.530273, 0.530273, 0.530273, 1, 0.420898, 0.420898, 0.420898, 1, 0.920898, 0.89212, 0.89212, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+trail_divisor = 10
+emission_shape = 2
+emission_box_extents = Vector3( 30, 1, 0 )
+direction = Vector3( -1, -1, 0 )
+spread = 180.0
+flatness = 1.0
+gravity = Vector3( -100, -100, 0 )
+scale = 2.0
+scale_random = 1.0
+color_ramp = SubResource( 4 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "Fire"
@@ -22,6 +41,70 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 0.554785, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( -14, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Melee"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("GunParent/GunHead:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GunParent/GunHead/Particles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GunParent/Sprite2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 60, 10.52 ), Vector2( 40, 0.52 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("GunParent:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 45.0, 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("melee:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.49 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -74,7 +157,16 @@ scale = Vector2( 0.5, 0.4 )
 texture = ExtResource( 4 )
 
 [node name="GunHead" type="Node2D" parent="GunParent"]
-position = Vector2( 80, -9.48011 )
+position = Vector2( 79, -5.48011 )
+
+[node name="Particles2D" type="Particles2D" parent="GunParent/GunHead"]
+position = Vector2( -21, -1 )
+scale = Vector2( 0.981613, 0.716488 )
+emitting = false
+amount = 2000
+lifetime = 0.5
+randomness = 0.56
+process_material = SubResource( 5 )
 
 [node name="Retro Explosion" parent="GunParent" instance=ExtResource( 5 )]
 unique_name_in_owner = true
@@ -90,5 +182,13 @@ stream = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Fire = SubResource( 1 )
+anims/Melee = SubResource( 6 )
 anims/RESET = SubResource( 2 )
 next/Fire = "RESET"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+volume_db = -12.0
+pitch_scale = 0.55
+
+[node name="melee" type="AudioStreamPlayer2D" parent="."]
