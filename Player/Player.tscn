@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/GunNode.tscn" type="PackedScene" id=2]
@@ -11,8 +11,9 @@
 [ext_resource path="res://icon.png" type="Texture" id=9]
 [ext_resource path="res://General Nodes/PlayerCamera.tscn" type="PackedScene" id=10]
 [ext_resource path="res://General Nodes/HealthSystem.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Fonts/mincecraftFontData.tres" type="DynamicFontData" id=12]
 [ext_resource path="res://Assets/leafs/ammoUi.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Player.png" type="Texture" id=14]
+[ext_resource path="res://General Nodes/UpgradeSysrem.tscn" type="PackedScene" id=15]
 
 [sub_resource type="CircleShape2D" id=26]
 radius = 24.0
@@ -244,6 +245,14 @@ animations = [ {
 "loop": false,
 "name": "Right_Left",
 "speed": 15.0
+} ]
+
+[sub_resource type="SpriteFrames" id=47]
+animations = [ {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
 } ]
 
 [sub_resource type="Animation" id=36]
@@ -536,10 +545,6 @@ font_path = "res://Fonts/Minecraft.ttf"
 size = 24
 font_data = SubResource( 45 )
 
-[sub_resource type="DynamicFont" id=47]
-extra_spacing_top = 3
-font_data = ExtResource( 12 )
-
 [sub_resource type="StyleBoxFlat" id=48]
 bg_color = Color( 0.47451, 0.301961, 0.505882, 1 )
 border_blend = true
@@ -571,6 +576,7 @@ material = SubResource( 41 )
 [node name="Sprite2" type="Sprite" parent="CollisionShape2D/SpriteParent"]
 use_parent_material = true
 texture = ExtResource( 9 )
+flip_h = true
 
 [node name="SpriteParent" type="Node2D" parent="."]
 material = SubResource( 35 )
@@ -589,10 +595,11 @@ scale = Vector2( 0.45, 0.45 )
 frames = SubResource( 18 )
 animation = "A_Start"
 
-[node name="Sprite" type="Sprite" parent="SpriteParent"]
+[node name="Sprite" type="AnimatedSprite" parent="SpriteParent"]
 visible = false
 use_parent_material = true
-texture = ExtResource( 9 )
+position = Vector2( 0.000250117, 56 )
+frames = SubResource( 47 )
 
 [node name="GunNode" parent="." instance=ExtResource( 2 )]
 
@@ -623,11 +630,14 @@ color = Color( 0.992157, 0.847059, 0.34902, 1 )
 energy = 0.5
 
 [node name="PlayerCamera" parent="." instance=ExtResource( 10 )]
+visible = false
 position = Vector2( 0, -0.519893 )
 zoom = Vector2( 1.5, 1.5 )
 
 [node name="HealthSystem" parent="." instance=ExtResource( 11 )]
 position = Vector2( 0, -0.519893 )
+
+[node name="UpgradeSysrem" parent="." instance=ExtResource( 15 )]
 
 [node name="Ui" type="CanvasLayer" parent="."]
 script = ExtResource( 5 )
@@ -670,7 +680,6 @@ margin_top = 446.0
 margin_right = 132.0
 margin_bottom = 471.0
 custom_colors/font_color = Color( 0.941176, 0.92549, 0.92549, 1 )
-custom_fonts/font = SubResource( 47 )
 custom_styles/fg = SubResource( 48 )
 custom_styles/bg = SubResource( 49 )
 value = 100.0

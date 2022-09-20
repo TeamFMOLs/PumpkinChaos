@@ -12,6 +12,7 @@ public class HealthSystem : Node2D
     [Export]
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
     public bool IsShielded { get => _isShielded; set => _isShielded = value; }
+    public int Health { get => _health; set => _health = value; }
 
     public event Action OnDeath;
     public event Action OnTakeDamage;

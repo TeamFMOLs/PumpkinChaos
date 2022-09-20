@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Player.png-54d4b13ac506f96b99814af866f299ae.stex"
+path="res://.import/ammo_increase.png-20a7a04a7b7f4685e52b87941046b746.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player.png"
-dest_files=[ "res://.import/Player.png-54d4b13ac506f96b99814af866f299ae.stex" ]
+source_file="res://Assets/UI/ammo_increase.png"
+dest_files=[ "res://.import/ammo_increase.png-20a7a04a7b7f4685e52b87941046b746.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

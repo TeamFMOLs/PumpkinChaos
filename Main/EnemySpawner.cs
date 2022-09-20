@@ -45,7 +45,7 @@ public class EnemySpawner : Node2D
         enemies.Remove(enemy);
         if (enemies.Count ==0)
         {
-            //
+            SpawnNext();
         }
     }
 
