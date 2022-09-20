@@ -39,7 +39,7 @@ public class Weapon : Node2D
             Scale = new Vector2(1, -1);
         GlobalRotation = angle;
 
-    }
+}
 
     public bool Attack(Vector2 target)
     {

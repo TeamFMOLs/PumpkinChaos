@@ -28,7 +28,7 @@ public class EnemySpawner : Node2D
         start = GetNode<Node2D>("SrartPos");
         end = GetNode<Node2D>("EndPos");
         sky = GetNode<Node2D>("SkyPos");
-        GetTree().CreateTimer(1f).Connect("timeout", this, nameof(BeginSpawning));
+        GetTree().CreateTimer(1f,false).Connect("timeout", this, nameof(BeginSpawning));
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -97,7 +97,7 @@ public class EnemySpawner : Node2D
             SetEnemyStats(enm);
         }
         CurrentWaveIndex++;
-        GetTree().CreateTimer(rnd.RandfRange(MinMaxTimeBetweenWaves.x, MinMaxTimeBetweenWaves.y)).Connect("timeout", this, nameof(SpawnNext));
+        GetTree().CreateTimer(rnd.RandfRange(MinMaxTimeBetweenWaves.x, MinMaxTimeBetweenWaves.y),false).Connect("timeout", this, nameof(SpawnNext));
     }
 
     private void SetEnemyStats(BasicEnemy enemy)
