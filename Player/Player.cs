@@ -11,12 +11,13 @@ public class Player : CharacterController, IDestructible
     private int MaxHealth ;
     [Export]
     private float PushDistance = 64 ,PushTime = 0.6f , ShieldOnTime = 1f;
-    private int _score = 0;
+    private int _score = 0 , AmmoAdditionalpickUp = 0;
     
     private InputManager _inputHandler;
     private Weapon _weapon;
     public HealthSystem healthSystem { get; set; }
     public Weapon Weapon { get => _weapon; set => _weapon = value; }
+    public int Score { get => _score; set {_score = value; StaticRefs.UpgradeSystem.NotifyScore(_score);} }
 
     public bool StopMovement;
     private AnimationPlayer animationPlayer;
@@ -68,7 +69,7 @@ public class Player : CharacterController, IDestructible
         }
     }
     public void AddAmmo(Ammo it) {
-        Weapon.Ammo ++;
+        Weapon.Ammo += 1+AmmoAdditionalpickUp;
         StaticRefs.PlayerUi.UpdateAmmoNumber(Weapon.Ammo) ;
     }
 
@@ -78,8 +79,8 @@ public class Player : CharacterController, IDestructible
     }
 
     public void IncreaseScore(int amount) {
-        _score+= amount;
-        StaticRefs.PlayerUi.UpdateScore(_score);
+        Score+= amount;
+        StaticRefs.PlayerUi.UpdateScore(Score);
     }
 
     public void GetPushed(Vector2 dir , int damage) {
@@ -95,6 +96,28 @@ public class Player : CharacterController, IDestructible
     private void DisableShield() {
         healthSystem.IsShielded = false;
         MovementTween = null;
+    }
+
+    public void IncreaseHealth(float p) {
+        healthSystem.MaxHealth += (int)(healthSystem.MaxHealth*p);
+        healthSystem.Health += (int)(healthSystem.Health*p);
+    }
+
+    public void IncreaseAttackSpeed(float p) {
+        Weapon.AttackSpeed *= 1f +p;
+    }
+
+    public void IncreaseDamage(float p) {
+        Weapon.BulletDamage += (int) (Weapon.BulletDamage *p);
+    }
+
+    public void IncreaseAmmoPickUp(int n) {
+        GD.Print(n);
+        AmmoAdditionalpickUp += n;
+    }
+
+    public void IncreaseCritChance(float p) {
+        _weapon.CritChance +=p;
     }
 
 }

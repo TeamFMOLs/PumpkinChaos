@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/GunNode.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://icon.png" type="Texture" id=9]
 [ext_resource path="res://General Nodes/PlayerCamera.tscn" type="PackedScene" id=10]
 [ext_resource path="res://General Nodes/HealthSystem.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/Player.png" type="Texture" id=12]
+[ext_resource path="res://General Nodes/UpgradeSysrem.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CircleShape2D" id=26]
 radius = 24.0
@@ -242,6 +244,14 @@ animations = [ {
 "loop": false,
 "name": "Right_Left",
 "speed": 15.0
+} ]
+
+[sub_resource type="SpriteFrames" id=47]
+animations = [ {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
 } ]
 
 [sub_resource type="Animation" id=36]
@@ -520,6 +530,7 @@ material = SubResource( 41 )
 [node name="Sprite2" type="Sprite" parent="CollisionShape2D/SpriteParent"]
 use_parent_material = true
 texture = ExtResource( 9 )
+flip_h = true
 
 [node name="SpriteParent" type="Node2D" parent="."]
 material = SubResource( 35 )
@@ -538,10 +549,11 @@ scale = Vector2( 0.45, 0.45 )
 frames = SubResource( 18 )
 animation = "A_Start"
 
-[node name="Sprite" type="Sprite" parent="SpriteParent"]
+[node name="Sprite" type="AnimatedSprite" parent="SpriteParent"]
 visible = false
 use_parent_material = true
-texture = ExtResource( 9 )
+position = Vector2( 0.000250117, 56 )
+frames = SubResource( 47 )
 
 [node name="GunNode" parent="." instance=ExtResource( 2 )]
 
@@ -572,11 +584,14 @@ color = Color( 0.992157, 0.847059, 0.34902, 1 )
 energy = 0.5
 
 [node name="PlayerCamera" parent="." instance=ExtResource( 10 )]
+visible = false
 position = Vector2( 0, -0.519893 )
 zoom = Vector2( 1.5, 1.5 )
 
 [node name="HealthSystem" parent="." instance=ExtResource( 11 )]
 position = Vector2( 0, -0.519893 )
+
+[node name="UpgradeSysrem" parent="." instance=ExtResource( 13 )]
 
 [node name="Ui" type="CanvasLayer" parent="."]
 script = ExtResource( 5 )
