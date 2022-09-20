@@ -24,7 +24,7 @@ public class GameManager : Node2D
         
     }
     public void OnPlayerDie() {
-        GetTree().CreateTimer(1f).Connect("timeout" , this ,nameof(PlayerDeathComplete));
+        GetTree().CreateTimer(1f,false).Connect("timeout" , this ,nameof(PlayerDeathComplete));
         StaticRefs.CurrentPlayer.StopMovement = true;
         _isPlayerDead = true;
     }

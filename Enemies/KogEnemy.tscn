@@ -84,7 +84,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="BasicEnemy" instance=ExtResource( 1 )]
+[node name="KogEnemy" instance=ExtResource( 1 )]
 script = ExtResource( 6 )
 
 [node name="SpriteParent" parent="." index="1"]
@@ -93,12 +93,11 @@ material = SubResource( 40 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="SpriteParent" index="0"]
 frames = SubResource( 11 )
 animation = "front"
-frame = 2
+frame = 1
 playing = true
 
 [node name="EnemySprite" parent="SpriteParent" index="1"]
 visible = false
-frame = 0
 
 [node name="AttackTimer" parent="." index="4"]
 wait_time = 3.0

@@ -15,7 +15,7 @@ public class AmmoSpawner : Node2D
         start = GetNode<Node2D>("SrartPos");
         end = GetNode<Node2D>("EndPos");
         sky = GetNode<Node2D>("SkyPos");
-        GetTree().CreateTimer(1f).Connect("timeout", this, nameof(SpawnAmmo));
+        GetTree().CreateTimer(1f,false).Connect("timeout", this, nameof(SpawnAmmo));
     }
 
     Vector2 PickRandomPoint()
@@ -42,7 +42,7 @@ public class AmmoSpawner : Node2D
         it.GlobalPosition = startPos;
         GetTree().Root.AddChild(it);
         it.StartTweenPos(endPos, FallTime);
-        GetTree().CreateTimer(rnd.RandfRange(MinMaxTimeToSpawn.x, MinMaxTimeToSpawn.y)).Connect("timeout", this, nameof(SpawnAmmo));
+        GetTree().CreateTimer(rnd.RandfRange(MinMaxTimeToSpawn.x, MinMaxTimeToSpawn.y),false).Connect("timeout", this, nameof(SpawnAmmo));
 
     }
 
