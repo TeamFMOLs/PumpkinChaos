@@ -117,6 +117,7 @@ public class UpgradeSystem : Node
         if (score >= CurrentLevelScore)
         {
             CurrentLevel ++;
+            StaticRefs.PlayerUi.UpdateLevel(CurrentLevel);
             CurrentLevelScore += (int)( LevelIncreaseDemandedScore *(1+ 0.2f*(float) CurrentLevel));
             OnLevelUp();
         }

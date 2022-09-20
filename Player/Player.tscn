@@ -1,17 +1,16 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/GunNode.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/dfa6770603ecf5afb82ee7e880375bc68c681ee5.png" type="Texture" id=3]
 [ext_resource path="res://Sounds/steps/wood01.ogg" type="AudioStream" id=4]
-[ext_resource path="res://Player/PlayerUi.cs" type="Script" id=5]
+[ext_resource path="res://General Nodes/Ui.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Player_Dark.png" type="Texture" id=6]
 [ext_resource path="res://Assets/player_LIGHT_PXL.png" type="Texture" id=7]
 [ext_resource path="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Ouch/Ogg/Ouch__001.ogg" type="AudioStream" id=8]
 [ext_resource path="res://icon.png" type="Texture" id=9]
 [ext_resource path="res://General Nodes/PlayerCamera.tscn" type="PackedScene" id=10]
 [ext_resource path="res://General Nodes/HealthSystem.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Assets/leafs/ammoUi.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Player.png" type="Texture" id=14]
 [ext_resource path="res://General Nodes/UpgradeSysrem.tscn" type="PackedScene" id=15]
 
@@ -494,72 +493,6 @@ tracks/0/keys = {
 "values": [ 0.0, 0.6 ]
 }
 
-[sub_resource type="DynamicFontData" id=38]
-font_path = "res://Fonts/Minecraft.ttf"
-
-[sub_resource type="DynamicFont" id=39]
-font_data = SubResource( 38 )
-
-[sub_resource type="Animation" id=50]
-resource_name = "AmmoUi"
-length = 0.5
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 10.0, -10.0, 0.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.25, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( -25, 4 ), Vector2( -26, 5 ), Vector2( -25, 4 ) ]
-}
-
-[sub_resource type="DynamicFontData" id=43]
-font_path = "res://Fonts/Minecraft.ttf"
-
-[sub_resource type="DynamicFont" id=44]
-size = 32
-outline_size = 1
-outline_color = Color( 0.831373, 0.505882, 0.933333, 1 )
-font_data = SubResource( 43 )
-
-[sub_resource type="DynamicFontData" id=45]
-font_path = "res://Fonts/Minecraft.ttf"
-
-[sub_resource type="DynamicFont" id=46]
-size = 24
-font_data = SubResource( 45 )
-
-[sub_resource type="StyleBoxFlat" id=48]
-bg_color = Color( 0.47451, 0.301961, 0.505882, 1 )
-border_blend = true
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id=49]
-bg_color = Color( 0.290196, 0.215686, 0.470588, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 25
@@ -639,47 +572,4 @@ position = Vector2( 0, -0.519893 )
 
 [node name="UpgradeSysrem" parent="." instance=ExtResource( 15 )]
 
-[node name="Ui" type="CanvasLayer" parent="."]
-script = ExtResource( 5 )
-
-[node name="BulletsNum" type="Label" parent="Ui"]
-margin_left = 71.0
-margin_top = 420.0
-margin_right = 111.0
-margin_bottom = 436.0
-custom_fonts/font = SubResource( 39 )
-text = "0"
-
-[node name="Sprite" type="Sprite" parent="Ui/BulletsNum"]
-position = Vector2( -25.9374, 4.93738 )
-rotation = -0.0182155
-texture = ExtResource( 13 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Ui/BulletsNum"]
-autoplay = "AmmoUi"
-anims/AmmoUi = SubResource( 50 )
-
-[node name="Score" type="Label" parent="Ui"]
-margin_left = 24.0
-margin_top = 24.0
-margin_right = 150.0
-margin_bottom = 56.0
-custom_fonts/font = SubResource( 44 )
-text = "SCORE:"
-
-[node name="ScoreLabel" type="Label" parent="Ui/Score"]
-margin_top = 40.0
-margin_right = 40.0
-margin_bottom = 54.0
-custom_fonts/font = SubResource( 46 )
-text = "0"
-
-[node name="hpLabel" type="ProgressBar" parent="Ui"]
-margin_left = 32.0
-margin_top = 446.0
-margin_right = 132.0
-margin_bottom = 471.0
-custom_colors/font_color = Color( 0.941176, 0.92549, 0.92549, 1 )
-custom_styles/fg = SubResource( 48 )
-custom_styles/bg = SubResource( 49 )
-value = 100.0
+[node name="Ui" parent="." instance=ExtResource( 5 )]

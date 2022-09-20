@@ -29,4 +29,8 @@ public class PlayerUi : CanvasLayer
         hpLabel.Value = s;
     }
 
+    public void UpdateLevel(int l) {
+        GetNode<Label>("Level/TextureRect/TextureRect2/Label").Text =l.ToString();
+    }
+
 }
