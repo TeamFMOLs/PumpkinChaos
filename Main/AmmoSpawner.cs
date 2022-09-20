@@ -45,4 +45,7 @@ public class AmmoSpawner : Node2D
         GetTree().CreateTimer(rnd.RandfRange(MinMaxTimeToSpawn.x, MinMaxTimeToSpawn.y)).Connect("timeout", this, nameof(SpawnAmmo));
 
     }
+
+
+    
 }
