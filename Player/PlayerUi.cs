@@ -4,6 +4,7 @@ using System;
 public class PlayerUi : CanvasLayer
 {
     private Label ammoLabel ,scoreLabel;
+    private ProgressBar hpLabel;
     public override void _EnterTree() {
         StaticRefs.PlayerUi = this;
     }
@@ -12,6 +13,7 @@ public class PlayerUi : CanvasLayer
     {
         ammoLabel  = GetNode("BulletsNum") as Label;
         scoreLabel = GetNode("Score/ScoreLabel") as Label;
+        hpLabel = GetNode("hpLabel") as ProgressBar;
     }
 
     public void UpdateAmmoNumber(int n ) {
@@ -21,6 +23,9 @@ public class PlayerUi : CanvasLayer
     public void UpdateScore(int s) {
         scoreLabel.Text = s.ToString();
     }
-
+    
+    public void UpdateHp(float s) {
+        hpLabel.Value = s;
+    }
 
 }

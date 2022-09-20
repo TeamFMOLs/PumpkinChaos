@@ -8,7 +8,7 @@ public class Player : CharacterController, IDestructible
     [Export]
     NodePath WeaponNodePath;
     [Export]
-    private int MaxHealth ;
+    private int MaxHealth,maxHpCopy ;
     [Export]
     private float PushDistance = 64 ,PushTime = 0.6f , ShieldOnTime = 1f;
     private int _score = 0;
@@ -30,6 +30,7 @@ public class Player : CharacterController, IDestructible
     public override void _Ready()
     {
         _inputHandler = StaticRefs.inputManager;
+        maxHpCopy=MaxHealth;
         Weapon = GetNode<Weapon>(WeaponNodePath);
         healthSystem = GetNode<HealthSystem>("HealthSystem");
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
@@ -75,6 +76,7 @@ public class Player : CharacterController, IDestructible
     private void OnTakeDamage() {
         animationPlayer.Play("get_hurt");
         StaticRefs.CurrentCamera.ShakeForSeconds(0.35f,10f);
+        StaticRefs.PlayerUi.UpdateHp((MaxHealth/(maxHpCopy*1f))*100f);
     }
 
     public void IncreaseScore(int amount) {
