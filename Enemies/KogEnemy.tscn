@@ -93,10 +93,12 @@ material = SubResource( 40 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="SpriteParent" index="0"]
 frames = SubResource( 11 )
 animation = "front"
+frame = 2
 playing = true
 
 [node name="EnemySprite" parent="SpriteParent" index="1"]
 visible = false
+frame = 0
 
 [node name="AttackTimer" parent="." index="4"]
 wait_time = 3.0
