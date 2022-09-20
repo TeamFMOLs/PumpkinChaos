@@ -269,6 +269,7 @@ use_parent_material = true
 position = Vector2( 4, -1 )
 frames = SubResource( 59 )
 animation = "front"
+frame = 1
 playing = true
 
 [node name="Navigator" parent="." instance=ExtResource( 2 )]
