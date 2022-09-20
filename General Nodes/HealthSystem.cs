@@ -38,6 +38,11 @@ public class HealthSystem : Node2D
         OnDeath?.Invoke();
     }
 
+    public void ResetHealth(int h) {
+        MaxHealth = h; Health = h;
+    }
+    
+
     public void TakeDamage(int damage)
     {
         if (_isDead || _isShielded)

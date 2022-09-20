@@ -44,7 +44,7 @@ public class Weapon : Node2D
         {
             Fire(target);
             _canFire = false;
-            FireTimer.Start();
+            FireTimer.Start(1/AttackSpeed);
             return true;
         }
         return false;

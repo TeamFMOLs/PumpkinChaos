@@ -13,13 +13,15 @@ public class Bullet : Area2D
     public override void _Ready()
     {
         Monitoring = true;
+        CreateTween().TweenCallback(this, "queue_free").SetDelay(LifeTime);
+
     }
-    
+
     public override void _PhysicsProcess(float delta)
     {
-        GlobalPosition += Velocity*delta;
+        GlobalPosition += Velocity * delta;
         var ressult = GetOverlappingBodies();
-        if (ressult.Count != 0 )
+        if (ressult.Count != 0)
         {
             var it = ressult[0] as IDestructible;
             if (it != null)
@@ -28,10 +30,10 @@ public class Bullet : Area2D
             }
             DestroyBullet();
         }
-        CreateTween().TweenCallback(this,"queue_free").SetDelay(LifeTime);
     }
 
-    public void DestroyBullet() {
+    public void DestroyBullet()
+    {
         QueueFree();
     }
 }

@@ -25,6 +25,7 @@ public class PlayerUi : CanvasLayer
     }
     
     public void UpdateHp(float s) {
+        GD.Print(s);
         hpLabel.Value = s;
     }
 

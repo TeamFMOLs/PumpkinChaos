@@ -66,6 +66,7 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
         GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
         DropPrizes();
         GiveScore();
+        StaticRefs.EnemySpawner.OnEnemyDied(this);
         GetNode<AnimationPlayer>("AnimationPlayer").Play("die");
         CreateTween().TweenCallback(this,"queue_free").SetDelay(0.4f);
     }

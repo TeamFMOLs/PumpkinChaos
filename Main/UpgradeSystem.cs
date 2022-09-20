@@ -15,6 +15,8 @@ public class UpgradeSystem : Node
     private Button[] Buttons = new Button[3];
     private Label[] labels = new Label[3];
     private Control UpgradeMenu;
+    private int CurrentLevelScore ;
+    private int CurrentLevel = 0;
     
     private UpgradeOption[] currentOptions;
 
@@ -30,6 +32,7 @@ public class UpgradeSystem : Node
 
     public override void _Ready()
     {
+        CurrentLevelScore = LevelIncreaseDemandedScore;
         for (int i = 0; i < 3; i++)
         {
             Buttons[i] = GetNode<Button>(ButtonsPaths[i]);
@@ -111,9 +114,10 @@ public class UpgradeSystem : Node
     }
 
     public void NotifyScore(int score) {
-        if (score >= LevelIncreaseDemandedScore)
+        if (score >= CurrentLevelScore)
         {
-            LevelIncreaseDemandedScore +=(int)( LevelIncreaseDemandedScore *1.2f);
+            CurrentLevel ++;
+            CurrentLevelScore += (int)( LevelIncreaseDemandedScore *(1+ 0.2f*(float) CurrentLevel));
             OnLevelUp();
         }
     }
