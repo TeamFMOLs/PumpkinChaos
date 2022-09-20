@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Enemies/BasicEnemy.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/Navigator.tscn" type="PackedScene" id=2]
@@ -30,7 +30,6 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=40]
-resource_local_to_scene = true
 shader = SubResource( 39 )
 shader_param/white_progress = 0.0
 
@@ -119,7 +118,7 @@ color_ramp = SubResource( 48 )
 [sub_resource type="Animation" id=41]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("SpriteParent:material:shader_param/white_progress")
+tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:render_priority")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -128,10 +127,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0 ]
+"values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("SpriteParent:visible")
+tracks/1/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -139,8 +138,8 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"update": 0,
+"values": [ 0.0 ]
 }
 
 [sub_resource type="Animation" id=46]
@@ -187,16 +186,16 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=42]
 resource_name = "get_hurt"
-length = 0.15
+length = 0.2
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("SpriteParent:material:shader_param/white_progress")
+tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 0.6 ]
@@ -288,7 +287,6 @@ use_parent_material = true
 position = Vector2( 4, -1 )
 frames = SubResource( 59 )
 animation = "front"
-frame = 2
 playing = true
 
 [node name="Navigator" parent="." instance=ExtResource( 2 )]
