@@ -193,6 +193,7 @@ emitting = false
 speed_scale = 0.7
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
@@ -223,3 +224,4 @@ randomness = 0.56
 process_material = SubResource( 5 )
 
 [node name="MeleeTimer" type="Timer" parent="."]
+one_shot = true

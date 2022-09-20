@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/GunNode.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=9]
 [ext_resource path="res://General Nodes/PlayerCamera.tscn" type="PackedScene" id=10]
 [ext_resource path="res://General Nodes/HealthSystem.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/Effect/dust.png" type="Texture" id=12]
 [ext_resource path="res://Assets/leafs/ammoUi.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Player.png" type="Texture" id=14]
 [ext_resource path="res://General Nodes/UpgradeSysrem.tscn" type="PackedScene" id=15]
@@ -36,6 +37,56 @@ void fragment(){
 [sub_resource type="ShaderMaterial" id=41]
 shader = SubResource( 40 )
 shader_param/white_progress = 0.0
+
+[sub_resource type="CanvasItemMaterial" id=51]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id=56]
+_data = [ Vector2( 0.00883839, 0.00920248 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=57]
+curve = SubResource( 56 )
+
+[sub_resource type="Gradient" id=52]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=53]
+gradient = SubResource( 52 )
+
+[sub_resource type="ParticlesMaterial" id=54]
+lifetime_randomness = 0.7
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 360.0
+angle_random = 0.15
+scale = 2.0
+scale_random = 1.0
+color_ramp = SubResource( 53 )
+anim_speed_curve = SubResource( 57 )
+
+[sub_resource type="ParticlesMaterial" id=58]
+lifetime_randomness = 0.7
+trail_divisor = 3
+emission_shape = 1
+emission_sphere_radius = 6.0
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 60.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 35.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 360.0
+angle_random = 0.15
+scale = 6.0
+scale_random = 1.0
+color_ramp = SubResource( 53 )
+anim_speed_curve = SubResource( 57 )
 
 [sub_resource type="Shader" id=34]
 code = "shader_type canvas_item;
@@ -254,6 +305,34 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
+
+[sub_resource type="Animation" id=55]
+resource_name = "Dash"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D/SpriteParent/DustTrail:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D/SpriteParent/DustCloud:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=36]
 resource_name = "Die"
@@ -578,6 +657,31 @@ use_parent_material = true
 texture = ExtResource( 9 )
 flip_h = true
 
+[node name="DustTrail" type="Particles2D" parent="CollisionShape2D/SpriteParent"]
+material = SubResource( 51 )
+position = Vector2( -34, 30 )
+emitting = false
+amount = 25
+lifetime = 0.7
+one_shot = true
+randomness = 0.7
+local_coords = false
+process_material = SubResource( 54 )
+texture = ExtResource( 12 )
+
+[node name="DustCloud" type="Particles2D" parent="CollisionShape2D/SpriteParent"]
+material = SubResource( 51 )
+position = Vector2( -30, -4 )
+emitting = false
+amount = 25
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.7
+local_coords = false
+process_material = SubResource( 58 )
+texture = ExtResource( 12 )
+
 [node name="SpriteParent" type="Node2D" parent="."]
 material = SubResource( 35 )
 rotation = 6.28319
@@ -604,6 +708,7 @@ frames = SubResource( 47 )
 [node name="GunNode" parent="." instance=ExtResource( 2 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Dash = SubResource( 55 )
 anims/Die = SubResource( 36 )
 anims/Idle = SubResource( 25 )
 anims/RESET = SubResource( 2 )
@@ -683,3 +788,9 @@ custom_colors/font_color = Color( 0.941176, 0.92549, 0.92549, 1 )
 custom_styles/fg = SubResource( 48 )
 custom_styles/bg = SubResource( 49 )
 value = 100.0
+
+[node name="DashingTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DashCdTimer" type="Timer" parent="."]
+one_shot = true
