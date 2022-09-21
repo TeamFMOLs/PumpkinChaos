@@ -126,5 +126,7 @@ position = Vector2( 148, -1076 )
 position = Vector2( 911, 402 )
 
 [node name="KogEnemy" parent="EnemySpawner" instance=ExtResource( 9 )]
+KogProjectile = null
+TargetMark = null
 
 [node name="Boss1" parent="." instance=ExtResource( 8 )]

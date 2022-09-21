@@ -1,7 +1,6 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Enemies/BasicEnemy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Enemies/KogTes1t.png" type="Texture" id=2]
 [ext_resource path="res://Enemies/rollerEnemy_front.png" type="Texture" id=3]
 [ext_resource path="res://Enemies/rollerEnemy_back.png" type="Texture" id=4]
 [ext_resource path="res://Enemies/rollerEnemy_side.png" type="Texture" id=5]
@@ -31,71 +30,54 @@ shader = SubResource( 39 )
 shader_param/white_progress = 0.0
 
 [sub_resource type="AtlasTexture" id=88]
-atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 47, 473 )
 
 [sub_resource type="AtlasTexture" id=89]
-atlas = ExtResource( 2 )
 region = Rect2( 47, 0, 47, 473 )
 
 [sub_resource type="AtlasTexture" id=90]
-atlas = ExtResource( 2 )
 region = Rect2( 94, 0, 47, 473 )
 
 [sub_resource type="AtlasTexture" id=91]
-atlas = ExtResource( 2 )
 region = Rect2( 141, 0, 47, 473 )
 
 [sub_resource type="AtlasTexture" id=92]
-atlas = ExtResource( 2 )
 region = Rect2( 188, 0, 47, 473 )
 
 [sub_resource type="AtlasTexture" id=93]
-atlas = ExtResource( 2 )
 region = Rect2( 235, 0, 47, 473 )
 
 [sub_resource type="AtlasTexture" id=94]
-atlas = ExtResource( 2 )
 region = Rect2( 282, 0, 47, 473 )
 
 [sub_resource type="AtlasTexture" id=95]
-atlas = ExtResource( 2 )
 region = Rect2( 329, 0, 47, 473 )
 
 [sub_resource type="AtlasTexture" id=96]
-atlas = ExtResource( 2 )
 region = Rect2( 376, 0, 47, 473 )
 
 [sub_resource type="AtlasTexture" id=97]
-atlas = ExtResource( 2 )
 region = Rect2( 423, 0, 47, 473 )
 
 [sub_resource type="AtlasTexture" id=98]
-atlas = ExtResource( 2 )
 region = Rect2( 470, 0, 47, 473 )
 
 [sub_resource type="AtlasTexture" id=99]
-atlas = ExtResource( 2 )
 region = Rect2( 517, 0, 47, 473 )
 
 [sub_resource type="AtlasTexture" id=100]
-atlas = ExtResource( 2 )
 region = Rect2( 564, 0, 47, 473 )
 
 [sub_resource type="AtlasTexture" id=101]
-atlas = ExtResource( 2 )
 region = Rect2( 611, 0, 47, 473 )
 
 [sub_resource type="AtlasTexture" id=102]
-atlas = ExtResource( 2 )
 region = Rect2( 658, 0, 47, 473 )
 
 [sub_resource type="AtlasTexture" id=103]
-atlas = ExtResource( 2 )
 region = Rect2( 705, 0, 47, 473 )
 
 [sub_resource type="AtlasTexture" id=104]
-atlas = ExtResource( 2 )
 region = Rect2( 752, 0, 47, 473 )
 
 [sub_resource type="AtlasTexture" id=60]
