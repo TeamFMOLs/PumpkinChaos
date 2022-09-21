@@ -34,7 +34,7 @@ public class EnemyNavigator : Node2D
     }
     public override void _Draw()
     {
-        int index = 0;
+        /* int index = 0;
         foreach (var ray in _rays)
         {
             if (ray != null && ray != Vector2.Zero)
@@ -45,7 +45,7 @@ public class EnemyNavigator : Node2D
             }
 
 
-        }
+        } */
     }
 
     public override void _PhysicsProcess(float delta)
@@ -120,7 +120,7 @@ public class EnemyNavigator : Node2D
     {
         var ray = _rays[index];
         var rayCast = _rayCast;
-        rayCast.CastTo = ray.Normalized() * 80;
+        rayCast.CastTo = ray.Normalized() * 90;
         rayCast.ForceRaycastUpdate();
 
         if (rayCast.IsColliding())

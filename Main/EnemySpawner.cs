@@ -75,7 +75,7 @@ public class EnemySpawner : Node2D
             rnd.RandfRange(start.GlobalPosition.x, end.GlobalPosition.x),
             rnd.RandfRange(start.GlobalPosition.y, end.GlobalPosition.y)
         );
-        while (loc.DistanceTo(StaticRefs.CurrentPlayer.GlobalPosition) <= 200)
+        while (loc.DistanceTo(StaticRefs.CurrentPlayer.GlobalPosition) <= 400)
         {
             loc = new Vector2(
             rnd.RandfRange(start.GlobalPosition.x, end.GlobalPosition.x),
