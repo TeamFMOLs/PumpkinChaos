@@ -4,13 +4,15 @@ using System;
 public class Player : CharacterController, IDestructible
 {
     [Export]
+    protected PackedScene DashGhostScene;
+    [Export]
     private float speed = 200,speedCopy,dashSpeed=1200;
     [Export]
     NodePath WeaponNodePath;
     [Export]
     private int MaxHealth ;
     [Export]
-    private float PushDistance = 64 ,PushTime = 0.6f , ShieldOnTime = 1f,DashCd=2f, DashingTime=0.15f;
+    private float PushDistance = 64 ,PushTime = 0.6f , ShieldOnTime = 1f,DashCd=2f, DashingTime=0.15f,DashGhostTime=0.02f;
     private int _score = 0 , AmmoAdditionalpickUp = 0;
     
     private InputManager _inputHandler;
@@ -20,10 +22,11 @@ public class Player : CharacterController, IDestructible
     public int Score { get => _score; set {_score = value; StaticRefs.UpgradeSystem.NotifyScore(_score);} }
 
     public bool StopMovement;
-    private AnimationPlayer animationPlayer;
+    private AnimationPlayer animationPlayer,UIanimationPlayer;
     private SceneTreeTween MovementTween;
-    protected Timer DashTimer,DashCdTimer;
+    protected Timer DashTimer,DashCdTimer,DashGhostTimer;
     protected bool _Dashing=false, _CanDash=true;
+    public Sprite mySprite;
 
     public override void _EnterTree()
     {
@@ -39,6 +42,11 @@ public class Player : CharacterController, IDestructible
         DashTimer.WaitTime = DashingTime;
         DashTimer.Connect("timeout", this, nameof(StopDash));
 
+        DashGhostTimer = GetNode("DashGhostTimer") as Timer;
+        DashGhostTimer.WaitTime = DashGhostTime;
+        DashGhostTimer.Connect("timeout", this, nameof(DashGhost));
+
+        
         DashCdTimer = GetNode("DashCdTimer") as Timer;
         DashCdTimer.WaitTime = DashCd;
         DashCdTimer.Connect("timeout", this, nameof(ReEnableDash));
@@ -46,6 +54,8 @@ public class Player : CharacterController, IDestructible
         Weapon = GetNode<Weapon>(WeaponNodePath);
         healthSystem = GetNode<HealthSystem>("HealthSystem");
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        UIanimationPlayer = StaticRefs.PlayerUi.GetNode<AnimationPlayer>("BulletsNum/AnimationPlayer");
+        mySprite = GetNode<Sprite>("CollisionShape2D/SpriteParent/Sprite2")as Sprite;
 
         _inputHandler.OnAttack += Attack;
         _inputHandler.OnMelee += Melee;
@@ -92,6 +102,7 @@ public class Player : CharacterController, IDestructible
     public void Dash() {
         if(_Dashing||!_CanDash){return;}
         DashTimer.Start();
+        DashGhostTimer.Start();
         DashCdTimer.Start();
         GD.Print("Iam SPEEEED!:Dash");
         speed=dashSpeed;
@@ -102,13 +113,26 @@ public class Player : CharacterController, IDestructible
     public void ReEnableDash()
     {
         _CanDash = true;
+        UIanimationPlayer.Play("DashReady");
         GD.Print("You Can Dash Again ******!:DashReEnable");
     }
     public void StopDash()
     {
         _Dashing = false;
+        DashGhostTimer.Stop();
         GD.Print("Iam SPEEEED Demorgen-ed!:DashStopeeee");
         speed=speedCopy;
+
+    }
+    public void DashGhost(){
+        var DashGhost = DashGhostScene.Instance() as DashGhost;
+        DashGhost.GlobalPosition = GlobalPosition;
+        DashGhost.Texture = mySprite.Texture;
+        DashGhost.Vframes = mySprite.Vframes;
+        DashGhost.Hframes = mySprite.Hframes;
+        DashGhost.Frame = mySprite.Frame;
+        DashGhost.FlipH = mySprite.FlipH;
+        GetTree().Root.AddChild(DashGhost);
     }
     public void AddAmmo(Ammo it) {
         Weapon.Ammo += 1+AmmoAdditionalpickUp;
@@ -137,7 +161,6 @@ public class Player : CharacterController, IDestructible
         var pos = GlobalPosition + dir.Normalized()*PushDistance;
         MovementTween.TweenProperty(this,"global_position",pos,PushTime);
         CreateTween().TweenCallback(this,nameof(DisableShield)).SetDelay(ShieldOnTime);
-        
     }
 
     private void DisableShield() {
