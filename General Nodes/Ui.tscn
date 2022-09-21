@@ -217,10 +217,10 @@ custom_fonts/font = SubResource( 46 )
 text = "0"
 
 [node name="hpLabel" type="ProgressBar" parent="."]
-margin_left = 111.0
-margin_top = 436.0
-margin_right = 511.0
-margin_bottom = 456.0
+margin_left = 160.0
+margin_top = 536.0
+margin_right = 560.0
+margin_bottom = 556.0
 custom_colors/font_color = Color( 0.941176, 0.92549, 0.92549, 1 )
 custom_styles/fg = SubResource( 48 )
 custom_styles/bg = SubResource( 49 )
@@ -230,15 +230,17 @@ percent_visible = false
 
 [node name="HealthLabel" type="Label" parent="."]
 margin_left = 288.0
-margin_top = 440.0
+margin_top = 540.0
 margin_right = 400.0
-margin_bottom = 456.0
+margin_bottom = 556.0
 custom_fonts/font = SubResource( 54 )
 text = "100/100"
 
 [node name="Level" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 56.0
+margin_top = 102.0
+margin_right = 96.0
+margin_bottom = 142.0
 
 [node name="TextureRect" type="TextureRect" parent="Level"]
 self_modulate = Color( 0.639216, 0.247059, 0.156863, 1 )
@@ -271,10 +273,10 @@ align = 1
 valign = 1
 
 [node name="DashCd" type="Control" parent="."]
-margin_left = 10.0
-margin_top = 430.0
-margin_right = 50.0
-margin_bottom = 470.0
+margin_left = 64.0
+margin_top = 528.0
+margin_right = 104.0
+margin_bottom = 568.0
 
 [node name="DashCdBar" type="ProgressBar" parent="DashCd"]
 margin_left = 7.0

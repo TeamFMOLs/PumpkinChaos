@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Enemies/BasicEnemy.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/Navigator.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Sounds/effects/222373__qubodup__balloon-pop.mp3" type="AudioStream" id=9]
 [ext_resource path="res://Sounds/switch_01.ogg" type="AudioStream" id=10]
 [ext_resource path="res://General Nodes/PumpDrink.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/dfa6770603ecf5afb82ee7e880375bc68c681ee5.png" type="Texture" id=12]
 
 [sub_resource type="CircleShape2D" id=34]
 radius = 38.0
@@ -270,7 +271,7 @@ use_parent_material = true
 position = Vector2( 4, -1 )
 frames = SubResource( 59 )
 animation = "front"
-frame = 2
+frame = 1
 playing = true
 
 [node name="Navigator" parent="." instance=ExtResource( 2 )]
@@ -317,3 +318,9 @@ explosiveness = 0.32
 randomness = 0.39
 local_coords = false
 process_material = SubResource( 62 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 12 )
+texture_scale = 0.3
+color = Color( 1, 0.639216, 0.0745098, 1 )
+energy = 0.5

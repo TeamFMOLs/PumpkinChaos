@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/leafs/pixilart-drawing (1).png" type="Texture" id=1]
 [ext_resource path="res://General Nodes/Bullet.cs" type="Script" id=2]
 [ext_resource path="res://General Nodes/HitImpact.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/dfa6770603ecf5afb82ee7e880375bc68c681ee5.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 10.8451
@@ -95,3 +96,9 @@ explosiveness = 0.14
 randomness = 0.46
 local_coords = false
 process_material = SubResource( 6 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 4 )
+texture_scale = 0.2
+color = Color( 0.968627, 0.803922, 0.313726, 1 )
+energy = 0.6

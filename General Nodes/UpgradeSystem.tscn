@@ -46,7 +46,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 240, -440 ) ]
+"values": [ Vector2( 400, -440 ) ]
 }
 
 [sub_resource type="Animation" id=52]
@@ -62,7 +62,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 2, 1 ),
 "update": 0,
-"values": [ Vector2( 240, 210 ), Vector2( 240, -440 ) ]
+"values": [ Vector2( 400, 210 ), Vector2( 400, -440 ) ]
 }
 
 [sub_resource type="Animation" id=51]
@@ -90,7 +90,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 2 ),
 "update": 0,
-"values": [ Vector2( 240, -440 ), Vector2( 240, 210 ) ]
+"values": [ Vector2( 400, -440 ), Vector2( 400, 210 ) ]
 }
 tracks/2/type = "audio"
 tracks/2/path = NodePath("AudioStreamPlayer2")
@@ -121,9 +121,10 @@ scale = Vector2( 0.6, 0.6 )
 transform = Transform2D( 0.6, 0, 0, 0.6, 0, 0 )
 
 [node name="UpgradeMenu" type="Control" parent="CanvasLayer"]
-margin_left = 240.0
+visible = false
+margin_left = 400.0
 margin_top = -440.0
-margin_right = 240.0
+margin_right = 400.0
 margin_bottom = -440.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UpgradeMenu"]
