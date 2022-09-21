@@ -114,6 +114,8 @@ position = Vector2( 911, 402 )
 [node name="EnemySpawner" type="Node2D" parent="."]
 script = ExtResource( 6 )
 FirstEnemy = ExtResource( 2 )
+SecondEnemy = ExtResource( 9 )
+FirstBoss = ExtResource( 8 )
 MinMaxTimeBetweenWaves = Vector2( 35, 50 )
 
 [node name="SrartPos" type="Node2D" parent="EnemySpawner"]
@@ -124,9 +126,3 @@ position = Vector2( 148, -1076 )
 
 [node name="EndPos" type="Node2D" parent="EnemySpawner"]
 position = Vector2( 911, 402 )
-
-[node name="KogEnemy" parent="EnemySpawner" instance=ExtResource( 9 )]
-KogProjectile = null
-TargetMark = null
-
-[node name="Boss1" parent="." instance=ExtResource( 8 )]

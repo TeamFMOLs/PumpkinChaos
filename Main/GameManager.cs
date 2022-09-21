@@ -6,7 +6,7 @@ public class GameManager : Node2D
 {
     [Export]
     private NodePath GameOverNodePath ,GamePauseNodePath;
-    private Node2D GameOverNode;
+    private Node2D GameOverNode , GamePausedNode;
     private bool _isPlayerDead = false, _isGamePaused = false;
 
     public override void _EnterTree()
@@ -15,8 +15,9 @@ public class GameManager : Node2D
     }
     public override void _Ready()
     {
-
+        
         GameOverNode = GetNode(GameOverNodePath) as Node2D;
+        GamePausedNode=  GetNode<Node2D>("CanvasLayer/UI/GameOver");
         StaticRefs.inputManager.OnPause += PauseGame;
     }
 
@@ -38,7 +39,7 @@ public class GameManager : Node2D
     private void PauseGame()
     {
         _isGamePaused = !_isGamePaused;
-        GetNode<Node2D>(GamePauseNodePath).Visible = _isGamePaused;
+        GamePausedNode.Visible = _isGamePaused;
         GetTree().Paused = _isGamePaused;
         GD.Print( GetTree().Paused);
     }
