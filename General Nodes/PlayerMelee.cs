@@ -16,7 +16,8 @@ public class PlayerMelee : Area2D
     void OnObjectEntered(PhysicsBody2D other) {
         if (other is BasicEnemy)
         {
-            other.GlobalPosition-=GlobalPosition/4;
+            var plyr = other as BasicEnemy;
+            plyr.PushBack();
             GD.Print("Omae Wa Mou Shindeiru:Melee");
         }
     }

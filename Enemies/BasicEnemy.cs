@@ -58,6 +58,11 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
             var plyr = it.Collider as Player;
             plyr.GetPushed((plyr.GlobalPosition-GlobalPosition),OnHitDamage);
         }
+        else if (it != null && it.Collider is BasicEnemy)
+        {
+            var ene = it.Collider as BasicEnemy;
+            ene.PushBack();
+        }
     }
 
     protected void Death()
@@ -117,7 +122,10 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
         _attackTimer.Start(rnd.RandfRange(MinMaxAttackInterval.x, MinMaxAttackInterval.y));
 
     }
-
+    public void PushBack(){
+        Vector2 dir=new Vector2 (60,60);
+        GlobalPosition-= (GlobalPosition/GlobalPosition)* dir;
+    }
     public virtual  void GiveScore() {
         StaticRefs.CurrentPlayer.IncreaseScore(Score);
     }
