@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/GunNode.tscn" type="PackedScene" id=2]
@@ -11,8 +11,7 @@
 [ext_resource path="res://General Nodes/HealthSystem.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/Effect/dust.png" type="Texture" id=12]
 [ext_resource path="res://Objects/DashGhost.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Assets/Player.png" type="Texture" id=14]
-[ext_resource path="res://General Nodes/UpgradeSysrem.tscn" type="PackedScene" id=15]
+[ext_resource path="res://General Nodes/UpgradeSystem.tscn" type="PackedScene" id=15]
 
 [sub_resource type="CircleShape2D" id=26]
 radius = 24.0
@@ -112,18 +111,6 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.49 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=36]
