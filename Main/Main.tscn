@@ -50,6 +50,14 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -1507346, 3, 0, -1048605, 1, 0, -1114080, 3, 0, -19, 2, 0, 196627, 3, 0, 327712, 2, 0 )
 
+[node name="TileMap" type="TileMap" parent="Level/Ground2/wall_below/Trees"]
+position = Vector2( 1, 0 )
+scale = Vector2( 0.8, 0.8 )
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -1441799, 20, 0, -1507322, 20, 0, -1310740, 19, 0, -720918, 19, 0, -720864, 20, 0, 589803, 21, 0 )
+
 [node name="wall_upove" type="TileMap" parent="Level/Ground2"]
 position = Vector2( 0, -1 )
 tile_set = ExtResource( 7 )

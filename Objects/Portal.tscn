@@ -65,7 +65,48 @@
 [ext_resource path="res://Assets/portal_1/4.png" type="Texture" id=63]
 [ext_resource path="res://Assets/portal_1/32.png" type="Texture" id=64]
 [ext_resource path="res://Assets/portal_1/26.png" type="Texture" id=65]
-[ext_resource path="res://Objects/Portal.cs" type="Script" id=66]
+
+[sub_resource type="CSharpScript" id=11]
+script/source = "using Godot;
+using System;
+
+public class Portal : Area2D
+{
+   /*  [Export]
+    private NodePath TargetObjectPath;
+    private Portal OtherPortal;
+    public bool IsDisabled = false;
+    
+    public override void _Ready(){
+        Monitoring = true;
+        OtherPortal = GetNode(TargetObjectPath) as Portal;
+        Connect(\"body_entered\", this, nameof(OnObjectEntered));
+        Connect(\"body_entered\", this, nameof(OnObjectExit));
+    }
+
+    void OnObjectEntered(PhysicsBody2D other)
+    {
+        if (other is Player && !IsDisabled)
+        {
+            if(!StaticRefs.CurrentPlayer._Teleport){
+                OtherPortal.IsDisabled = true;
+                var portalpos=OtherPortal.GlobalPosition;
+                StaticRefs.CurrentPlayer.Teleport(portalpos);
+            }
+        }
+    }
+    void OnObjectExit(PhysicsBody2D other)
+    {
+        if (other is Player && IsDisabled)
+        {
+            if(StaticRefs.CurrentPlayer._Teleport){
+                OtherPortal.IsDisabled = false;
+                StaticRefs.CurrentPlayer._Teleport=false;
+                IsDisabled=false;
+            }
+        }
+    } */
+}"
 
 [sub_resource type="Gradient" id=7]
 offsets = PoolRealArray( 0.237569, 0.447514, 0.596685, 0.701657, 0.839779 )
@@ -147,7 +188,7 @@ animations = [ {
 [node name="Portal" type="Area2D"]
 scale = Vector2( 0.487, 0.487 )
 z_index = -1
-script = ExtResource( 66 )
+script = SubResource( 11 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 scale = Vector2( -0.018, -0.018 )
@@ -175,7 +216,7 @@ modulate = Color( 0, 0, 0, 0.631373 )
 scale = Vector2( 0.496327, 0.506795 )
 frames = SubResource( 10 )
 animation = "portal"
-frame = 9
+frame = 13
 playing = true
 
 [node name="Light2D" type="Light2D" parent="."]
