@@ -16,6 +16,7 @@ run/main_scene="res://Main/Main.tscn"
 [display]
 
 window/size/width=800
+window/size/height=480
 window/size/test_width=800
 window/size/test_height=600
 window/dpi/allow_hidpi=true

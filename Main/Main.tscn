@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/BasicEnemy.tscn" type="PackedScene" id=2]
@@ -7,8 +7,8 @@
 [ext_resource path="res://General/Ammo.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Main/EnemySpawner.cs" type="Script" id=6]
 [ext_resource path="res://Assets/TileSet data/Texture/new_tiles.tres" type="TileSet" id=7]
-[ext_resource path="res://Enemies/KogEnemy.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Enemies/Boss1.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Enemies/KogEnemy.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1084, 21 )
@@ -95,6 +95,7 @@ shape = SubResource( 1 )
 
 [node name="GameManager" parent="." instance=ExtResource( 4 )]
 scale = Vector2( 0.1, 0.1 )
+GamePauseNodePath = null
 
 [node name="AmmoSpawner" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -113,8 +114,6 @@ position = Vector2( 911, 402 )
 [node name="EnemySpawner" type="Node2D" parent="."]
 script = ExtResource( 6 )
 FirstEnemy = ExtResource( 2 )
-StartingWaveNumber = 3
-FirstBoss = ExtResource( 8 )
 MinMaxTimeBetweenWaves = Vector2( 35, 50 )
 
 [node name="SrartPos" type="Node2D" parent="EnemySpawner"]
@@ -126,7 +125,6 @@ position = Vector2( 148, -1076 )
 [node name="EndPos" type="Node2D" parent="EnemySpawner"]
 position = Vector2( 911, 402 )
 
-[node name="KogEnemy" parent="." instance=ExtResource( 8 )]
-position = Vector2( -220, -99 )
-KogProjectile = null
-TargetMark = null
+[node name="KogEnemy" parent="EnemySpawner" instance=ExtResource( 9 )]
+
+[node name="Boss1" parent="." instance=ExtResource( 8 )]
