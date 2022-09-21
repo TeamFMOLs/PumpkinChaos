@@ -26,6 +26,7 @@ public class Player : CharacterController, IDestructible
     private SceneTreeTween MovementTween;
     protected Timer DashTimer, DashCdTimer, DashGhostTimer;
     protected bool _Dashing = false, _CanDash = true;
+    private bool _godMode = false;
     public Sprite mySprite;
 
     public override void _EnterTree()
@@ -60,6 +61,7 @@ public class Player : CharacterController, IDestructible
         _inputHandler.OnAttack += Attack;
         _inputHandler.OnMelee += Melee;
         _inputHandler.OnDash += Dash;
+        _inputHandler.GodModeActivated += EnableGodMode;
 
         healthSystem.OnTakeDamage += OnTakeDamage;
         healthSystem.OnDeath += OnPlayerDeath;
@@ -186,15 +188,24 @@ public class Player : CharacterController, IDestructible
         MovementTween = null;
     }
     private void OnPlayerDeath() {
-        /* StopMovement = true;
+        if (_godMode)
+        {
+            return;
+        }
+        StopMovement = true;
         //animationPlayer.Play("die");
-        StaticRefs.gameManager.OnPlayerDie(); */
+        StaticRefs.gameManager.OnPlayerDie();
     }
     public void IncreaseHealth(float p)
     {
         healthSystem.MaxHealth += (int)(healthSystem.MaxHealth * p);
         healthSystem.Health += (int)(healthSystem.Health * p);
         StaticRefs.PlayerUi.UpdateHp(healthSystem);
+    }
+
+    private void EnableGodMode() {
+        _godMode = true;
+        _weapon.ammo = 999999999;
     }
 
     public void IncreaseAttackSpeed(float p)
