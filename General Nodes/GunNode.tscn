@@ -11,7 +11,7 @@
 [ext_resource path="res://Assets/Effect/dust.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 124.603, 18.5221 )
+extents = Vector2( 124.603, 24.158 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "Fire"
@@ -193,7 +193,7 @@ monitoring = false
 script = ExtResource( 7 )
 
 [node name="MeleeArea" type="CollisionShape2D" parent="GunParent/Sprite2/Area2D"]
-position = Vector2( 6.73528, -20.2063 )
+position = Vector2( 6.73528, -25.8422 )
 shape = SubResource( 7 )
 
 [node name="GunHead" type="Node2D" parent="GunParent"]

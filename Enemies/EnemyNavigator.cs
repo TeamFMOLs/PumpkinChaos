@@ -70,6 +70,17 @@ public class EnemyNavigator : Node2D
         _isMoving = true;
 
     }
+    public void GoToLocationKog(Vector2 location, float velocity, bool flag)
+    {
+        if(!flag){
+            _targetLocation = location;
+            _movementSpeed = velocity;
+            _isMoving = true;
+        }else{
+            _movementSpeed = 0;
+            _isMoving = false;
+        }
+    }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     //  public override void _Process(float delta)

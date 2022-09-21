@@ -595,7 +595,6 @@ MaxHealth = 300
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 26 )
-disabled = true
 
 [node name="SpriteParent" type="Node2D" parent="CollisionShape2D"]
 material = SubResource( 41 )

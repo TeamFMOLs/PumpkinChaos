@@ -5,10 +5,11 @@ public class DashGhost : Sprite
 {
     private Tween tween;
     protected Timer timer;
+    public float duration=2f;
     public override void _Ready()
     {
         tween = GetNode("Tween") as Tween;
-        tween.InterpolateProperty(this, "modulate:a",1.0f, 0f, 2f,Tween.TransitionType.Quart , Tween.EaseType.Out);
+        tween.InterpolateProperty(this, "modulate:a",1.0f, 0f, duration,Tween.TransitionType.Quart , Tween.EaseType.Out);
         tween.Start();
         GD.Print("A7a");
         timer = GetNode("Timer") as Timer;
