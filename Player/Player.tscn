@@ -1,18 +1,15 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/GunNode.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/dfa6770603ecf5afb82ee7e880375bc68c681ee5.png" type="Texture" id=3]
-[ext_resource path="res://Sounds/steps/wood01.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Punch/Wav/Punch__008.wav" type="AudioStream" id=4]
 [ext_resource path="res://General Nodes/Ui.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/Player_Dark.png" type="Texture" id=6]
-[ext_resource path="res://Assets/player_LIGHT_PXL.png" type="Texture" id=7]
 [ext_resource path="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Ouch/Ogg/Ouch__001.ogg" type="AudioStream" id=8]
 [ext_resource path="res://icon.png" type="Texture" id=9]
 [ext_resource path="res://General Nodes/PlayerCamera.tscn" type="PackedScene" id=10]
 [ext_resource path="res://General Nodes/HealthSystem.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/Effect/dust.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Player.png" type="Texture" id=14]
 [ext_resource path="res://General Nodes/UpgradeSystem.tscn" type="PackedScene" id=15]
 
 [sub_resource type="CircleShape2D" id=26]
@@ -87,224 +84,6 @@ scale_random = 1.0
 color_ramp = SubResource( 53 )
 anim_speed_curve = SubResource( 57 )
 
-[sub_resource type="Shader" id=34]
-code = "shader_type canvas_item;
-
-uniform float white_progress : hint_range(0,1) = 0;
-
-vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
-    return start + (end - start) * delta;
-}
-
-void fragment(){
-    vec4 origin = texture(TEXTURE, UV);
-    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,0,0), white_progress);
-    COLOR.a = origin.a;
-}"
-
-[sub_resource type="ShaderMaterial" id=35]
-resource_local_to_scene = true
-shader = SubResource( 34 )
-shader_param/white_progress = 0.0
-
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 113, 120, 112, 117 )
-
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 1, 3, 112, 117 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 225, 120, 112, 117 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 1, 120, 112, 117 )
-
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 113, 3, 112, 117 )
-
-[sub_resource type="AtlasTexture" id=10]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 225, 3, 112, 117 )
-
-[sub_resource type="SpriteFrames" id=11]
-animations = [ {
-"frames": [ SubResource( 5 ) ],
-"loop": false,
-"name": "A_Start",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 5 ) ],
-"loop": false,
-"name": "Back_Front",
-"speed": 12.0
-}, {
-"frames": [ SubResource( 6 ), SubResource( 7 ) ],
-"loop": false,
-"name": "Back_Left",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 6 ), SubResource( 9 ) ],
-"loop": false,
-"name": "Back_Right",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 5 ), SubResource( 10 ), SubResource( 9 ), SubResource( 6 ) ],
-"loop": false,
-"name": "Front_Back",
-"speed": 12.0
-}, {
-"frames": [ SubResource( 5 ), SubResource( 8 ), SubResource( 7 ) ],
-"loop": false,
-"name": "Front_Left",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 5 ), SubResource( 10 ), SubResource( 9 ) ],
-"loop": false,
-"name": "Front_Right",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 7 ), SubResource( 6 ) ],
-"loop": false,
-"name": "Left_Back",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 5 ) ],
-"loop": false,
-"name": "Left_Front",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 5 ), SubResource( 10 ), SubResource( 9 ) ],
-"loop": false,
-"name": "Left_Right",
-"speed": 15.0
-}, {
-"frames": [ SubResource( 9 ), SubResource( 6 ) ],
-"loop": false,
-"name": "Right_Back",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 5 ) ],
-"loop": false,
-"name": "Right_Front",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 5 ), SubResource( 8 ), SubResource( 7 ) ],
-"loop": false,
-"name": "Right_Left",
-"speed": 15.0
-} ]
-
-[sub_resource type="AtlasTexture" id=28]
-atlas = ExtResource( 7 )
-region = Rect2( 113, 119, 113, 119 )
-
-[sub_resource type="AtlasTexture" id=29]
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 113, 119 )
-
-[sub_resource type="AtlasTexture" id=30]
-atlas = ExtResource( 7 )
-region = Rect2( 113, 0, 113, 119 )
-
-[sub_resource type="AtlasTexture" id=31]
-atlas = ExtResource( 7 )
-region = Rect2( 226, 0, 113, 119 )
-
-[sub_resource type="AtlasTexture" id=32]
-atlas = ExtResource( 7 )
-region = Rect2( 226, 119, 113, 119 )
-
-[sub_resource type="AtlasTexture" id=33]
-atlas = ExtResource( 7 )
-region = Rect2( 0, 119, 113, 119 )
-
-[sub_resource type="SpriteFrames" id=18]
-animations = [ {
-"frames": [ SubResource( 28 ) ],
-"loop": false,
-"name": "A_Start",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 28 ) ],
-"loop": false,
-"name": "Back_Front",
-"speed": 12.0
-}, {
-"frames": [ SubResource( 29 ), SubResource( 32 ) ],
-"loop": false,
-"name": "Back_Left",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 29 ), SubResource( 30 ) ],
-"loop": false,
-"name": "Back_Right",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 28 ), SubResource( 33 ), SubResource( 32 ), SubResource( 29 ) ],
-"loop": false,
-"name": "Front_Back",
-"speed": 12.0
-}, {
-"frames": [ SubResource( 28 ), SubResource( 33 ), SubResource( 32 ) ],
-"loop": false,
-"name": "Front_Left",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 28 ), SubResource( 31 ), SubResource( 30 ) ],
-"loop": false,
-"name": "Front_Right",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 32 ), SubResource( 29 ) ],
-"loop": false,
-"name": "Left_Back",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 28 ) ],
-"loop": false,
-"name": "Left_Front",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 28 ), SubResource( 31 ), SubResource( 30 ) ],
-"loop": false,
-"name": "Left_Right",
-"speed": 15.0
-}, {
-"frames": [ SubResource( 30 ), SubResource( 29 ) ],
-"loop": false,
-"name": "Right_Back",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 28 ) ],
-"loop": false,
-"name": "Right_Front",
-"speed": 9.0
-}, {
-"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 28 ), SubResource( 33 ), SubResource( 32 ) ],
-"loop": false,
-"name": "Right_Left",
-"speed": 15.0
-} ]
-
-[sub_resource type="SpriteFrames" id=47]
-animations = [ {
-"frames": [ ExtResource( 14 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
-
 [sub_resource type="Animation" id=55]
 resource_name = "Dash"
 length = 0.5
@@ -335,225 +114,24 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=36]
 resource_name = "Die"
-tracks/0/type = "value"
-tracks/0/path = NodePath("SpriteParent/Sprite:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("SpriteParent/AnimatedSpriteL:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("SpriteParent/AnimatedSprite:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("SpriteParent:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.3, 1 ),
-"transitions": PoolRealArray( 1, 0.517632, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -48 ), Vector2( 0, 336 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("SpriteParent:material:shader_param/white_progress")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 1.0, 0.0 ]
-}
 
 [sub_resource type="Animation" id=25]
 resource_name = "Idle"
 loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("SpriteParent:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -8 ), Vector2( 0, 0 ) ]
-}
 
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("SpriteParent:position")
+tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("SpriteParent/Sprite:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("SpriteParent/AnimatedSpriteL:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("SpriteParent/AnimatedSprite:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("SpriteParent:material:shader_param/white_progress")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0.0 ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "SlightJump"
-length = 0.3
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("SpriteParent:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -20 ), Vector2( 0, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("SpriteParent:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("SpriteParent:rotation_degrees")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 0.0 ]
-}
-
-[sub_resource type="Animation" id=37]
-resource_name = "Teleport"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath("SpriteParent:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.1, 0.1 ), Vector2( 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("SpriteParent:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 360.0 ]
 }
 
 [sub_resource type="Animation" id=42]
@@ -570,6 +148,20 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 0.6 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("StepSoundStream")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 4 )
+} ],
+"times": PoolRealArray( 0 )
 }
 
 [node name="Player" type="KinematicBody2D"]
@@ -614,29 +206,6 @@ local_coords = false
 process_material = SubResource( 58 )
 texture = ExtResource( 12 )
 
-[node name="SpriteParent" type="Node2D" parent="."]
-material = SubResource( 35 )
-rotation = 6.28319
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="SpriteParent"]
-visible = false
-scale = Vector2( 0.45, 0.45 )
-frames = SubResource( 11 )
-animation = "A_Start"
-
-[node name="AnimatedSpriteL" type="AnimatedSprite" parent="SpriteParent"]
-visible = false
-position = Vector2( 0, -2 )
-scale = Vector2( 0.45, 0.45 )
-frames = SubResource( 18 )
-animation = "A_Start"
-
-[node name="Sprite" type="AnimatedSprite" parent="SpriteParent"]
-visible = false
-use_parent_material = true
-position = Vector2( 0.000250117, 56 )
-frames = SubResource( 47 )
-
 [node name="GunNode" parent="." instance=ExtResource( 2 )]
 BulletSpeed = 850.0
 
@@ -645,11 +214,8 @@ anims/Dash = SubResource( 55 )
 anims/Die = SubResource( 36 )
 anims/Idle = SubResource( 25 )
 anims/RESET = SubResource( 2 )
-anims/SlightJump = SubResource( 3 )
-anims/Teleport = SubResource( 37 )
 anims/get_hurt = SubResource( 42 )
 next/Idle = "Idle"
-next/SlightJump = "Idle"
 next/get_hurt = "RESET"
 
 [node name="MovementTimer" type="Timer" parent="."]

@@ -28,11 +28,11 @@ public class InputManager : Node2D
         {
             OnAttack?.Invoke(MousePos);
         }
-        else if (Input.IsActionPressed("melee"))
+        if (Input.IsActionPressed("melee"))
         {
             OnMelee?.Invoke();
         }
-        else if(Input.IsActionPressed("Dash")){
+        if(Input.IsActionPressed("Dash")){
             OnDash?.Invoke();
         }
     }

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Coins_Single_55.mp3-8d22d5894dfe5d8124c181178aaa6689.mp3str"
+
+[deps]
+
+source_file="res://Sounds/new/Mp3/Coins_Single/Coins_Single_55.mp3"
+dest_files=[ "res://.import/Coins_Single_55.mp3-8d22d5894dfe5d8124c181178aaa6689.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

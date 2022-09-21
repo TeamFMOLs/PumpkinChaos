@@ -84,29 +84,33 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
         blt.GlobalRotation = vec.Angle();
         blt.Velocity = ProjectileSpeed * vec;
         blt.Damage = ProjectileDamage;
-        GD.Print(ProjectileSpeed);
+        
 
     }
     public virtual void SpreadAttack(Vector2 pos, int n)
     {
-        for (int i = 0; i < n; i++)
+        AttackPos(pos);
+        for (int i = 1; i < n/2+1; i++)
         {
-            var blt = EnemyProjectile.Instance() as Bullet;
+            for (int j = 0; j < 2; j++)
+            {
+                var blt = EnemyProjectile.Instance() as Bullet;
             GetTree().Root.AddChild(blt);
             var vec = (pos - GlobalPosition).Normalized();
             var angle = vec.Angle();
-            angle += Mathf.Pi / 6 * i * Mathf.Pow(-1, i);
+            angle += Mathf.Pi / 8 * i * Mathf.Pow(-1, j);
             vec = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
             blt.GlobalPosition = GlobalPosition;
             blt.GlobalRotation = vec.Angle();
             blt.Velocity = ProjectileSpeed * vec;
+            }
         }
     }
 
     public virtual void InitiateAttack()
     {
         var choice = rnd.RandfRange(0, 1);
-        if (choice > SpreadAttackProb)
+        if (choice <= SpreadAttackProb)
             SpreadAttack(StaticRefs.CurrentPlayer.GlobalPosition, SpreadAttackNumber);
         else
             AttackPos(StaticRefs.CurrentPlayer.GlobalPosition);

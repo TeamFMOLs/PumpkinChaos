@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Coins_Pouring_01.mp3-c7c7b1c1f151cf376632b9e035da78b2.mp3str"
+
+[deps]
+
+source_file="res://Sounds/new/Mp3/Coins_Pouring/Coins_Pouring_01.mp3"
+dest_files=[ "res://.import/Coins_Pouring_01.mp3-c7c7b1c1f151cf376632b9e035da78b2.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

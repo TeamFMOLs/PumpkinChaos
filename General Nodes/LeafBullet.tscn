@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/leafs/pixilart-drawing (1).png" type="Texture" id=1]
 [ext_resource path="res://General Nodes/Bullet.cs" type="Script" id=2]
+[ext_resource path="res://General Nodes/HitImpact.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 10.8451
@@ -69,6 +70,7 @@ hue_variation_random = 0.35
 collision_layer = 4
 collision_mask = 9
 script = ExtResource( 2 )
+HitEffect = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

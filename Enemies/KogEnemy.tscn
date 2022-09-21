@@ -92,7 +92,6 @@ material = SubResource( 40 )
 
 [node name="EnemySprite" parent="SpriteParent" index="0"]
 frames = SubResource( 59 )
-frame = 0
 
 [node name="AttackTimer" parent="." index="4"]
 wait_time = 3.0

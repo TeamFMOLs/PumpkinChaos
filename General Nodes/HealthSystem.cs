@@ -11,7 +11,7 @@ public class HealthSystem : Node2D
     // Called when the node enters the scene tree for the first time.
     [Export]
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
-    
+
     public bool IsShielded { get => _isShielded; set => _isShielded = value; }
     public int Health { get => _health; set => _health = value; }
     [Export]
@@ -20,14 +20,14 @@ public class HealthSystem : Node2D
     public event Action OnTakeDamage;
     private int _health;
     private int _maxHealth;
-    private bool _isDead , _isShielded;
+    private bool _isDead, _isShielded;
     private Label _damageLabel;
-  
-   
+
+
 
     public override void _Ready()
     {
-        
+
         _health = _maxHealth;
 
     }
@@ -37,10 +37,11 @@ public class HealthSystem : Node2D
         OnDeath?.Invoke();
     }
 
-    public void ResetHealth(int h) {
+    public void ResetHealth(int h)
+    {
         MaxHealth = h; Health = h;
     }
-    
+
 
     public void TakeDamage(int damage)
     {
@@ -48,18 +49,19 @@ public class HealthSystem : Node2D
             return;
         _health -= damage;
         DisplayDamage(damage);
-        //_damageLabel.Text = damage.ToString();
-        //_animationPlayer.Play("FadeInFadeOut");
-        OnTakeDamage?.Invoke();
         if (_health <= 0)
         {
             _health = 0;
             _isDead = true;
             Die();
         }
+        else
+            OnTakeDamage?.Invoke();
+
     }
 
-    private void DisplayDamage(int d) {
+    private void DisplayDamage(int d)
+    {
         var newlabel = DamageLabelNode.Instance<DamageLabel>();
         GetTree().Root.AddChild(newlabel);
         newlabel.GlobalPosition = GlobalPosition;

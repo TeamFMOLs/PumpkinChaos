@@ -24,9 +24,10 @@ public class PlayerUi : CanvasLayer
         scoreLabel.Text = s.ToString();
     }
     
-    public void UpdateHp(float s) {
-        GD.Print(s);
-        hpLabel.Value = s;
+    public void UpdateHp(HealthSystem health) {
+        
+        hpLabel.Value = (float) health.Health/(float)health.MaxHealth *100f;
+        GetNode<Label>("HealthLabel").Text = health.Health.ToString() + "/" +health.MaxHealth.ToString();
     }
 
     public void UpdateLevel(int l) {

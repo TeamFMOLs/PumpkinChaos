@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Fonts/MinecraftFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/UI/ammo_increase.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Resources/AsIncreaseUpgrade.tres" type="Resource" id=9]
 [ext_resource path="res://Sounds/new/Rise01.mp3" type="AudioStream" id=10]
 [ext_resource path="res://Sounds/click_sound_2.mp3" type="AudioStream" id=11]
+[ext_resource path="res://Resources/MovementSpeedIncreaseUpgrade.tres" type="Resource" id=12]
 
 [sub_resource type="DynamicFontData" id=48]
 font_path = "res://Fonts/prstart.ttf"
@@ -112,7 +113,7 @@ script = ExtResource( 3 )
 LevelIncreaseDemandedScore = 300
 ButtonsPaths = [ NodePath("CanvasLayer/UpgradeMenu/HBoxContainer/Button"), NodePath("CanvasLayer/UpgradeMenu/HBoxContainer/Button2"), NodePath("CanvasLayer/UpgradeMenu/HBoxContainer/Button3") ]
 LabelsPaths = [ NodePath("CanvasLayer/UpgradeMenu/HBoxContainer/Button/Label"), NodePath("CanvasLayer/UpgradeMenu/HBoxContainer/Button2/Label"), NodePath("CanvasLayer/UpgradeMenu/HBoxContainer/Button3/Label") ]
-upgradeOptions = [ ExtResource( 5 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ]
+upgradeOptions = [ ExtResource( 5 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 12 ) ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 pause_mode = 2

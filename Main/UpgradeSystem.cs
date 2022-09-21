@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class UpgradeSystem : Node
 {
     [Export]
-    private float IncreasePerUpgrade = 0.2f ;
+    private float IncreasePerUpgrade = 0.2f;
     [Export]
     private int LevelIncreaseDemandedScore = 1000;
     [Export]
@@ -15,15 +15,15 @@ public class UpgradeSystem : Node
     private Button[] Buttons = new Button[3];
     private Label[] labels = new Label[3];
     private Control UpgradeMenu;
-    private int CurrentLevelScore ;
+    private int CurrentLevelScore;
     private int CurrentLevel = 0;
-    
+
     private UpgradeOption[] currentOptions;
 
     [Export]
     UpgradeOption[] upgradeOptions;
 
-   private AnimationPlayer animationPlayer;
+    private AnimationPlayer animationPlayer;
 
     public override void _EnterTree()
     {
@@ -42,7 +42,7 @@ public class UpgradeSystem : Node
         Buttons[0].Connect("pressed", this, nameof(OnButton1Pressed));
         Buttons[1].Connect("pressed", this, nameof(OnButton2Pressed));
         Buttons[2].Connect("pressed", this, nameof(OnButton3Pressed));
-        
+
     }
 
     private UpgradeOption[] PickThreeOptions()
@@ -74,9 +74,9 @@ public class UpgradeSystem : Node
         currentOptions = options;
         foreach (var item in currentOptions)
         {
-            
-                GD.Print(item.UpgradeOptionType);
-            
+
+            GD.Print(item.UpgradeOptionType);
+
         }
     }
     private void OnButton1Pressed() => OnButtonPressed(0);
@@ -103,22 +103,27 @@ public class UpgradeSystem : Node
                 StaticRefs.CurrentPlayer.IncreaseDamage(IncreasePerUpgrade); break;
             case UpgradeOptionType.INCREASE_AMMO:
                 StaticRefs.CurrentPlayer.IncreaseAmmoPickUp(1); break;
+            case UpgradeOptionType.INCREASE_MOVEMENT_SPEED:
+                StaticRefs.CurrentPlayer.IncreaseMovementSpeed(IncreasePerUpgrade/2); break;
+
             default: break;
         }
     }
 
-    public void OnLevelUp() {
+    public void OnLevelUp()
+    {
         GetTree().Paused = true;
         animationPlayer.Play("show");
         InitializeOptions();
     }
 
-    public void NotifyScore(int score) {
+    public void NotifyScore(int score)
+    {
         if (score >= CurrentLevelScore)
         {
-            CurrentLevel ++;
+            CurrentLevel++;
             StaticRefs.PlayerUi.UpdateLevel(CurrentLevel);
-            CurrentLevelScore += (int)( (float)LevelIncreaseDemandedScore *(1+ 0.3f*(float) CurrentLevel));
+            CurrentLevelScore += (int)((float)LevelIncreaseDemandedScore * (1 + 0.3f * (float)CurrentLevel));
             OnLevelUp();
         }
     }

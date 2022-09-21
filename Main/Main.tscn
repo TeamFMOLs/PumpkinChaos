@@ -92,7 +92,7 @@ position = Vector2( 911, 402 )
 [node name="EnemySpawner" type="Node2D" parent="."]
 script = ExtResource( 6 )
 FirstEnemy = ExtResource( 2 )
-MinMaxTimeBetweenWaves = Vector2( 30, 45 )
+MinMaxTimeBetweenWaves = Vector2( 35, 50 )
 
 [node name="SrartPos" type="Node2D" parent="EnemySpawner"]
 position = Vector2( -626, -404 )

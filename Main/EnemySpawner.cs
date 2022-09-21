@@ -53,7 +53,7 @@ public class EnemySpawner : Node2D
         GD.Print(enemies.Count);
         if (enemies.Count == 0)
         {
-            SpawnNext();
+            SpawnNextWaveNow();
         }
     }
 
@@ -102,8 +102,8 @@ public class EnemySpawner : Node2D
 
     private void SetEnemyStats(BasicEnemy enemy)
     {
-        enemy.healthSystem.ResetHealth( enemy.healthSystem.MaxHealth+ (int)((float)enemy.healthSystem.MaxHealth * (float)CurrentWaveIndex * EnemyHealthScale));
-        enemy.OnHitDamage += (int)((float)enemy.OnHitDamage * (float)CurrentWaveIndex * EnemyDamageScale);
-        enemy.ProjectileDamage += (int)((float)enemy.ProjectileDamage * (float)CurrentWaveIndex * EnemyDamageScale);
+        enemy.healthSystem.ResetHealth( enemy.healthSystem.MaxHealth+ (int)((float)enemy.healthSystem.MaxHealth * (float)CurrentWaveIndex /2* EnemyHealthScale));
+        enemy.OnHitDamage += (int)((float)enemy.OnHitDamage * (float)CurrentWaveIndex/2 * EnemyDamageScale);
+        enemy.ProjectileDamage += (int)((float)enemy.ProjectileDamage * (float)CurrentWaveIndex/2 * EnemyDamageScale);
     }
 }

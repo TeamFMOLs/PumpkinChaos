@@ -7,8 +7,11 @@ public class Bullet : Area2D
     public int Damage = 50;
     [Export]
     protected float LifeTime = 4f;
+    [Export]
+    protected PackedScene HitEffect;
     private Vector2 _vel;
     public Vector2 Velocity { get => _vel; set => _vel = value; }
+    
 
     public override void _Ready()
     {
@@ -34,6 +37,12 @@ public class Bullet : Area2D
 
     public void DestroyBullet()
     {
+        if (HitEffect != null)
+        {
+            var it = HitEffect.Instance() as Node2D;
+            GetTree().Root.AddChild(it);
+            it.GlobalPosition = GlobalPosition;
+        }
         QueueFree();
     }
 }
