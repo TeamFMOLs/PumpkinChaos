@@ -24,7 +24,7 @@ public class KogEnemy : BasicEnemy
         _AniTimer.WaitTime = 2.1f;
         _attackTimer.WaitTime = 1f;
         _AniTimer.Connect("timeout", this, nameof(AttackPos));
-        SpreadAttackProb = 0.6f;
+        SpreadAttackProb = 0.5f;
         Speed = 70;
         _attackTimer.Start(rnd.RandfRange(MinMaxAttackInterval.x, MinMaxAttackInterval.y));
     }
@@ -86,6 +86,7 @@ public class KogEnemy : BasicEnemy
 
             else
                 SpreadAttack(StaticRefs.CurrentPlayer.GlobalPosition, 1);
+
             _attackTimer.Start(rnd.RandfRange(MinMaxAttackInterval.x, MinMaxAttackInterval.y));
             GD.Print("a7a trying to shoot");
         }

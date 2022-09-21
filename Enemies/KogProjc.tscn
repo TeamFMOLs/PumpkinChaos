@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://General Nodes/Bullet.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Effect/frames/pulse1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Effect/frames/pulse2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Effect/frames/pulse4.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Effect/frames/pulse3.png" type="Texture" id=5]
 
 [sub_resource type="CapsuleShape2D" id=3]
 height = 9.99284
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ null, null, null, null ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "default",
 "speed": 10.0
@@ -25,8 +29,8 @@ rotation = 1.56905
 shape = SubResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-modulate = Color( 0.352941, 0.847059, 0.215686, 1 )
-position = Vector2( 31, 4.5 )
+modulate = Color( 0.231373, 1, 0.0235294, 1 )
+position = Vector2( 44.9947, 3.07858 )
 frames = SubResource( 2 )
-frame = 2
+frame = 3
 playing = true
