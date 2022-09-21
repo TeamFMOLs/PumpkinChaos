@@ -1,0 +1,214 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Fonts/MinecraftFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/UI/ammo_increase.png" type="Texture" id=2]
+[ext_resource path="res://Main/UpgradeSystem.cs" type="Script" id=3]
+[ext_resource path="res://Fonts/font2.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Resources/AmmoIncreaseUpgrade.tres" type="Resource" id=5]
+[ext_resource path="res://Resources/CritIncreaseUpgrade.tres" type="Resource" id=6]
+[ext_resource path="res://Resources/DamageIncreaseUpgrade.tres" type="Resource" id=7]
+[ext_resource path="res://Resources/HealthIncreaseUpgrade.tres" type="Resource" id=8]
+[ext_resource path="res://Resources/AsIncreaseUpgrade.tres" type="Resource" id=9]
+[ext_resource path="res://Sounds/new/Rise01.mp3" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/click_sound_2.mp3" type="AudioStream" id=11]
+
+[sub_resource type="DynamicFontData" id=48]
+font_path = "res://Fonts/prstart.ttf"
+
+[sub_resource type="DynamicFont" id=49]
+size = 32
+outline_size = 2
+outline_color = Color( 0.85098, 0.407843, 0.235294, 1 )
+font_data = SubResource( 48 )
+
+[sub_resource type="Animation" id=50]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/UpgradeMenu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/UpgradeMenu:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 240, -440 ) ]
+}
+
+[sub_resource type="Animation" id=52]
+resource_name = "hide"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/UpgradeMenu:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ Vector2( 240, 210 ), Vector2( 240, -440 ) ]
+}
+
+[sub_resource type="Animation" id=51]
+resource_name = "show"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/UpgradeMenu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/UpgradeMenu:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 2 ),
+"update": 0,
+"values": [ Vector2( 240, -440 ), Vector2( 240, 210 ) ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("AudioStreamPlayer2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 10 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[node name="UpgradeSystem" type="Node"]
+pause_mode = 2
+script = ExtResource( 3 )
+LevelIncreaseDemandedScore = 300
+ButtonsPaths = [ NodePath("CanvasLayer/UpgradeMenu/HBoxContainer/Button"), NodePath("CanvasLayer/UpgradeMenu/HBoxContainer/Button2"), NodePath("CanvasLayer/UpgradeMenu/HBoxContainer/Button3") ]
+LabelsPaths = [ NodePath("CanvasLayer/UpgradeMenu/HBoxContainer/Button/Label"), NodePath("CanvasLayer/UpgradeMenu/HBoxContainer/Button2/Label"), NodePath("CanvasLayer/UpgradeMenu/HBoxContainer/Button3/Label") ]
+upgradeOptions = [ ExtResource( 5 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
+scale = Vector2( 0.6, 0.6 )
+transform = Transform2D( 0.6, 0, 0, 0.6, 0, 0 )
+
+[node name="UpgradeMenu" type="Control" parent="CanvasLayer"]
+margin_left = 240.0
+margin_top = -440.0
+margin_right = 240.0
+margin_bottom = -440.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UpgradeMenu"]
+margin_left = -200.0
+margin_top = 106.667
+margin_right = 804.0
+margin_bottom = 312.667
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/UpgradeMenu/HBoxContainer"]
+margin_right = 332.0
+margin_bottom = 206.0
+custom_fonts/font = ExtResource( 1 )
+icon = ExtResource( 2 )
+icon_align = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/UpgradeMenu/HBoxContainer/Button"]
+margin_left = 0.666687
+margin_top = 226.667
+margin_right = 340.667
+margin_bottom = 271.667
+custom_fonts/font = ExtResource( 4 )
+text = "Leaf adds +1 Ammo
+"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Button2" type="Button" parent="CanvasLayer/UpgradeMenu/HBoxContainer"]
+margin_left = 336.0
+margin_right = 668.0
+margin_bottom = 206.0
+custom_fonts/font = ExtResource( 1 )
+icon = ExtResource( 2 )
+icon_align = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/UpgradeMenu/HBoxContainer/Button2"]
+margin_left = 0.666687
+margin_top = 226.667
+margin_right = 340.667
+margin_bottom = 271.667
+custom_fonts/font = ExtResource( 4 )
+text = "Leaf adds +1 Ammo
+"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Button3" type="Button" parent="CanvasLayer/UpgradeMenu/HBoxContainer"]
+margin_left = 672.0
+margin_right = 1004.0
+margin_bottom = 206.0
+custom_fonts/font = ExtResource( 1 )
+icon = ExtResource( 2 )
+icon_align = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/UpgradeMenu/HBoxContainer/Button3"]
+margin_left = 0.666687
+margin_top = 226.667
+margin_right = 340.667
+margin_bottom = 271.667
+custom_fonts/font = ExtResource( 4 )
+text = "Leaf adds +1 Ammo
+"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Label" type="Label" parent="CanvasLayer/UpgradeMenu"]
+margin_left = 53.3333
+margin_top = -1.52588e-05
+margin_right = 533.333
+margin_bottom = 67.0
+custom_fonts/font = SubResource( 49 )
+text = "Pick An Upgrade
+"
+align = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+pause_mode = 2
+anims/RESET = SubResource( 50 )
+anims/hide = SubResource( 52 )
+anims/show = SubResource( 51 )

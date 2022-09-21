@@ -46,7 +46,6 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
     }
     public override void _Process(float delta)
     {
-        base._Process(delta);
         _navigator.GoToLocation(StaticRefs.CurrentPlayer.GlobalPosition, Speed);
     }
 
@@ -71,7 +70,7 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
         CreateTween().TweenCallback(this,"queue_free").SetDelay(0.4f);
     }
 
-    protected void OnHurt()
+    protected virtual void OnHurt()
     {
         GetNode<AnimationPlayer>("AnimationPlayer").Play("get_hurt");
     }
@@ -115,11 +114,11 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
 
     }
 
-    public  void GiveScore() {
+    public virtual  void GiveScore() {
         StaticRefs.CurrentPlayer.IncreaseScore(Score);
     }
 
-    protected void DropPrizes() {
+    protected virtual void DropPrizes() {
         for (int i = 0; i < NumberOfPrizes; i++)
         {
             var index = rnd.RandiRange(0,PrizesToDrop.Length-1);

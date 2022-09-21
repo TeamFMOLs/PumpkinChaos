@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Enemies/FirstBoss.cs" type="Script" id=1]
+[ext_resource path="res://Enemies/BasicEnemy.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 68.0
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform float white_progress : hint_range(0,1) = 0;
+
+vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
+    return start + (end - start) * delta;
+}
+
+void fragment(){
+    vec4 origin = texture(TEXTURE, UV);
+    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,1,1), white_progress);
+    COLOR.a = origin.a;
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = SubResource( 2 )
+shader_param/white_progress = 0.0
+
+[node name="Boss1" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+Score = 300
+Speed = 80.0
+OnHitDamage = 80
+MinMaxAttackInterval = Vector2( 2.5, 10 )
+EnemyProjectile = null
+ProjectileSpeed = 340.0
+ProjectileDamage = 70
+PrizesToDrop = null
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="SpriteParent" parent="." index="1"]
+modulate = Color( 0.901961, 0.294118, 0.294118, 1 )
+material = SubResource( 3 )
+
+[node name="EnemySprite" parent="SpriteParent" index="0"]
+scale = Vector2( 2, 2 )
+frame = 0

@@ -13,7 +13,7 @@
 [ext_resource path="res://General Nodes/HealthSystem.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/Effect/dust.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Player.png" type="Texture" id=14]
-[ext_resource path="res://General Nodes/UpgradeSysrem.tscn" type="PackedScene" id=15]
+[ext_resource path="res://General Nodes/UpgradeSystem.tscn" type="PackedScene" id=15]
 
 [sub_resource type="CircleShape2D" id=26]
 radius = 24.0
@@ -639,6 +639,7 @@ position = Vector2( 0.000250117, 56 )
 frames = SubResource( 47 )
 
 [node name="GunNode" parent="." instance=ExtResource( 2 )]
+BulletSpeed = 850.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Dash = SubResource( 55 )

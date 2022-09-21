@@ -78,7 +78,7 @@ scale = Vector2( 0.1, 0.1 )
 [node name="AmmoSpawner" type="Node2D" parent="."]
 script = ExtResource( 3 )
 AmmoScene = ExtResource( 5 )
-MinMaxTimeToSpawn = Vector2( 1, 3 )
+MinMaxTimeToSpawn = Vector2( 0.4, 2 )
 
 [node name="SrartPos" type="Node2D" parent="AmmoSpawner"]
 position = Vector2( -626, -404 )

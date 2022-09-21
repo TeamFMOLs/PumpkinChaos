@@ -255,7 +255,7 @@ Score = 100
 OnHitDamage = 40
 MinMaxAttackInterval = Vector2( 2.5, 15 )
 EnemyProjectile = ExtResource( 5 )
-ProjectileSpeed = 200.0
+ProjectileSpeed = 320.0
 PrizesToDrop = [ ExtResource( 7 ), ExtResource( 11 ) ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -269,6 +269,7 @@ use_parent_material = true
 position = Vector2( 4, -1 )
 frames = SubResource( 59 )
 animation = "front"
+frame = 2
 playing = true
 
 [node name="Navigator" parent="." instance=ExtResource( 2 )]
