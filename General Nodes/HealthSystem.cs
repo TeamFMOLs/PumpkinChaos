@@ -54,7 +54,7 @@ public class HealthSystem : Node2D
         {
             _health = 0;
             _isDead = true;
-
+            OnTakeDamage?.Invoke();
             Die();
         }
         else
