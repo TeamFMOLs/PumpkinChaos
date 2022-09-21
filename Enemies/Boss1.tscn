@@ -31,11 +31,12 @@ script = ExtResource( 1 )
 Score = 300
 Speed = 80.0
 OnHitDamage = 80
-MinMaxAttackInterval = Vector2( 2.5, 10 )
-EnemyProjectile = null
+MinMaxAttackInterval = Vector2( 4, 8 )
+SpreadAttackProb = 0.4
+SpreadAttackNumber = 6
 ProjectileSpeed = 340.0
 ProjectileDamage = 70
-PrizesToDrop = null
+HealthBar = null
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )
@@ -46,4 +47,3 @@ material = SubResource( 3 )
 
 [node name="EnemySprite" parent="SpriteParent" index="0"]
 scale = Vector2( 2, 2 )
-frame = 0
