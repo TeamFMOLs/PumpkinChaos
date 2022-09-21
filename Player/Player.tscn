@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/GunNode.tscn" type="PackedScene" id=2]
@@ -10,7 +10,9 @@
 [ext_resource path="res://General Nodes/PlayerCamera.tscn" type="PackedScene" id=10]
 [ext_resource path="res://General Nodes/HealthSystem.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/Effect/dust.png" type="Texture" id=12]
-[ext_resource path="res://General Nodes/UpgradeSystem.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Objects/DashGhost.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/Player.png" type="Texture" id=14]
+[ext_resource path="res://General Nodes/UpgradeSysrem.tscn" type="PackedScene" id=15]
 
 [sub_resource type="CircleShape2D" id=26]
 radius = 24.0
@@ -111,6 +113,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.49 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [sub_resource type="Animation" id=36]
 resource_name = "Die"
@@ -168,11 +182,13 @@ tracks/1/keys = {
 collision_layer = 2
 collision_mask = 25
 script = ExtResource( 1 )
+DashGhostScene = ExtResource( 13 )
 WeaponNodePath = NodePath("GunNode")
 MaxHealth = 300
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 26 )
+disabled = true
 
 [node name="SpriteParent" type="Node2D" parent="CollisionShape2D"]
 material = SubResource( 41 )
@@ -184,7 +200,7 @@ flip_h = true
 
 [node name="DustTrail" type="Particles2D" parent="CollisionShape2D/SpriteParent"]
 material = SubResource( 51 )
-position = Vector2( -34, 30 )
+position = Vector2( -42, 36 )
 emitting = false
 amount = 25
 lifetime = 0.7
@@ -196,7 +212,7 @@ texture = ExtResource( 12 )
 
 [node name="DustCloud" type="Particles2D" parent="CollisionShape2D/SpriteParent"]
 material = SubResource( 51 )
-position = Vector2( -30, -4 )
+position = Vector2( -56, -2 )
 emitting = false
 amount = 20
 one_shot = true
@@ -250,3 +266,5 @@ one_shot = true
 
 [node name="DashCdTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="DashGhostTimer" type="Timer" parent="."]
