@@ -165,7 +165,7 @@ tracks/1/keys = {
 "values": [ Vector2( 400, -440 ), Vector2( 400, 210 ) ]
 }
 tracks/2/type = "audio"
-tracks/2/path = NodePath("AudioStreamPlayer2")
+tracks/2/path = NodePath("CanvasLayer/UpgradeMenu/HBoxContainer/Button3:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -177,18 +177,6 @@ tracks/2/keys = {
 "stream": ExtResource( 10 )
 } ],
 "times": PoolRealArray( 0 )
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("CanvasLayer/UpgradeMenu/HBoxContainer/Button3:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("CanvasLayer/UpgradeMenu/HBoxContainer/Button2:disabled")
@@ -229,7 +217,6 @@ scale = Vector2( 0.6, 0.6 )
 transform = Transform2D( 0.6, 0, 0, 0.6, 0, 0 )
 
 [node name="UpgradeMenu" type="Control" parent="CanvasLayer"]
-visible = false
 margin_left = 400.0
 margin_top = -440.0
 margin_right = 400.0
@@ -246,7 +233,6 @@ alignment = 1
 margin_right = 332.0
 margin_bottom = 206.0
 custom_fonts/font = ExtResource( 1 )
-disabled = true
 icon = ExtResource( 2 )
 icon_align = 1
 
@@ -267,7 +253,6 @@ margin_left = 336.0
 margin_right = 668.0
 margin_bottom = 206.0
 custom_fonts/font = ExtResource( 1 )
-disabled = true
 icon = ExtResource( 2 )
 icon_align = 1
 
@@ -288,7 +273,6 @@ margin_left = 672.0
 margin_right = 1004.0
 margin_bottom = 206.0
 custom_fonts/font = ExtResource( 1 )
-disabled = true
 icon = ExtResource( 2 )
 icon_align = 1
 

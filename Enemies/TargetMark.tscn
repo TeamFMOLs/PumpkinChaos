@@ -41,7 +41,7 @@ bg_color = Color( 0.219608, 0.607843, 0.0313726, 1 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "New Anim"
-length = 2.0
+length = 1.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("ProgressBar:rect_size")
 tracks/0/interp = 1
@@ -49,10 +49,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.0025, 1.9325 ),
+"times": PoolRealArray( 0.0025, 1.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 30, 400 ), Vector2( 0, 400 ) ]
+"values": [ Vector2( 25, 400 ), Vector2( 0, 400 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("ProgressBar:rect_position")
@@ -61,7 +61,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( -0.0075, 1.93 ),
+"times": PoolRealArray( -0.0075, 1.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 20.5651, -2.28501 ), Vector2( 0, -2.285 ) ]
@@ -86,6 +86,7 @@ process_material = SubResource( 2 )
 one_shot = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+show_behind_parent = true
 margin_top = -2.285
 margin_right = 1.0
 margin_bottom = 397.715

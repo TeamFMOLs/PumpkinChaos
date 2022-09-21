@@ -74,7 +74,6 @@ public class KogEnemy : BasicEnemy
             {
                     _AniTimer.Start();
                     _Shooting=true;
-                    GetNode<AnimationPlayer>("AnimationPlayer").Play("Shooting");
                     GetNode<AnimatedSprite>("SpriteParent/EnemySprite").Play("KogShot");
             }
                 
