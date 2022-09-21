@@ -6,7 +6,7 @@ public class InputManager : Node2D
     public Vector2 MoventDir {get; private set;} = Vector2.Zero;
     public Vector2 MousePos {get; private set;} = Vector2.Zero;
     public event Action<Vector2> OnAttack;
-    public event Action OnMelee,OnDash ,OnPause ,GodModeActivated;
+    public event Action OnMelee,OnDash ,OnPause ,GodModeActivated , ContinueScene;
 
     public override void _EnterTree()
     {
@@ -42,6 +42,10 @@ public class InputManager : Node2D
         if (Input.IsActionJustPressed("god_mode"))
         {
             GodModeActivated?.Invoke();
+        }
+
+        if(Input.IsActionJustPressed("scene_continue")) {
+            ContinueScene?.Invoke();
         }
     }
 }

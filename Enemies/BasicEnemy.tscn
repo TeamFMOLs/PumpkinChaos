@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Enemies/BasicEnemy.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/Navigator.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Sounds/switch_01.ogg" type="AudioStream" id=10]
 [ext_resource path="res://General Nodes/PumpDrink.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/dfa6770603ecf5afb82ee7e880375bc68c681ee5.png" type="Texture" id=12]
+[ext_resource path="res://Assets/ground_shadow.png" type="Texture" id=13]
 
 [sub_resource type="CircleShape2D" id=34]
 radius = 38.0
@@ -265,6 +266,10 @@ shape = SubResource( 34 )
 
 [node name="SpriteParent" type="Node2D" parent="."]
 material = SubResource( 40 )
+
+[node name="Sprite" type="Sprite" parent="SpriteParent"]
+position = Vector2( 0, 16 )
+texture = ExtResource( 13 )
 
 [node name="EnemySprite" type="AnimatedSprite" parent="SpriteParent"]
 use_parent_material = true

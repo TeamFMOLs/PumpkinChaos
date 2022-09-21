@@ -238,4 +238,8 @@ public class Player : CharacterController, IDestructible
         _weapon.CritChance += p;
     }
 
+    public void PickUpHealth() {
+        healthSystem.Health +=(int) (0.2f *(float) healthSystem.Health);
+    }
+
 }

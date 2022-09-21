@@ -1,12 +1,12 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/GunNode.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/dfa6770603ecf5afb82ee7e880375bc68c681ee5.png" type="Texture" id=3]
 [ext_resource path="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Punch/Wav/Punch__008.wav" type="AudioStream" id=4]
 [ext_resource path="res://General Nodes/Ui.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Player/spritesheet.png" type="Texture" id=6]
 [ext_resource path="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Ouch/Ogg/Ouch__001.ogg" type="AudioStream" id=8]
-[ext_resource path="res://icon.png" type="Texture" id=9]
 [ext_resource path="res://General Nodes/PlayerCamera.tscn" type="PackedScene" id=10]
 [ext_resource path="res://General Nodes/HealthSystem.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/Effect/dust.png" type="Texture" id=12]
@@ -34,6 +34,18 @@ void fragment(){
 [sub_resource type="ShaderMaterial" id=41]
 shader = SubResource( 40 )
 shader_param/white_progress = 0.0
+
+[sub_resource type="AtlasTexture" id=59]
+atlas = ExtResource( 6 )
+region = Rect2( 96, 111, 48, 37 )
+
+[sub_resource type="SpriteFrames" id=60]
+animations = [ {
+"frames": [ SubResource( 59 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="CanvasItemMaterial" id=51]
 particles_animation = true
@@ -218,6 +230,7 @@ collision_layer = 2
 collision_mask = 25
 script = ExtResource( 1 )
 DashGhostScene = ExtResource( 13 )
+speed = 220.0
 WeaponNodePath = NodePath("GunNode")
 MaxHealth = 300
 
@@ -229,8 +242,12 @@ material = SubResource( 41 )
 
 [node name="Sprite2" type="Sprite" parent="CollisionShape2D/SpriteParent"]
 use_parent_material = true
-texture = ExtResource( 9 )
 flip_h = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="CollisionShape2D/SpriteParent/Sprite2"]
+position = Vector2( 0, -40 )
+scale = Vector2( 5, 5 )
+frames = SubResource( 60 )
 
 [node name="DustTrail" type="Particles2D" parent="CollisionShape2D/SpriteParent"]
 material = SubResource( 51 )

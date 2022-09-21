@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/masked yoshis theme remastered.ogg-1c89fce80d5176943db39794413846ec.oggstr"
+
+[deps]
+
+source_file="res://Sounds/music/masked yoshis theme remastered.ogg"
+dest_files=[ "res://.import/masked yoshis theme remastered.ogg-1c89fce80d5176943db39794413846ec.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

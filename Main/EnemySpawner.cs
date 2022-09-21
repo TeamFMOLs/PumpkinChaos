@@ -113,6 +113,13 @@ public class EnemySpawner : Node2D
         GetTree().CreateTimer(rnd.RandfRange(MinMaxTimeBetweenWaves.x, MinMaxTimeBetweenWaves.y), false).Connect("timeout", this, nameof(SpawnNext));
     }
 
+    public void KillAll() {
+        foreach (var item in enemies)
+        {
+            item.QueueFree();   
+        }
+    }
+
     private void SetEnemyStats(BasicEnemy enemy)
     {
         enemy.healthSystem.ResetHealth(enemy.healthSystem.MaxHealth + (int)((float)enemy.healthSystem.MaxHealth * (float)CurrentWaveIndex / 2 * EnemyHealthScale));
