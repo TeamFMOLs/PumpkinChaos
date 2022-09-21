@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Coins_Few_06.mp3-023865db95a053ed73a59454e994b38e.mp3str"
+
+[deps]
+
+source_file="res://Sounds/new/Mp3/Coins_Few/Coins_Few_06.mp3"
+dest_files=[ "res://.import/Coins_Few_06.mp3-023865db95a053ed73a59454e994b38e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Gems_Few_00.mp3-79214304a8295aa80e6ca1186e4f6368.mp3str"
+
+[deps]
+
+source_file="res://Sounds/new/Mp3/Gems_Few/Gems_Few_00.mp3"
+dest_files=[ "res://.import/Gems_Few_00.mp3-79214304a8295aa80e6ca1186e4f6368.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

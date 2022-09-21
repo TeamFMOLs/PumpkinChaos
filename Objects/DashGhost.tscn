@@ -4,6 +4,7 @@
 [ext_resource path="res://Assets/whiten_material.tres" type="Material" id=2]
 
 [node name="Sprite" type="Sprite"]
+self_modulate = Color( 1, 1, 1, 0.654902 )
 material = ExtResource( 2 )
 script = ExtResource( 1 )
 

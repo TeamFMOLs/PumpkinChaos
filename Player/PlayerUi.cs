@@ -4,7 +4,8 @@ using System;
 public class PlayerUi : CanvasLayer
 {
     private Label ammoLabel ,scoreLabel;
-    private ProgressBar hpLabel;
+    private ProgressBar hpBar;
+    private SceneTreeTween tween;
     public override void _EnterTree() {
         StaticRefs.PlayerUi = this;
     }
@@ -13,7 +14,7 @@ public class PlayerUi : CanvasLayer
     {
         ammoLabel  = GetNode("BulletsNum") as Label;
         scoreLabel = GetNode("Score/ScoreLabel") as Label;
-        hpLabel = GetNode("hpLabel") as ProgressBar;
+        hpBar = GetNode("hpLabel") as ProgressBar;
     }
 
     public void UpdateAmmoNumber(int n ) {
@@ -24,9 +25,12 @@ public class PlayerUi : CanvasLayer
         scoreLabel.Text = s.ToString();
     }
     
-    public void UpdateHp(float s) {
-        GD.Print(s);
-        hpLabel.Value = s;
+    public void UpdateHp(HealthSystem health) {
+        var value = (float) health.Health/(float)health.MaxHealth *100f;
+        tween?.Stop();
+        tween = CreateTween().SetTrans(trans:Tween.TransitionType.Quint);
+        tween.TweenProperty(hpBar,"value",value,0.4f);
+        GetNode<Label>("HealthLabel").Text = health.Health.ToString() + "/" +health.MaxHealth.ToString();
     }
 
     public void UpdateLevel(int l) {

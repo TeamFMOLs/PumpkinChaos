@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Enemies/BasicEnemy.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/Navigator.tscn" type="PackedScene" id=2]
@@ -11,9 +11,10 @@
 [ext_resource path="res://Sounds/effects/222373__qubodup__balloon-pop.mp3" type="AudioStream" id=9]
 [ext_resource path="res://Sounds/switch_01.ogg" type="AudioStream" id=10]
 [ext_resource path="res://General Nodes/PumpDrink.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/dfa6770603ecf5afb82ee7e880375bc68c681ee5.png" type="Texture" id=12]
 
 [sub_resource type="CircleShape2D" id=34]
-radius = 16.0
+radius = 38.0
 
 [sub_resource type="Shader" id=39]
 code = "shader_type canvas_item;
@@ -31,6 +32,7 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=40]
+resource_local_to_scene = true
 shader = SubResource( 39 )
 shader_param/white_progress = 0.0
 
@@ -119,7 +121,7 @@ color_ramp = SubResource( 48 )
 [sub_resource type="Animation" id=41]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:render_priority")
+tracks/0/path = NodePath("SpriteParent:material:shader_param/white_progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -128,10 +130,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0 ]
+"values": [ 0.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
+tracks/1/path = NodePath("SpriteParent:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -139,8 +141,8 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=46]
@@ -187,19 +189,33 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=42]
 resource_name = "get_hurt"
-length = 0.2
+length = 0.15
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
+tracks/0/path = NodePath("SpriteParent:material:shader_param/white_progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
+"times": PoolRealArray( 0, 0.15 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 0.6 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("SoundPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 10 )
+} ],
+"times": PoolRealArray( 0 )
 }
 
 [sub_resource type="Gradient" id=60]
@@ -239,8 +255,9 @@ script = ExtResource( 1 )
 Score = 100
 OnHitDamage = 40
 MinMaxAttackInterval = Vector2( 2.5, 15 )
+SpreadAttackProb = 0.333
 EnemyProjectile = ExtResource( 5 )
-ProjectileSpeed = 200.0
+ProjectileSpeed = 320.0
 PrizesToDrop = [ ExtResource( 7 ), ExtResource( 11 ) ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -287,7 +304,7 @@ next/die = "RESET"
 next/get_hurt = "RESET"
 
 [node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 10 )
+stream = ExtResource( 9 )
 volume_db = -5.0
 
 [node name="Particles2D" type="Particles2D" parent="."]
@@ -301,3 +318,9 @@ explosiveness = 0.32
 randomness = 0.39
 local_coords = false
 process_material = SubResource( 62 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 12 )
+texture_scale = 0.3
+color = Color( 1, 0.639216, 0.0745098, 1 )
+energy = 0.5

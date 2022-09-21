@@ -6,26 +6,26 @@ public class Player : CharacterController, IDestructible
     [Export]
     protected PackedScene DashGhostScene;
     [Export]
-    private float speed = 200,speedCopy,dashSpeed=1200;
+    private float speed = 200, speedCopy, dashSpeed = 1200;
     [Export]
     NodePath WeaponNodePath;
     [Export]
-    private int MaxHealth ;
+    private int MaxHealth;
     [Export]
-    private float PushDistance = 64 ,PushTime = 0.6f , ShieldOnTime = 1f,DashCd=2f, DashingTime=0.15f,DashGhostTime=0.02f;
-    private int _score = 0 , AmmoAdditionalpickUp = 0;
-    
+    private float PushDistance = 64, PushTime = 0.6f, ShieldOnTime = 1f, DashCd = 2f, DashingTime = 0.15f, DashGhostTime = 0.02f;
+    private int _score = 0, AmmoAdditionalpickUp = 0;
+
     private InputManager _inputHandler;
     private Weapon _weapon;
     public HealthSystem healthSystem { get; set; }
     public Weapon Weapon { get => _weapon; set => _weapon = value; }
-    public int Score { get => _score; set {_score = value; StaticRefs.UpgradeSystem.NotifyScore(_score);} }
+    public int Score { get => _score; set { _score = value; StaticRefs.UpgradeSystem.NotifyScore(_score); } }
 
     public bool StopMovement;
-    private AnimationPlayer animationPlayer,UIanimationPlayer;
+    private AnimationPlayer animationPlayer, UIanimationPlayer;
     private SceneTreeTween MovementTween;
-    protected Timer DashTimer,DashCdTimer,DashGhostTimer;
-    protected bool _Dashing=false, _CanDash=true;
+    protected Timer DashTimer, DashCdTimer, DashGhostTimer;
+    protected bool _Dashing = false, _CanDash = true;
     public Sprite mySprite;
 
     public override void _EnterTree()
@@ -36,7 +36,7 @@ public class Player : CharacterController, IDestructible
     public override void _Ready()
     {
         _inputHandler = StaticRefs.inputManager;
-        speedCopy=speed;
+        speedCopy = speed;
 
         DashTimer = GetNode("DashingTimer") as Timer;
         DashTimer.WaitTime = DashingTime;
@@ -46,7 +46,7 @@ public class Player : CharacterController, IDestructible
         DashGhostTimer.WaitTime = DashGhostTime;
         DashGhostTimer.Connect("timeout", this, nameof(DashGhost));
 
-        
+
         DashCdTimer = GetNode("DashCdTimer") as Timer;
         DashCdTimer.WaitTime = DashCd;
         DashCdTimer.Connect("timeout", this, nameof(ReEnableDash));
@@ -54,16 +54,18 @@ public class Player : CharacterController, IDestructible
         Weapon = GetNode<Weapon>(WeaponNodePath);
         healthSystem = GetNode<HealthSystem>("HealthSystem");
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-        UIanimationPlayer = StaticRefs.PlayerUi.GetNode<AnimationPlayer>("BulletsNum/AnimationPlayer");
-        mySprite = GetNode<Sprite>("CollisionShape2D/SpriteParent/Sprite2")as Sprite;
+        UIanimationPlayer = StaticRefs.PlayerUi.GetNode<AnimationPlayer>("DashCd/AnimationPlayer");
+        mySprite = GetNode<Sprite>("CollisionShape2D/SpriteParent/Sprite2") as Sprite;
 
         _inputHandler.OnAttack += Attack;
         _inputHandler.OnMelee += Melee;
         _inputHandler.OnDash += Dash;
 
-        healthSystem.OnTakeDamage += OnTakeDamage ;
+        healthSystem.OnTakeDamage += OnTakeDamage;
+        healthSystem.OnDeath += OnPlayerDeath;
         healthSystem.ResetHealth(MaxHealth);
         StaticRefs.PlayerUi.UpdateAmmoNumber(Weapon.Ammo);
+        StaticRefs.PlayerUi.UpdateHp(healthSystem);
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -74,40 +76,48 @@ public class Player : CharacterController, IDestructible
 
     public override void _PhysicsProcess(float delta)
     {
-        Velocity = _inputHandler.MoventDir * speed;
-        base._PhysicsProcess(delta);
-        var it = GetLastSlideCollision();
-        if (it != null  )
+        if (!StopMovement)
         {
-            if (it.Collider is BasicEnemy)
+            Velocity = _inputHandler.MoventDir * speed;
+            base._PhysicsProcess(delta);
+            var it = GetLastSlideCollision();
+            if (it != null)
             {
-                var enemy =    it.Collider as BasicEnemy;
-                if(!_Dashing){
-                    GetPushed(GlobalPosition-enemy.GlobalPosition,enemy.OnHitDamage);
+                if (it.Collider is BasicEnemy)
+                {
+                    var enemy = it.Collider as BasicEnemy;
+                    if (!_Dashing)
+                    {
+                        GetPushed(GlobalPosition - enemy.GlobalPosition, enemy.OnHitDamage);
+                    }
                 }
+
             }
-            
         }
+
     }
 
-    public void Attack(Vector2 target) {
+    public void Attack(Vector2 target)
+    {
         if (Weapon.Attack(target))
         {
-            StaticRefs.CurrentCamera.ShakeForSeconds(0.2f,6f);
+            StaticRefs.CurrentCamera.ShakeForSeconds(0.2f, 6f);
         }
     }
-    public void Melee() {
+    public void Melee()
+    {
         Weapon.Melee();
     }
-    public void Dash() {
-        if(_Dashing||!_CanDash){return;}
+    public void Dash()
+    {
+        if (_Dashing || !_CanDash) { return; }
         DashTimer.Start();
         DashGhostTimer.Start();
         DashCdTimer.Start();
         GD.Print("Iam SPEEEED!:Dash");
-        speed=dashSpeed;
-        _Dashing=true;
-        _CanDash=false;
+        speed = dashSpeed;
+        _Dashing = true;
+        _CanDash = false;
         animationPlayer.Play("Dash");
     }
     public void ReEnableDash()
@@ -121,10 +131,11 @@ public class Player : CharacterController, IDestructible
         _Dashing = false;
         DashGhostTimer.Stop();
         GD.Print("Iam SPEEEED Demorgen-ed!:DashStopeeee");
-        speed=speedCopy;
+        speed = speedCopy;
 
     }
-    public void DashGhost(){
+    public void DashGhost()
+    {
         var DashGhost = DashGhostScene.Instance() as DashGhost;
         DashGhost.GlobalPosition = GlobalPosition;
         DashGhost.Texture = mySprite.Texture;
@@ -134,60 +145,86 @@ public class Player : CharacterController, IDestructible
         DashGhost.FlipH = mySprite.FlipH;
         GetTree().Root.AddChild(DashGhost);
     }
-    public void AddAmmo(Ammo it) {
-        Weapon.Ammo += 1+AmmoAdditionalpickUp;
-        StaticRefs.PlayerUi.UpdateAmmoNumber(Weapon.Ammo) ;
+    public void AddAmmo(Ammo it)
+    {
+        Weapon.Ammo += 1 + AmmoAdditionalpickUp;
+        StaticRefs.PlayerUi.UpdateAmmoNumber(Weapon.Ammo);
     }
 
-    private void OnTakeDamage() {
-        if(!_Dashing){
+    private void OnTakeDamage()
+    {
+        if (!_Dashing)
+        {
             animationPlayer.Play("get_hurt");
-            StaticRefs.CurrentCamera.ShakeForSeconds(0.35f,10f);
+            StaticRefs.CurrentCamera.ShakeForSeconds(0.35f, 10f);
             GD.Print(healthSystem.Health);
             GD.Print(healthSystem.MaxHealth);
-            StaticRefs.PlayerUi.UpdateHp(((float)healthSystem.Health)/((float)healthSystem.MaxHealth)*100f);
+            StaticRefs.PlayerUi.UpdateHp(healthSystem);
         }
     }
 
-    public void IncreaseScore(int amount) {
-        Score+= amount;
+    public void IncreaseScore(int amount)
+    {
+        Score += amount;
         StaticRefs.PlayerUi.UpdateScore(Score);
     }
 
-    public void GetPushed(Vector2 dir , int damage) {
+    public void GetPushed(Vector2 dir, int damage)
+    {
         healthSystem.TakeDamage(damage);
         healthSystem.IsShielded = true;
         MovementTween = CreateTween();
-        var pos = GlobalPosition + dir.Normalized()*PushDistance;
-        MovementTween.TweenProperty(this,"global_position",pos,PushTime);
-        CreateTween().TweenCallback(this,nameof(DisableShield)).SetDelay(ShieldOnTime);
+        var pos = GlobalPosition + dir.Normalized() * PushDistance;
+        MovementTween.TweenProperty(this, "global_position", pos, PushTime);
+        CreateTween().TweenCallback(this, nameof(DisableShield)).SetDelay(ShieldOnTime);
+
     }
 
-    private void DisableShield() {
+    private void DisableShield()
+    {
         healthSystem.IsShielded = false;
         MovementTween = null;
     }
-
-    public void IncreaseHealth(float p) {
-        healthSystem.MaxHealth += (int)(healthSystem.MaxHealth*p);
-        healthSystem.Health += (int)(healthSystem.Health*p);
+    private void OnPlayerDeath() {
+        StopMovement = true;
+        animationPlayer.Play("die");
+        StaticRefs.gameManager.OnPlayerDie();
+    }
+    public void IncreaseHealth(float p)
+    {
+        healthSystem.MaxHealth += (int)(healthSystem.MaxHealth * p);
+        healthSystem.Health += (int)(healthSystem.Health * p);
+        StaticRefs.PlayerUi.UpdateHp(healthSystem);
     }
 
-    public void IncreaseAttackSpeed(float p) {
-        Weapon.AttackSpeed *= 1f +p;
+    public void IncreaseAttackSpeed(float p)
+    {
+        Weapon.AttackSpeed *= 1f + p;
     }
 
-    public void IncreaseDamage(float p) {
-        Weapon.BulletDamage += (int) (Weapon.BulletDamage *p);
+    public void IncreaseDamage(float p)
+    {
+        Weapon.BulletDamage += (int)(Weapon.BulletDamage * p);
     }
 
-    public void IncreaseAmmoPickUp(int n) {
+    public void IncreaseMovementSpeed(float p)
+    {
+        speedCopy += (int)(speedCopy * p);
+        if (!_Dashing)
+        {
+            speed = speedCopy;
+        }
+    }
+
+    public void IncreaseAmmoPickUp(int n)
+    {
         GD.Print(n);
         AmmoAdditionalpickUp += n;
     }
 
-    public void IncreaseCritChance(float p) {
-        _weapon.CritChance +=p;
+    public void IncreaseCritChance(float p)
+    {
+        _weapon.CritChance += p;
     }
 
 }

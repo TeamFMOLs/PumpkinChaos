@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class EnemySpawner : Node2D
 {
     [Export]
-    private PackedScene FirstEnemy;
+    private PackedScene FirstEnemy, FirstBoss;
     [Export]
     private float EnemyHealthScale = 0.2f, EnemyDamageScale = 0.2f, EnemyNumberIncreasePerWave = 0.5f;
     [Export]
@@ -28,7 +28,7 @@ public class EnemySpawner : Node2D
         start = GetNode<Node2D>("SrartPos");
         end = GetNode<Node2D>("EndPos");
         sky = GetNode<Node2D>("SkyPos");
-        GetTree().CreateTimer(1f,false).Connect("timeout", this, nameof(BeginSpawning));
+        GetTree().CreateTimer(1f, false).Connect("timeout", this, nameof(BeginSpawning));
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,7 +53,7 @@ public class EnemySpawner : Node2D
         GD.Print(enemies.Count);
         if (enemies.Count == 0)
         {
-            SpawnNext();
+            SpawnNextWaveNow();
         }
     }
 
@@ -91,19 +91,25 @@ public class EnemySpawner : Node2D
         var number = StartingWaveNumber + StartingWaveNumber * (int)((float)CurrentWaveIndex * EnemyNumberIncreasePerWave);
         number = (number > 10) ? 10 : number;
         number = (enemies.Count == 0) ? number : number / 2;
+        
         for (int i = 0; i < number; i++)
         {
             var enm = SpawnEnemy(FirstEnemy, PickRandomPoint());
             SetEnemyStats(enm);
         }
         CurrentWaveIndex++;
-        GetTree().CreateTimer(rnd.RandfRange(MinMaxTimeBetweenWaves.x, MinMaxTimeBetweenWaves.y),false).Connect("timeout", this, nameof(SpawnNext));
+        if ((float)CurrentWaveIndex % 4f == 0)
+        {
+            var enm = SpawnEnemy(FirstBoss, PickRandomPoint());
+            SetEnemyStats(enm);
+        }
+        GetTree().CreateTimer(rnd.RandfRange(MinMaxTimeBetweenWaves.x, MinMaxTimeBetweenWaves.y), false).Connect("timeout", this, nameof(SpawnNext));
     }
 
     private void SetEnemyStats(BasicEnemy enemy)
     {
-        enemy.healthSystem.ResetHealth( enemy.healthSystem.MaxHealth+ (int)((float)enemy.healthSystem.MaxHealth * (float)CurrentWaveIndex * EnemyHealthScale));
-        enemy.OnHitDamage += (int)((float)enemy.OnHitDamage * (float)CurrentWaveIndex * EnemyDamageScale);
-        enemy.ProjectileDamage += (int)((float)enemy.ProjectileDamage * (float)CurrentWaveIndex * EnemyDamageScale);
+        enemy.healthSystem.ResetHealth(enemy.healthSystem.MaxHealth + (int)((float)enemy.healthSystem.MaxHealth * (float)CurrentWaveIndex / 2 * EnemyHealthScale));
+        enemy.OnHitDamage += (int)((float)enemy.OnHitDamage * (float)CurrentWaveIndex / 2 * EnemyDamageScale);
+        enemy.ProjectileDamage += (int)((float)enemy.ProjectileDamage * (float)CurrentWaveIndex / 2 * EnemyDamageScale);
     }
 }
