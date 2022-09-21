@@ -4,13 +4,13 @@ using System;
 public class Player : CharacterController, IDestructible
 {
     [Export]
-    private float speed = 200,speedCopy,dashSpeed=600;
+    private float speed = 200,speedCopy,dashSpeed=1200;
     [Export]
     NodePath WeaponNodePath;
     [Export]
     private int MaxHealth ;
     [Export]
-    private float PushDistance = 64 ,PushTime = 0.6f , ShieldOnTime = 1f,DashCd=4f, DashingTime=0.5f;
+    private float PushDistance = 64 ,PushTime = 0.6f , ShieldOnTime = 1f,DashCd=2f, DashingTime=0.15f;
     private int _score = 0 , AmmoAdditionalpickUp = 0;
     
     private InputManager _inputHandler;
