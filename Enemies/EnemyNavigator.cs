@@ -19,7 +19,6 @@ public class EnemyNavigator : Node2D
     private Vector2[] hitLocations = new Vector2[16];
     private float[] _rayWeights = new float[16];
     private RayCast2D _rayCast;
-    private bool _isMoving = false;
     private float _movementSpeed;
 
     private Vector2 _targetLocation;
@@ -50,14 +49,14 @@ public class EnemyNavigator : Node2D
 
     public override void _PhysicsProcess(float delta)
     {
-        if (_isMoving)
-        {
-            CalculateWeaights();
-            var DesiredIndex = GetBestWeight();
-            var DesiredDirection = _rays[DesiredIndex].Normalized();
-            _characterController.Velocity = DesiredDirection * _movementSpeed;
 
-        }
+        CalculateWeaights();
+        var DesiredIndex = GetBestWeight();
+        var DesiredDirection = _rays[DesiredIndex].Normalized();
+        _characterController.Velocity = DesiredDirection * _movementSpeed;
+
+
+
         Update();
 
     }
@@ -67,20 +66,9 @@ public class EnemyNavigator : Node2D
     {
         _targetLocation = location;
         _movementSpeed = velocity;
-        _isMoving = true;
 
     }
-    public void GoToLocationKog(Vector2 location, float velocity, bool flag)
-    {
-        if(!flag){
-            _targetLocation = location;
-            _movementSpeed = velocity;
-            _isMoving = true;
-        }else{
-            _movementSpeed = 0;
-            _isMoving = false;
-        }
-    }
+
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     //  public override void _Process(float delta)
@@ -103,8 +91,8 @@ public class EnemyNavigator : Node2D
             {
                 if (point != Vector2.Inf)
                 {
-                   
-                    weight -= ray.Normalized().Dot((point - GlobalPosition).Normalized())*0.4f * ( 100-GlobalPosition.DistanceTo(point))/40 ;
+
+                    weight -= ray.Normalized().Dot((point - GlobalPosition).Normalized()) * 0.4f * (100 - GlobalPosition.DistanceTo(point)) / 40;
                 }
             }
             _rayWeights[i] = weight;

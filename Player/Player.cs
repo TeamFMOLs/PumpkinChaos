@@ -186,9 +186,9 @@ public class Player : CharacterController, IDestructible
         MovementTween = null;
     }
     private void OnPlayerDeath() {
-        StopMovement = true;
-        animationPlayer.Play("die");
-        StaticRefs.gameManager.OnPlayerDie();
+        /* StopMovement = true;
+        //animationPlayer.Play("die");
+        StaticRefs.gameManager.OnPlayerDie(); */
     }
     public void IncreaseHealth(float p)
     {

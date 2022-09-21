@@ -28,5 +28,5 @@ shape = SubResource( 3 )
 modulate = Color( 0.352941, 0.847059, 0.215686, 1 )
 position = Vector2( 31, 4.5 )
 frames = SubResource( 2 )
-frame = 3
+frame = 2
 playing = true
