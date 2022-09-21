@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Enemies/FirstBoss.cs" type="Script" id=1]
 [ext_resource path="res://Enemies/BasicEnemy.tscn" type="PackedScene" id=2]
@@ -26,6 +26,22 @@ resource_local_to_scene = true
 shader = SubResource( 2 )
 shader_param/white_progress = 0.0
 
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.788235, 0.109804, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.00392157, 0.00392157, 0.00392157, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.470588, 0.470588, 0.470588, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+
 [node name="Boss1" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
 Score = 300
@@ -36,7 +52,7 @@ SpreadAttackProb = 0.4
 SpreadAttackNumber = 6
 ProjectileSpeed = 340.0
 ProjectileDamage = 70
-HealthBar = null
+HealthBar = NodePath("Control/ProgressBar")
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )
@@ -47,3 +63,24 @@ material = SubResource( 3 )
 
 [node name="EnemySprite" parent="SpriteParent" index="0"]
 scale = Vector2( 2, 2 )
+frame = 0
+
+[node name="HealthSystem" parent="." index="3"]
+MaxHealth = 800
+
+[node name="Deathparticles" parent="." index="6"]
+scale = Vector2( 1.5, 1.5 )
+
+[node name="Control" type="Control" parent="." index="10"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Control" index="0"]
+margin_left = -89.0
+margin_top = -108.0
+margin_right = 91.0
+margin_bottom = -94.0
+custom_styles/fg = SubResource( 4 )
+custom_styles/bg = SubResource( 5 )
+value = 10.0
+percent_visible = false

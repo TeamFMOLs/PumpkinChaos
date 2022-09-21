@@ -3,15 +3,16 @@ using System;
 public class FirstBoss : BasicEnemy
 {
     [Export]
-    private ProgressBar HealthBar;
-    public override void _Process(float delta)
+    private NodePath HealthBar;
+    public override void _Ready()
     {
-        
+        base._Ready();
+        GetNode<ProgressBar>(HealthBar).Value =  (float)healthSystem.Health/(float)healthSystem.MaxHealth *100f;
     }
 
     protected override void OnHurt()
     {
         base.OnHurt();
-        HealthBar.Value =  (float)healthSystem.Health/(float)healthSystem.MaxHealth *100f;
+        GetNode<ProgressBar>(HealthBar).Value =  (float)healthSystem.Health/(float)healthSystem.MaxHealth *100f;
     }
 }

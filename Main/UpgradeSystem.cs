@@ -112,6 +112,9 @@ public class UpgradeSystem : Node
 
     public void OnLevelUp()
     {
+        GetTree().CreateTimer(0.25f).Connect("timeout",this , nameof(StartLevelProcess));
+    }
+    private void StartLevelProcess() {
         GetTree().Paused = true;
         animationPlayer.Play("show");
         InitializeOptions();

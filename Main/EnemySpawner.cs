@@ -91,17 +91,18 @@ public class EnemySpawner : Node2D
         var number = StartingWaveNumber + StartingWaveNumber * (int)((float)CurrentWaveIndex * EnemyNumberIncreasePerWave);
         number = (number > 10) ? 10 : number;
         number = (enemies.Count == 0) ? number : number / 2;
-        if ((float)CurrentWaveIndex % 4 == 0)
-        {
-            var enm = SpawnEnemy(FirstBoss, PickRandomPoint());
-            SetEnemyStats(enm);
-        }
+        
         for (int i = 0; i < number; i++)
         {
             var enm = SpawnEnemy(FirstEnemy, PickRandomPoint());
             SetEnemyStats(enm);
         }
         CurrentWaveIndex++;
+        if ((float)CurrentWaveIndex % 4f == 0)
+        {
+            var enm = SpawnEnemy(FirstBoss, PickRandomPoint());
+            SetEnemyStats(enm);
+        }
         GetTree().CreateTimer(rnd.RandfRange(MinMaxTimeBetweenWaves.x, MinMaxTimeBetweenWaves.y), false).Connect("timeout", this, nameof(SpawnNext));
     }
 

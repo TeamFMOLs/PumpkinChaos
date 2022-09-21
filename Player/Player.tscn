@@ -168,7 +168,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 1 ]
+"values": [ 25 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath(".:collision_layer")
@@ -215,6 +215,7 @@ tracks/1/keys = {
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
+collision_mask = 25
 script = ExtResource( 1 )
 DashGhostScene = ExtResource( 13 )
 WeaponNodePath = NodePath("GunNode")
@@ -291,7 +292,7 @@ zoom = Vector2( 1.5, 1.5 )
 [node name="HealthSystem" parent="." instance=ExtResource( 11 )]
 position = Vector2( 0, -0.519893 )
 
-[node name="UpgradeSysrem" parent="." instance=ExtResource( 15 )]
+[node name="UpgradeSystem" parent="." instance=ExtResource( 15 )]
 
 [node name="Ui" parent="." instance=ExtResource( 5 )]
 

@@ -54,7 +54,7 @@ public class Player : CharacterController, IDestructible
         Weapon = GetNode<Weapon>(WeaponNodePath);
         healthSystem = GetNode<HealthSystem>("HealthSystem");
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-        UIanimationPlayer = StaticRefs.PlayerUi.GetNode<AnimationPlayer>("BulletsNum/AnimationPlayer");
+        UIanimationPlayer = StaticRefs.PlayerUi.GetNode<AnimationPlayer>("DashCd/AnimationPlayer");
         mySprite = GetNode<Sprite>("CollisionShape2D/SpriteParent/Sprite2")as Sprite;
 
         _inputHandler.OnAttack += Attack;

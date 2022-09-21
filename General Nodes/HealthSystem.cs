@@ -49,14 +49,18 @@ public class HealthSystem : Node2D
             return;
         _health -= damage;
         DisplayDamage(damage);
+
         if (_health <= 0)
         {
             _health = 0;
             _isDead = true;
+
             Die();
         }
         else
             OnTakeDamage?.Invoke();
+
+
 
     }
 
