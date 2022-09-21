@@ -113,16 +113,28 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/path = NodePath(".:collision_mask")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ 1, 25 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:collision_layer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 32 ]
 }
 
 [sub_resource type="Animation" id=36]
@@ -145,6 +157,30 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:collision_mask")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:collision_layer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2 ]
 }
 
 [sub_resource type="Animation" id=42]
@@ -179,7 +215,6 @@ tracks/1/keys = {
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
-collision_mask = 25
 script = ExtResource( 1 )
 DashGhostScene = ExtResource( 13 )
 WeaponNodePath = NodePath("GunNode")
@@ -187,7 +222,6 @@ MaxHealth = 300
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 26 )
-disabled = true
 
 [node name="SpriteParent" type="Node2D" parent="CollisionShape2D"]
 material = SubResource( 41 )
@@ -231,6 +265,7 @@ anims/Idle = SubResource( 25 )
 anims/RESET = SubResource( 2 )
 anims/get_hurt = SubResource( 42 )
 next/Idle = "Idle"
+next/RESET = "RESET"
 next/get_hurt = "RESET"
 
 [node name="MovementTimer" type="Timer" parent="."]

@@ -51,6 +51,7 @@ cell_size = Vector2( 16, 16 )
 format = 1
 
 [node name="Player" parent="Level" instance=ExtResource( 1 )]
+collision_mask = 1
 
 [node name="LevelEdges" type="StaticBody2D" parent="Level"]
 
