@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/happy_adveture.mp3-997b956ba70fec1c3ee6dc34df423745.mp3str"
+
+[deps]
+
+source_file="res://Sounds/music/happy_adveture.mp3"
+dest_files=[ "res://.import/happy_adveture.mp3-997b956ba70fec1c3ee6dc34df423745.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

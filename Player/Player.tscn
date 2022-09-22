@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/GunNode.tscn" type="PackedScene" id=2]
@@ -275,19 +275,19 @@ anim_speed_curve = SubResource( 57 )
 resource_name = "Dash"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("CollisionShape2D/SpriteParent/DustTrail:emitting")
+tracks/0/path = NodePath(".:collision_mask")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ 1, 25 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D/SpriteParent/DustCloud:emitting")
+tracks/1/path = NodePath(".:collision_layer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -296,22 +296,22 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ 32 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath(".:collision_mask")
+tracks/2/path = NodePath("SpriteParent/DustCloud:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 1, 25 ]
+"values": [ true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath(".:collision_layer")
+tracks/3/path = NodePath("SpriteParent/DustTrail:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -320,17 +320,13 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 32 ]
+"values": [ true ]
 }
-
-[sub_resource type="Animation" id=25]
-resource_name = "Idle"
-loop = true
 
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
+tracks/0/path = NodePath("SpriteParent:material:shader_param/white_progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -377,6 +373,30 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Vector2( 0, -40 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("SpriteParent/DustCloud:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("SpriteParent/DustTrail:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=36]
 resource_name = "die"
@@ -410,7 +430,7 @@ tracks/1/keys = {
 resource_name = "get_hurt"
 length = 0.15
 tracks/0/type = "value"
-tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
+tracks/0/path = NodePath("SpriteParent:material:shader_param/white_progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -463,8 +483,7 @@ position = Vector2( 0, -40 )
 rotation = 3.14159
 scale = Vector2( 5, -5 )
 frames = SubResource( 60 )
-animation = "death"
-frame = 4
+animation = "front_idle"
 
 [node name="SpriteShadow" type="Sprite" parent="SpriteParent"]
 visible = false
@@ -508,11 +527,9 @@ BulletDamage = 124
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Dash = SubResource( 55 )
-anims/Idle = SubResource( 25 )
 anims/RESET = SubResource( 2 )
 anims/die = SubResource( 36 )
 anims/get_hurt = SubResource( 42 )
-next/Idle = "Idle"
 next/RESET = "RESET"
 next/get_hurt = "RESET"
 

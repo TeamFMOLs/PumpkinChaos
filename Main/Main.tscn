@@ -9,7 +9,7 @@
 [ext_resource path="res://Assets/TileSet data/Texture/new_tiles.tres" type="TileSet" id=7]
 [ext_resource path="res://Enemies/Boss1.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Enemies/KogEnemy.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Sounds/music/masked yoshis theme remastered.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/music/happy_adveture.mp3" type="AudioStream" id=10]
 [ext_resource path="res://Enemies/ThirdEnemy.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Main/Level.cs" type="Script" id=12]
 
@@ -113,7 +113,7 @@ position = Vector2( -626, -404 )
 position = Vector2( 148, -1076 )
 
 [node name="EndPos" type="Node2D" parent="AmmoSpawner"]
-position = Vector2( 911, 402 )
+position = Vector2( 1144, 632 )
 
 [node name="EnemySpawner" type="Node2D" parent="."]
 script = ExtResource( 6 )
@@ -125,16 +125,16 @@ SecondEnemyChance = 0.3
 MinMaxTimeBetweenWaves = Vector2( 60, 110 )
 
 [node name="SrartPos" type="Node2D" parent="EnemySpawner"]
-position = Vector2( -626, -404 )
+position = Vector2( -640, -328 )
 
 [node name="SkyPos" type="Node2D" parent="EnemySpawner"]
 position = Vector2( 148, -1076 )
 
 [node name="EndPos" type="Node2D" parent="EnemySpawner"]
-position = Vector2( 911, 402 )
+position = Vector2( 1184, 632 )
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 10 )
-volume_db = -20.0
+volume_db = -10.0
 autoplay = true
