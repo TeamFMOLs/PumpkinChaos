@@ -80,7 +80,7 @@ public class EnemySpawner : Node2D
             loc = new Vector2(
             rnd.RandfRange(start.GlobalPosition.x, end.GlobalPosition.x),
             rnd.RandfRange(start.GlobalPosition.y, end.GlobalPosition.y)
-        );
+            );
         }
         return loc;
 

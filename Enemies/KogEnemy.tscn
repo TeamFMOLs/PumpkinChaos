@@ -219,29 +219,28 @@ TargetMark = ExtResource( 9 )
 [node name="SpriteParent" parent="." index="1"]
 modulate = Color( 0.882353, 0.909804, 0, 1 )
 material = SubResource( 40 )
+position = Vector2( 0, 0 )
 
 [node name="EnemySprite" parent="SpriteParent" index="1"]
 position = Vector2( 0, 0 )
 scale = Vector2( 1.4, 1.2 )
 frames = SubResource( 59 )
+frame = 1
 
 [node name="AttackTimer" parent="." index="4"]
 wait_time = 3.0
 
-[node name="SoundPlayer" parent="." index="8"]
-stream = ExtResource( 10 )
+[node name="SpawnParticles" parent="." index="6"]
+emitting = false
 
-[node name="Particles2D" parent="." index="9"]
-position = Vector2( 0, -24.6157 )
+[node name="SoundPlayer" parent="." index="9"]
+stream = ExtResource( 10 )
 
 [node name="_AniTimer" type="Timer" parent="." index="10"]
 one_shot = true
 
-[node name="Light2D" parent="." index="11"]
-position = Vector2( 0, -20.6157 )
-scale = Vector2( -0.149775, -0.149775 )
-color = Color( 1, 1, 0, 1 )
-energy = 1.05
+[node name="Particles2D" parent="." index="11"]
+position = Vector2( 0, -24.6157 )
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="12"]
 autoplay = "idle"
@@ -278,3 +277,9 @@ position = Vector2( -4, 35.3843 )
 amount = 20
 local_coords = false
 process_material = SubResource( 105 )
+
+[node name="Light2D" parent="." index="17"]
+position = Vector2( 0, -20.6157 )
+scale = Vector2( -0.149775, -0.149775 )
+color = Color( 1, 1, 0, 1 )
+energy = 1.05
