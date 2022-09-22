@@ -5,18 +5,28 @@ public class Menu : Node
 {
     [Export]
     private PackedScene Level;
-    public override void _Ready()
+    private bool firstTime  = true;
+    
+    public override void _EnterTree()
     {
-
+        StaticRefs.menu = this;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        if (Input.IsActionJustPressed("scene_continue"))
+        if (Input.IsActionJustPressed("scene_continue") && firstTime)
         {
-            GetTree().Root.AddChild(Level.Instance());
-            QueueFree();
+            firstTime = false;
+            ResetScene();
         }
+    }
+    public void ResetScene() {
+        foreach (var item in GetChildren())
+        {
+            (item as Node).QueueFree();
+        }
+        AddChild(Level.Instance());
+            
     }
 }

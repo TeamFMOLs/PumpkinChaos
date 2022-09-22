@@ -11,6 +11,7 @@ public static class StaticRefs
     public static UpgradeSystem UpgradeSystem;
     public static EnemySpawner EnemySpawner;
     public static Level CurrentLevel;
+    public static Menu menu;
     public static PlayerUi PlayerUi;
    /*  public static Soul PlayerSoul;
     public static List<Player> PlayerAgents = new List<Player>();

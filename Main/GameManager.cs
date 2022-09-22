@@ -6,6 +6,7 @@ public class GameManager : Node2D
 {
     [Export]
     private NodePath GameOverNodePath, GamePauseNodePath;
+    
     private Node2D GameOverNode, GamePausedNode;
     private bool _isPlayerDead = false, _isGamePaused = false;
 
@@ -34,7 +35,7 @@ public class GameManager : Node2D
     {
         if (_isPlayerDead)
         {
-            GetTree().ReloadCurrentScene();
+            StaticRefs.menu.ResetScene();
         }
     }
 
