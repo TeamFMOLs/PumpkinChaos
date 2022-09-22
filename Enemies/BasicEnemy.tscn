@@ -203,7 +203,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.15 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, 0.6 ]
+"values": [ 0.0, 0.7 ]
 }
 tracks/1/type = "audio"
 tracks/1/path = NodePath("SoundPlayer")
@@ -278,7 +278,6 @@ use_parent_material = true
 position = Vector2( 4, -1 )
 frames = SubResource( 59 )
 animation = "front"
-frame = 2
 playing = true
 
 [node name="Navigator" parent="." instance=ExtResource( 2 )]

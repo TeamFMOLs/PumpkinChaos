@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Enemies/FirstBoss.cs" type="Script" id=1]
 [ext_resource path="res://Enemies/BasicEnemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sounds/switch_01.ogg" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 68.0
@@ -21,7 +22,7 @@ void fragment(){
     COLOR.a = origin.a;
 }"
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=6]
 resource_local_to_scene = true
 shader = SubResource( 2 )
 shader_param/white_progress = 0.0
@@ -59,17 +60,19 @@ shape = SubResource( 1 )
 
 [node name="SpriteParent" parent="." index="1"]
 modulate = Color( 0.901961, 0.294118, 0.294118, 1 )
-material = SubResource( 3 )
+material = SubResource( 6 )
 
-[node name="EnemySprite" parent="SpriteParent" index="0"]
+[node name="EnemySprite" parent="SpriteParent" index="1"]
 scale = Vector2( 2, 2 )
-frame = 0
 
 [node name="HealthSystem" parent="." index="3"]
 MaxHealth = 800
 
 [node name="Deathparticles" parent="." index="6"]
 scale = Vector2( 1.5, 1.5 )
+
+[node name="SoundPlayer" parent="." index="8"]
+stream = ExtResource( 3 )
 
 [node name="Control" type="Control" parent="." index="10"]
 margin_right = 40.0

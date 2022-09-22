@@ -124,8 +124,8 @@ public class EnemySpawner : Node2D
 
     private void SetEnemyStats(BasicEnemy enemy)
     {
-        enemy.healthSystem.ResetHealth(enemy.healthSystem.MaxHealth + (int)((float)enemy.healthSystem.MaxHealth * (float)CurrentWaveIndex / 2 * EnemyHealthScale));
-        enemy.OnHitDamage += (int)((float)enemy.OnHitDamage * (float)CurrentWaveIndex / 2 * EnemyDamageScale);
-        enemy.ProjectileDamage += (int)((float)enemy.ProjectileDamage * (float)CurrentWaveIndex / 2 * EnemyDamageScale);
+        enemy.healthSystem.ResetHealth(enemy.healthSystem.MaxHealth + (int)((float)enemy.healthSystem.MaxHealth * (float)CurrentWaveIndex / 2f * EnemyHealthScale));
+        enemy.OnHitDamage += (int)((float)enemy.OnHitDamage * (float)CurrentWaveIndex / 2f * EnemyDamageScale);
+        enemy.ProjectileDamage += (int)((float)enemy.ProjectileDamage * (float)CurrentWaveIndex / 2f * EnemyDamageScale);
     }
 }

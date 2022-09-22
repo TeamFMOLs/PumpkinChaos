@@ -71,6 +71,7 @@ public class SpriteAnimationController : Node2D
         }
         else
         {
+            animatedSprite.ZIndex = 0;
             if (characterController.Velocity.Length() >= MinMovementVector)
             {
                 if (vec == Vector2.Down)
@@ -79,6 +80,7 @@ public class SpriteAnimationController : Node2D
                 }
                 else if (vec == Vector2.Up)
                 {
+                    animatedSprite.ZIndex = 1;
                     animatedSprite.Play("back");
                 }
                 else if (vec == Vector2.Left)
@@ -100,6 +102,7 @@ public class SpriteAnimationController : Node2D
                 }
                 else if (vec == Vector2.Up)
                 {
+                    animatedSprite.ZIndex = 1;
                     animatedSprite.Play("back_idle");
                 }
                 else if (vec == Vector2.Left)
