@@ -98,7 +98,7 @@ position = Vector2( 240, 896 )
 shape = SubResource( 1 )
 
 [node name="GameManager" parent="." instance=ExtResource( 4 )]
-scale = Vector2( 0.1, 0.1 )
+GameMusicNodepath = NodePath("../MusicPlayer")
 
 [node name="AmmoSpawner" type="Node2D" parent="."]
 script = ExtResource( 3 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/GunNode.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Objects/DashGhost.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Assets/ground_shadow.png" type="Texture" id=14]
 [ext_resource path="res://General Nodes/UpgradeSystem.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Punch/Wav/Punch__006.wav" type="AudioStream" id=16]
 
 [sub_resource type="CapsuleShape2D" id=76]
 radius = 32.0
@@ -425,6 +426,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 0, -40 ), Vector2( 1.09139e-11, -16 ) ]
 }
+tracks/2/type = "audio"
+tracks/2/path = NodePath("DeathSound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 16 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
 [sub_resource type="Animation" id=42]
 resource_name = "get_hurt"
@@ -483,7 +498,7 @@ position = Vector2( 0, -40 )
 rotation = 3.14159
 scale = Vector2( 5, -5 )
 frames = SubResource( 60 )
-animation = "front_idle"
+animation = "death"
 
 [node name="SpriteShadow" type="Sprite" parent="SpriteParent"]
 visible = false
@@ -551,7 +566,7 @@ energy = 0.5
 [node name="PlayerCamera" parent="." instance=ExtResource( 10 )]
 visible = false
 position = Vector2( 0, -0.519893 )
-zoom = Vector2( 1.5, 1.5 )
+zoom = Vector2( 1.8, 1.8 )
 
 [node name="HealthSystem" parent="." instance=ExtResource( 11 )]
 position = Vector2( 0, -0.519893 )

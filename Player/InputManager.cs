@@ -7,15 +7,13 @@ public class InputManager : Node2D
     public Vector2 MousePos {get; private set;} = Vector2.Zero;
     public event Action<Vector2> OnAttack;
     public event Action OnMelee,OnDash ,OnPause ,GodModeActivated , ContinueScene;
+  
 
     public override void _EnterTree()
     {
         StaticRefs.inputManager = this;
     }
-    public override void _Ready()
-    {
 
-    }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)

@@ -24,19 +24,23 @@ public class SpriteAnimationController : Node2D
     {
         var angle = 0f;
         if (IsPlayer)
+        {
             angle = (StaticRefs.inputManager.MousePos - StaticRefs.CurrentPlayer.GlobalPosition).Angle() * 180 / Mathf.Pi;
+            GD.Print(angle);
+        }
         else
             angle = characterController.Velocity.Angle() * 180 / Mathf.Pi;
+
         Vector2 newDir;
         if (angle >= -45 && angle < 45)
             newDir = Vector2.Right;
-        else if (angle >= 45 && angle < 135)
+        else if (angle >= 45 && angle < 135 )
             newDir = Vector2.Down;
-        else if (angle >= 135 && angle < 225 || angle >= -180 && angle < -90)
+        else if (angle >= 135 && angle < 225 || angle >= -180 && angle < -135)
             newDir = Vector2.Left;
         else
             newDir = Vector2.Up;
-        if (lastDir != newDir || (IsPlayer && Mathf.Abs(characterController.Velocity.Length()  - LastPlayerSpeed) > MinMovementVector))
+        if (lastDir != newDir || (IsPlayer && Mathf.Abs(characterController.Velocity.Length() - LastPlayerSpeed) > MinMovementVector))
         {
             lastChangeTime += delta;
             if (lastChangeTime >= TimeToChangeAnimationInterval)

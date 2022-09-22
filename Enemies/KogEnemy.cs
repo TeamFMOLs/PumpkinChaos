@@ -44,8 +44,6 @@ public class KogEnemy : BasicEnemy
         blt.Damage = KogShotDamage;
         blt.Target = pos;
         StaticRefs.CurrentLevel.AddChild(blt);
-
-        var vec = (pos * Vector2.Up).Normalized();
         blt.GlobalPosition = pos + Vector2.Up * 400;
         blt.Velocity = (ProjectileSpeed) * Vector2.Down;
 

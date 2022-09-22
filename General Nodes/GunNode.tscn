@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Weapon/Weapon.cs" type="Script" id=1]
 [ext_resource path="res://Assets/PNG/gun_modifided_1.png" type="Texture" id=2]
 [ext_resource path="res://General Nodes/LeafBullet.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Weapon/gun.png" type="Texture" id=4]
 [ext_resource path="res://Objects/Retro Explosion.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Sounds/Shot.wav" type="AudioStream" id=6]
 [ext_resource path="res://General Nodes/PlayerMelee.cs" type="Script" id=7]
@@ -182,9 +181,10 @@ texture = ExtResource( 2 )
 
 [node name="Sprite2" type="Sprite" parent="GunParent"]
 unique_name_in_owner = true
-position = Vector2( 40, 0.52 )
-scale = Vector2( 0.5, 0.4 )
-texture = ExtResource( 4 )
+position = Vector2( 16, 0.519895 )
+rotation = 0.671975
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="GunParent/Sprite2"]
 collision_layer = 5

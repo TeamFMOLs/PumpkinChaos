@@ -34,7 +34,7 @@ public class PlayerUi : CanvasLayer
     }
 
     public void UpdateLevel(int l) {
-        GetNode<Label>("Level/TextureRect/TextureRect2/Label").Text =l.ToString();
+        GetNode<Label>("Label").Text =l.ToString();
     }
 
 }

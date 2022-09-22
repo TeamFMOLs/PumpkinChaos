@@ -66,6 +66,7 @@ position = Vector2( 376, 304 )
 
 [node name="GameOver" type="Node2D" parent="CanvasLayer/UI"]
 visible = false
+position = Vector2( 16, -24 )
 
 [node name="GameOverLabel" type="Label" parent="CanvasLayer/UI/GameOver"]
 margin_left = -144.0
@@ -91,6 +92,7 @@ anims/RESET = SubResource( 6 )
 
 [node name="GameIsPaused" type="Node2D" parent="CanvasLayer/UI"]
 visible = false
+position = Vector2( 16, -24 )
 
 [node name="GameIsPausedLabel" type="Label" parent="CanvasLayer/UI/GameIsPaused"]
 margin_left = -216.0
