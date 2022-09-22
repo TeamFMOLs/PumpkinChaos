@@ -75,7 +75,7 @@ script = ExtResource( 11 )
 modulate = Color( 0.827451, 1, 0.305882, 1 )
 scale = Vector2( 1.47749, 1.47749 )
 frames = SubResource( 1 )
-frame = 5
+frame = 2
 playing = true
 
 [node name="Particles2D" type="Particles2D" parent="."]

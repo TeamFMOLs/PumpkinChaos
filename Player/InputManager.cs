@@ -6,7 +6,7 @@ public class InputManager : Node2D
     public Vector2 MoventDir {get; private set;} = Vector2.Zero;
     public Vector2 MousePos {get; private set;} = Vector2.Zero;
     public event Action<Vector2> OnAttack;
-    public event Action OnMelee,OnDash ,OnPause ,GodModeActivated , ContinueScene;
+    public event Action OnMelee,OnDash ,OnPause ,GodModeActivated , ContinueScene , OnStopMusic;
   
 
     public override void _EnterTree()
@@ -22,7 +22,7 @@ public class InputManager : Node2D
         var up = Vector2.Up * (Input.GetActionStrength("move_up") - Input.GetActionStrength("move_down"));
         MoventDir = left + up;
         MousePos = GetGlobalMousePosition();
-        if (Input.IsActionPressed("attack"))
+        if (Input.IsActionPressed("attack") && !GetTree().Paused)
         {
             OnAttack?.Invoke(MousePos);
         }
@@ -41,7 +41,10 @@ public class InputManager : Node2D
         {
             GodModeActivated?.Invoke();
         }
-
+        if (Input.IsActionJustPressed("stop_music"))
+        {   
+            OnStopMusic?.Invoke();
+        }
         if(Input.IsActionJustPressed("scene_continue")) {
             ContinueScene?.Invoke();
         }

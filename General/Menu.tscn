@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Fonts/mincecraftFontData.tres" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/dfa6770603ecf5afb82ee7e880375bc68c681ee5.png" type="Texture" id=2]
@@ -305,7 +305,6 @@ position = Vector2( 311, 162 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 25 )
 animation = "Side"
-frame = 3
 playing = true
 
 [node name="Light2D" type="Light2D" parent="Ground2/Enemy1"]
@@ -320,7 +319,7 @@ position = Vector2( 131, 159 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 25 )
 animation = "Side"
-frame = 2
+frame = 3
 playing = true
 flip_h = true
 
@@ -336,7 +335,7 @@ position = Vector2( 196.5, 81.5 )
 scale = Vector2( 0.347432, 0.351356 )
 frames = SubResource( 25 )
 animation = "front"
-frame = 2
+frame = 1
 playing = true
 
 [node name="Light2D3" type="Light2D" parent="Ground2/Enemy2"]

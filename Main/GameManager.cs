@@ -5,11 +5,11 @@ using System.Collections.Generic;
 public class GameManager : Node2D
 {
     [Export]
-    private NodePath GameOverNodePath, GamePauseNodePath , GameMusicNodepath;
-    
+    private NodePath GameOverNodePath, GamePauseNodePath, GameMusicNodepath;
+
     private Node2D GameOverNode, GamePausedNode;
-    private bool _isPlayerDead = false, _isGamePaused = false;
-    
+    private bool _isPlayerDead = false, _isGamePaused = false, musicStopped = false;
+
 
     public override void _EnterTree()
     {
@@ -22,6 +22,7 @@ public class GameManager : Node2D
         GamePausedNode = GetNode<Node2D>("CanvasLayer/UI/GameIsPaused");
         StaticRefs.inputManager.OnPause += PauseGame;
         StaticRefs.inputManager.ContinueScene += ContinueScene;
+        StaticRefs.inputManager.OnStopMusic += StopMusic;
     }
 
     public void OnPlayerDie()
@@ -31,6 +32,15 @@ public class GameManager : Node2D
         StaticRefs.EnemySpawner.StopAll();
         GetNode<AudioStreamPlayer>(GameMusicNodepath).Stop();
         _isPlayerDead = true;
+    }
+
+    private void StopMusic()
+    {
+        if (musicStopped)
+            GetNode<AudioStreamPlayer>(GameMusicNodepath).Play();
+        else
+            GetNode<AudioStreamPlayer>(GameMusicNodepath).Stop();
+        musicStopped = !musicStopped;
     }
 
     private void ContinueScene()

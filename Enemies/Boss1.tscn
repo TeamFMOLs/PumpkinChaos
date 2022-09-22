@@ -68,11 +68,8 @@ scale = Vector2( 2, 2 )
 [node name="HealthSystem" parent="." index="3"]
 MaxHealth = 800
 
-[node name="Deathparticles" parent="." index="6"]
+[node name="Deathparticles" parent="." index="8"]
 scale = Vector2( 1.5, 1.5 )
-
-[node name="SoundPlayer" parent="." index="8"]
-stream = ExtResource( 3 )
 
 [node name="Control" type="Control" parent="." index="10"]
 margin_right = 40.0
@@ -87,3 +84,6 @@ custom_styles/fg = SubResource( 4 )
 custom_styles/bg = SubResource( 5 )
 value = 10.0
 percent_visible = false
+
+[node name="SoundPlayer" parent="." index="11"]
+stream = ExtResource( 3 )

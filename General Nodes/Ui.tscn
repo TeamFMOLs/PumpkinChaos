@@ -86,6 +86,15 @@ outline_size = 1
 outline_color = Color( 0.196078, 0.137255, 0.137255, 1 )
 font_data = SubResource( 53 )
 
+[sub_resource type="DynamicFontData" id=51]
+font_path = "res://Fonts/Minecraft.ttf"
+
+[sub_resource type="DynamicFont" id=52]
+size = 44
+outline_size = 2
+outline_color = Color( 0.639216, 0.141176, 0.443137, 1 )
+font_data = SubResource( 51 )
+
 [sub_resource type="StyleBoxFlat" id=62]
 bg_color = Color( 0.345098, 0.337255, 0.337255, 1 )
 
@@ -237,15 +246,6 @@ tracks/3/keys = {
 "values": [ Color( 0.196078, 0.447059, 0.882353, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="DynamicFontData" id=77]
-font_path = "res://Fonts/Minecraft.ttf"
-
-[sub_resource type="DynamicFont" id=78]
-size = 22
-outline_size = 2
-outline_color = Color( 0.0509804, 0.0509804, 0.0509804, 1 )
-font_data = SubResource( 77 )
-
 [node name="Ui" type="CanvasLayer"]
 script = ExtResource( 2 )
 
@@ -271,7 +271,7 @@ margin_top = 24.0
 margin_right = 150.0
 margin_bottom = 56.0
 custom_fonts/font = SubResource( 44 )
-text = "SCORE:"
+text = "SCORE"
 
 [node name="ScoreLabel" type="Label" parent="Score"]
 margin_top = 40.0
@@ -326,9 +326,9 @@ texture = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="Level/TextureRect/TextureRect2"]
 margin_left = -35.0765
-margin_top = -41.4539
+margin_top = -44.6425
 margin_right = 164.924
-margin_bottom = 180.546
+margin_bottom = 187.357
 custom_fonts/font = SubResource( 52 )
 text = "
 
@@ -373,16 +373,8 @@ position = Vector2( 26.0005, 23.9996 )
 rotation = 1.5708
 scale = Vector2( 0.583479, 0.583479 )
 frames = SubResource( 76 )
-frame = 6
+frame = 5
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DashCd"]
 anims/DashReady = SubResource( 61 )
-
-[node name="Label" type="Label" parent="."]
-margin_left = 237.0
-margin_top = 428.0
-margin_right = 277.0
-margin_bottom = 460.0
-custom_fonts/font = SubResource( 78 )
-text = "0"
