@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/waveform3.png-45acf22252d65a85f6fcd90a2a5cef83.stex"
+path="res://.import/Third Enemy.png-a2430c085781cc901615291d9543a25f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Effect/waveform/frames/waveform3.png"
-dest_files=[ "res://.import/waveform3.png-45acf22252d65a85f6fcd90a2a5cef83.stex" ]
+source_file="res://Enemies/Third Enemy.png"
+dest_files=[ "res://.import/Third Enemy.png-a2430c085781cc901615291d9543a25f.stex" ]
 
 [params]
 

@@ -116,6 +116,7 @@ position = Vector2( 911, 402 )
 script = ExtResource( 6 )
 FirstEnemy = ExtResource( 2 )
 SecondEnemy = ExtResource( 9 )
+ThirdEnemy = ExtResource( 10 )
 FirstBoss = ExtResource( 8 )
 SecondEnemyChance = 0.3
 MinMaxTimeBetweenWaves = Vector2( 35, 50 )

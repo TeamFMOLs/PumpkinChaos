@@ -5,9 +5,9 @@ using System.Collections.Generic;
 public class EnemySpawner : Node2D
 {
     [Export]
-    private PackedScene FirstEnemy,SecondEnemy, FirstBoss;
+    private PackedScene FirstEnemy,SecondEnemy,ThirdEnemy, FirstBoss;
     [Export]
-    private float EnemyHealthScale = 0.2f, EnemyDamageScale = 0.2f, EnemyNumberIncreasePerWave = 0.5f , SecondEnemyChance = 0.33f;
+    private float EnemyHealthScale = 0.2f, EnemyDamageScale = 0.2f, EnemyNumberIncreasePerWave = 0.5f , SecondEnemyChance = 0.33f,ThirdEnemyChance=0.22f;
     [Export]
     private int StartingWaveNumber = 3;
     [Export]
@@ -95,9 +95,11 @@ public class EnemySpawner : Node2D
         for (int i = 0; i < number; i++)
         {
             PackedScene enemyToSpawn;
-            if (rnd.RandfRange(0f,1f) <= SecondEnemyChance)
+            if (rnd.RandfRange(0f,1f) <= ThirdEnemyChance)
             {
-                enemyToSpawn = SecondEnemy;   
+                enemyToSpawn = ThirdEnemy;   
+            } else if (rnd.RandfRange(0f,1f) <= SecondEnemyChance) {
+                enemyToSpawn = SecondEnemy;
             } else {
                 enemyToSpawn = FirstEnemy;
             }
