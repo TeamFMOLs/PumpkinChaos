@@ -122,7 +122,6 @@ public class Player : CharacterController, IDestructible
         DashTimer.Start();
         DashGhostTimer.Start();
         DashCdTimer.Start();
-        GD.Print("Iam SPEEEED!:Dash");
         speed = dashSpeed;
         _Dashing = true;
         _CanDash = false;
@@ -132,13 +131,11 @@ public class Player : CharacterController, IDestructible
     {
         _CanDash = true;
         UIanimationPlayer.Play("DashReady");
-        GD.Print("You Can Dash Again ******!:DashReEnable");
     }
     public void StopDash()
     {
         _Dashing = false;
         DashGhostTimer.Stop();
-        GD.Print("Iam SPEEEED Demorgen-ed!:DashStopeeee");
         speed = speedCopy;
 
     }
@@ -166,9 +163,6 @@ public class Player : CharacterController, IDestructible
         {
             animationPlayer.Play("get_hurt");
             StaticRefs.CurrentCamera.ShakeForSeconds(0.35f, 10f);
-            GD.Print("sdad");
-            GD.Print(healthSystem.Health);
-            GD.Print(healthSystem.MaxHealth);
             StaticRefs.PlayerUi.UpdateHp(healthSystem);
         }
     }
@@ -178,8 +172,10 @@ public class Player : CharacterController, IDestructible
         Score += amount;
         StaticRefs.PlayerUi.UpdateScore(Score);
     }
-    public void GiveHp(int amount)
+    public void GiveHp()
     {
+        float A=(float)(healthSystem.MaxHealth)*0.15f;
+        int amount=(int)A;
         if(healthSystem.Health+amount>=healthSystem.MaxHealth)
             healthSystem.Health = healthSystem.MaxHealth;
         else
@@ -189,6 +185,7 @@ public class Player : CharacterController, IDestructible
     public void GetPushed(Vector2 dir, int damage)
     {
         healthSystem.TakeDamage(damage);
+        GD.Print(dir);
         healthSystem.IsShielded = true;
         MovementTween = CreateTween();
         var pos = GlobalPosition + dir.Normalized() * PushDistance;

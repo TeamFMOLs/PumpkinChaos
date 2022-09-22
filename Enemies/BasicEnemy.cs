@@ -141,7 +141,7 @@ public class BasicEnemy : CharacterController, IDestructible, IScoreObject
             var index = rnd.RandiRange(0, PrizesToDrop.Length - 1);
             var pos = Vector2.Right * rnd.RandfRange(-64, 64) + Vector2.Up * rnd.RandfRange(-64, 64) + GlobalPosition;
             var prize = PrizesToDrop[index].Instance<Loot>();
-            if (index == 2 && rnd.RandfRange(0f, 1.0f) <= 0.2f)
+            if (index == 2 && rnd.RandfRange(0f, 1.0f) <= 0.05f)
             {
                 prize = PrizesToDrop[2].Instance<Loot>();
             }
