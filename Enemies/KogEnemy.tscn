@@ -224,6 +224,7 @@ material = SubResource( 40 )
 position = Vector2( 0, 0 )
 scale = Vector2( 1.4, 1.2 )
 frames = SubResource( 59 )
+frame = 0
 
 [node name="AttackTimer" parent="." index="4"]
 wait_time = 3.0

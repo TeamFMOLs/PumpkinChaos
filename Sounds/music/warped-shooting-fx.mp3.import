@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/warped-shooting-fx.mp3-e40dd8020b04f3e220a0681d9dcb7a3f.mp3str"
+
+[deps]
+
+source_file="res://Sounds/music/warped-shooting-fx.mp3"
+dest_files=[ "res://.import/warped-shooting-fx.mp3-e40dd8020b04f3e220a0681d9dcb7a3f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

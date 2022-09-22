@@ -8,7 +8,6 @@ public class Heart : Loot
     // private string b = "text";
 
     // Called when the node enters the scene tree for the first time.
-    private int HpAmount=30;
     protected override void OnContactWithPlayer(PhysicsBody2D other) {
         base.OnContactWithPlayer(other);
         if (other is Player)
@@ -17,6 +16,6 @@ public class Heart : Loot
         }
     }
     public void GiveHp() {
-        StaticRefs.CurrentPlayer.GiveHp(HpAmount);
+        StaticRefs.CurrentPlayer.GiveHp();
     }
 }

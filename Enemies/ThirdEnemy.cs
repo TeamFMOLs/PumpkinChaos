@@ -54,8 +54,8 @@ public class ThirdEnemy : BasicEnemy
         var choice = rnd.RandfRange(0, 1);
         if (choice <= SpreadAttackProb)
             SpreadAttack(StaticRefs.CurrentPlayer.GlobalPosition, SpreadAttackNumber);
-        //else
-            //AttackPos(StaticRefs.CurrentPlayer.GlobalPosition);
+        else
+            AttackPos(StaticRefs.CurrentPlayer.GlobalPosition);
         _attackTimer.Start(rnd.RandfRange(MinMaxAttackInterval.x, MinMaxAttackInterval.y));
 
     }

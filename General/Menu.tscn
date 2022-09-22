@@ -268,7 +268,7 @@ margin_bottom = 171.0
 [node name="Start" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
 margin_right = 316.0
 margin_bottom = 31.0
-rect_scale = Vector2( 0.95839, 0.95839 )
+rect_scale = Vector2( 0.962832, 0.962832 )
 custom_fonts/font = SubResource( 1 )
 custom_styles/hover = SubResource( 2 )
 custom_styles/normal = SubResource( 4 )
@@ -296,7 +296,7 @@ position = Vector2( 124, 36 )
 scale = Vector2( 0.668313, 0.340787 )
 texture = ExtResource( 2 )
 color = Color( 0.803922, 0.694118, 0.0901961, 1 )
-energy = 1.5572
+energy = 1.52899
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="CanvasLayer/Control"]
 modulate = Color( 0.992157, 0.729412, 0.933333, 1 )
@@ -338,7 +338,7 @@ animation = "New Anim 1"
 position = Vector2( 572, 214 )
 frames = SubResource( 25 )
 animation = "Side"
-frame = 1
+frame = 3
 playing = true
 
 [node name="Light2D" type="Light2D" parent="CanvasLayer/Control/Enemy1"]
@@ -352,6 +352,7 @@ energy = 1.2
 position = Vector2( 212, 208 )
 frames = SubResource( 25 )
 animation = "Side"
+frame = 2
 playing = true
 flip_h = true
 

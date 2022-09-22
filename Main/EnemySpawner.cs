@@ -40,6 +40,7 @@ public class EnemySpawner : Node2D
     private BasicEnemy SpawnEnemy(PackedScene enemy, Vector2 pos)
     {
         var newEnemy = enemy.Instance<BasicEnemy>();
+        newEnemy.GlobalPosition = pos;
         StaticRefs.CurrentLevel.AddChild(newEnemy);
         newEnemy.GlobalPosition = pos;
         enemies.Add(newEnemy);
