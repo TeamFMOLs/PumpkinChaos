@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/BasicEnemy.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Enemies/Boss1.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Enemies/KogEnemy.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Sounds/music/masked yoshis theme remastered.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Enemies/ThirdEnemy.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1084, 21 )
@@ -116,7 +117,7 @@ position = Vector2( 911, 402 )
 script = ExtResource( 6 )
 FirstEnemy = ExtResource( 2 )
 SecondEnemy = ExtResource( 9 )
-ThirdEnemy = ExtResource( 10 )
+ThirdEnemy = ExtResource( 11 )
 FirstBoss = ExtResource( 8 )
 SecondEnemyChance = 0.3
 MinMaxTimeBetweenWaves = Vector2( 35, 50 )

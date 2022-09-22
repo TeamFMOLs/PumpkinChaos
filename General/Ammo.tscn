@@ -6,7 +6,7 @@
 [ext_resource path="res://Assets/dfa6770603ecf5afb82ee7e880375bc68c681ee5.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 24.9999
+radius = 15.9999
 height = 26.3098
 
 [sub_resource type="Animation" id=2]
@@ -96,4 +96,4 @@ scale = Vector2( -7.48664, -5.0712 )
 texture = ExtResource( 4 )
 texture_scale = 0.01
 color = Color( 1, 0.992157, 0.980392, 1 )
-energy = 1.19
+energy = 0.6

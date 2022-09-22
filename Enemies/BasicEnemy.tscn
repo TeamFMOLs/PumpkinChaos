@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Enemies/BasicEnemy.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/Navigator.tscn" type="PackedScene" id=2]
@@ -13,7 +13,7 @@
 [ext_resource path="res://General Nodes/PumpDrink.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/dfa6770603ecf5afb82ee7e880375bc68c681ee5.png" type="Texture" id=12]
 [ext_resource path="res://Assets/ground_shadow.png" type="Texture" id=13]
-[ext_resource path="res://General Nodes/Heart.tscn" type="PackedScene" id=13]
+[ext_resource path="res://General Nodes/Heart.tscn" type="PackedScene" id=14]
 
 [sub_resource type="CircleShape2D" id=34]
 radius = 38.0
@@ -250,7 +250,8 @@ scale = 7.0
 scale_random = 0.81
 color_ramp = SubResource( 61 )
 
-[node name="BasicEnemy2" type="KinematicBody2D"]
+[node name="BasicEnemy" type="KinematicBody2D"]
+position = Vector2( 27, -108 )
 collision_layer = 8
 collision_mask = 15
 script = ExtResource( 1 )
@@ -260,7 +261,7 @@ MinMaxAttackInterval = Vector2( 2.5, 15 )
 SpreadAttackProb = 0.333
 EnemyProjectile = ExtResource( 5 )
 ProjectileSpeed = 320.0
-PrizesToDrop = [ ExtResource( 7 ), ExtResource( 11 ), ExtResource( 13 ) ]
+PrizesToDrop = [ ExtResource( 7 ), ExtResource( 11 ), ExtResource( 14 ) ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 34 )

@@ -56,7 +56,8 @@ public class Player : CharacterController, IDestructible
         healthSystem = GetNode<HealthSystem>("HealthSystem");
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         UIanimationPlayer = StaticRefs.PlayerUi.GetNode<AnimationPlayer>("DashCd/AnimationPlayer");
-        mySprite = GetNode<Sprite>("CollisionShape2D/SpriteParent/Sprite2") as Sprite;
+        mySprite = GetNode<Sprite>("SpriteParent/SpriteShadow") ;
+        GetNode<SpriteAnimationController>("SpriteAnimationController").characterController = this;
 
         _inputHandler.OnAttack += Attack;
         _inputHandler.OnMelee += Melee;
@@ -245,8 +246,6 @@ public class Player : CharacterController, IDestructible
         _weapon.CritChance += p;
     }
 
-    public void PickUpHealth() {
-        healthSystem.Health +=(int) (0.2f *(float) healthSystem.Health);
-    }
+ 
 
 }

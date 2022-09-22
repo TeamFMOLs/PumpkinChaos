@@ -12,6 +12,8 @@ config_version=4
 
 config/name="Pumpkineer"
 run/main_scene="res://Main/Main.tscn"
+boot_splash/show_image=false
+boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 
 [display]
 
@@ -149,6 +151,4 @@ god_mode={
 
 [rendering]
 
-gles3/shaders/shader_compilation_mode=2
-gles3/shaders/shader_compilation_mode.web=2
 environment/default_environment="res://default_env.tres"

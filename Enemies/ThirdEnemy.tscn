@@ -241,11 +241,11 @@ scale = Vector2( 0.794271, 0.794271 )
 [node name="SpriteParent" parent="." index="1"]
 material = SubResource( 60 )
 
-[node name="EnemySprite" parent="SpriteParent" index="0"]
+[node name="EnemySprite" parent="SpriteParent" index="1"]
 position = Vector2( 5, -10 )
 frames = SubResource( 59 )
 animation = "back"
-frame = 12
+frame = 7
 
 [node name="Light2D2" type="Light2D" parent="." index="11"]
 position = Vector2( -21.5381, -4.43431 )

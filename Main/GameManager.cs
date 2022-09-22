@@ -55,12 +55,12 @@ public class GameManager : Node2D
 
     public override void _Notification(int what)
     {
-        if (what == MainLoop.NotificationWmQuitRequest)
+        /* if (what == MainLoop.NotificationWmQuitRequest)
         {
             OS.ShellOpen("https://docs.google.com/forms/d/e/1FAIpQLScQ_wkXp0oNaqo6iGzrKTPb-ihzMIMu1u8D3lU-VTwzxwgfTw/viewform");
             GetTree().Quit(); // default behavior
         }
-
+ */
     }
 
 }

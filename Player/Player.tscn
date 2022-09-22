@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/GunNode.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Punch/Wav/Punch__008.wav" type="AudioStream" id=4]
 [ext_resource path="res://General Nodes/Ui.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Player/spritesheet.png" type="Texture" id=6]
+[ext_resource path="res://Enemies/SpriteAnimationController.cs" type="Script" id=7]
 [ext_resource path="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Ouch/Ogg/Ouch__001.ogg" type="AudioStream" id=8]
 [ext_resource path="res://General Nodes/PlayerCamera.tscn" type="PackedScene" id=10]
 [ext_resource path="res://General Nodes/HealthSystem.tscn" type="PackedScene" id=11]
@@ -13,8 +14,9 @@
 [ext_resource path="res://Objects/DashGhost.tscn" type="PackedScene" id=13]
 [ext_resource path="res://General Nodes/UpgradeSystem.tscn" type="PackedScene" id=15]
 
-[sub_resource type="CircleShape2D" id=26]
-radius = 24.0
+[sub_resource type="CapsuleShape2D" id=76]
+radius = 32.0
+height = 64.0
 
 [sub_resource type="Shader" id=40]
 code = "shader_type canvas_item;
@@ -35,15 +37,96 @@ void fragment(){
 shader = SubResource( 40 )
 shader_param/white_progress = 0.0
 
-[sub_resource type="AtlasTexture" id=59]
+[sub_resource type="AtlasTexture" id=61]
 atlas = ExtResource( 6 )
-region = Rect2( 96, 111, 48, 37 )
+region = Rect2( 144, 111, 48, 37 )
+
+[sub_resource type="AtlasTexture" id=62]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 148, 48, 37 )
+
+[sub_resource type="AtlasTexture" id=63]
+atlas = ExtResource( 6 )
+region = Rect2( 48, 148, 48, 37 )
+
+[sub_resource type="AtlasTexture" id=64]
+atlas = ExtResource( 6 )
+region = Rect2( 96, 148, 48, 37 )
+
+[sub_resource type="AtlasTexture" id=65]
+atlas = ExtResource( 6 )
+region = Rect2( 144, 148, 48, 37 )
+
+[sub_resource type="AtlasTexture" id=66]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 185, 48, 37 )
+
+[sub_resource type="AtlasTexture" id=73]
+atlas = ExtResource( 6 )
+region = Rect2( 48, 148, 48, 37 )
+
+[sub_resource type="AtlasTexture" id=67]
+atlas = ExtResource( 6 )
+region = Rect2( 48, 74, 48, 37 )
+
+[sub_resource type="AtlasTexture" id=68]
+atlas = ExtResource( 6 )
+region = Rect2( 96, 74, 48, 37 )
+
+[sub_resource type="AtlasTexture" id=69]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 111, 48, 37 )
+
+[sub_resource type="AtlasTexture" id=70]
+atlas = ExtResource( 6 )
+region = Rect2( 48, 111, 48, 37 )
+
+[sub_resource type="AtlasTexture" id=74]
+atlas = ExtResource( 6 )
+region = Rect2( 144, 37, 48, 37 )
+
+[sub_resource type="AtlasTexture" id=71]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 37, 48, 37 )
+
+[sub_resource type="AtlasTexture" id=72]
+atlas = ExtResource( 6 )
+region = Rect2( 48, 37, 48, 37 )
+
+[sub_resource type="AtlasTexture" id=75]
+atlas = ExtResource( 6 )
+region = Rect2( 144, 0, 48, 37 )
 
 [sub_resource type="SpriteFrames" id=60]
 animations = [ {
-"frames": [ SubResource( 59 ) ],
+"frames": [ SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ) ],
 "loop": true,
-"name": "default",
+"name": "back",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 73 ) ],
+"loop": true,
+"name": "back_idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ) ],
+"loop": true,
+"name": "front",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 74 ) ],
+"loop": true,
+"name": "front_idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 71 ), SubResource( 72 ) ],
+"loop": true,
+"name": "side",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 75 ) ],
+"loop": true,
+"name": "side_idle",
 "speed": 5.0
 } ]
 
@@ -101,7 +184,7 @@ anim_speed_curve = SubResource( 57 )
 resource_name = "Dash"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("CollisionShape2D/SpriteParent/DustTrail:emitting")
+tracks/0/path = NodePath("SpriteParent/DustTrail:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -113,7 +196,7 @@ tracks/0/keys = {
 "values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D/SpriteParent/DustCloud:emitting")
+tracks/1/path = NodePath("SpriteParent/DustCloud:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -159,7 +242,7 @@ loop = true
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
+tracks/0/path = NodePath(".:collision_mask")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -168,10 +251,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0 ]
+"values": [ 25 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:collision_mask")
+tracks/1/path = NodePath(".:collision_layer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -180,10 +263,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 25 ]
+"values": [ 2 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath(".:collision_layer")
+tracks/2/path = NodePath("SpriteParent:material:shader_param/white_progress")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -192,14 +275,14 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 2 ]
+"values": [ 0.0 ]
 }
 
 [sub_resource type="Animation" id=42]
 resource_name = "get_hurt"
 length = 0.15
 tracks/0/type = "value"
-tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
+tracks/0/path = NodePath("SpriteParent:material:shader_param/white_progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -235,21 +318,32 @@ WeaponNodePath = NodePath("GunNode")
 MaxHealth = 300
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 26 )
+position = Vector2( 0, -37 )
+shape = SubResource( 76 )
 
-[node name="SpriteParent" type="Node2D" parent="CollisionShape2D"]
+[node name="SpriteParent" type="Node2D" parent="."]
 material = SubResource( 41 )
 
-[node name="Sprite2" type="Sprite" parent="CollisionShape2D/SpriteParent"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="SpriteParent"]
 use_parent_material = true
-flip_h = true
+position = Vector2( 0, -40 )
+rotation = 3.14159
+scale = Vector2( 5, -5 )
+frames = SubResource( 60 )
+animation = "front_idle"
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="CollisionShape2D/SpriteParent/Sprite2"]
+[node name="SpriteShadow" type="Sprite" parent="SpriteParent"]
+visible = false
+use_parent_material = true
 position = Vector2( 0, -40 )
 scale = Vector2( 5, 5 )
-frames = SubResource( 60 )
+texture = ExtResource( 6 )
+flip_h = true
+hframes = 4
+vframes = 6
+frame = 7
 
-[node name="DustTrail" type="Particles2D" parent="CollisionShape2D/SpriteParent"]
+[node name="DustTrail" type="Particles2D" parent="SpriteParent"]
 material = SubResource( 51 )
 position = Vector2( -42, 36 )
 emitting = false
@@ -261,7 +355,7 @@ local_coords = false
 process_material = SubResource( 54 )
 texture = ExtResource( 12 )
 
-[node name="DustCloud" type="Particles2D" parent="CollisionShape2D/SpriteParent"]
+[node name="DustCloud" type="Particles2D" parent="SpriteParent"]
 material = SubResource( 51 )
 position = Vector2( -56, -2 )
 emitting = false
@@ -320,3 +414,9 @@ one_shot = true
 one_shot = true
 
 [node name="DashGhostTimer" type="Timer" parent="."]
+
+[node name="SpriteAnimationController" type="Node2D" parent="."]
+script = ExtResource( 7 )
+IsPlayer = true
+AnimatedSpriteNodePath = NodePath("../SpriteParent/AnimatedSprite")
+TimeToChangeAnimationInterval = 0.0
