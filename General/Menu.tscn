@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Fonts/mincecraftFontData.tres" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/dfa6770603ecf5afb82ee7e880375bc68c681ee5.png" type="Texture" id=2]
@@ -13,7 +13,16 @@ size = 30
 font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxLine" id=2]
-color = Color( 0.00784314, 0.00784314, 0.00784314, 1 )
+color = Color( 0.00784314, 0.00784314, 0.00784314, 0 )
+
+[sub_resource type="StyleBoxFlat" id=27]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=29]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
@@ -259,9 +268,9 @@ Level = ExtResource( 7 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="CanvasLayer"]
-margin_left = 50.0
+margin_left = 107.868
 margin_top = 110.0
-margin_right = 550.0
+margin_right = 607.868
 margin_bottom = 310.0
 
 [node name="Ground2" type="TileMap" parent="CanvasLayer/Control"]
@@ -282,10 +291,13 @@ margin_bottom = 171.0
 [node name="Start" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
 margin_right = 316.0
 margin_bottom = 31.0
-rect_scale = Vector2( 0.962832, 0.962832 )
 custom_fonts/font = SubResource( 1 )
 custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 27 )
+custom_styles/focus = SubResource( 28 )
+custom_styles/disabled = SubResource( 29 )
 custom_styles/normal = SubResource( 4 )
+disabled = true
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/Start"]
 margin_left = -33.0
@@ -312,7 +324,7 @@ position = Vector2( 124, 36 )
 scale = Vector2( 0.668313, 0.340787 )
 texture = ExtResource( 2 )
 color = Color( 0.803922, 0.694118, 0.0901961, 1 )
-energy = 1.52899
+energy = 1.39107
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="CanvasLayer/Control"]
 modulate = Color( 0.992157, 0.729412, 0.933333, 1 )
@@ -354,7 +366,6 @@ animation = "New Anim 1"
 position = Vector2( 572, 214 )
 frames = SubResource( 25 )
 animation = "Side"
-frame = 3
 playing = true
 
 [node name="Light2D" type="Light2D" parent="CanvasLayer/Control/Enemy1"]
@@ -368,7 +379,7 @@ energy = 1.2
 position = Vector2( 212, 208 )
 frames = SubResource( 25 )
 animation = "Side"
-frame = 2
+frame = 3
 playing = true
 flip_h = true
 
@@ -384,6 +395,7 @@ position = Vector2( 343, 53 )
 scale = Vector2( 0.694865, 0.702712 )
 frames = SubResource( 25 )
 animation = "front"
+frame = 2
 playing = true
 
 [node name="Light2D3" type="Light2D" parent="CanvasLayer/Control/Enemy2"]
