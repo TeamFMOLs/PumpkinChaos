@@ -211,6 +211,7 @@ public class Player : CharacterController, IDestructible
         GetNode<SpriteAnimationController>("SpriteAnimationController").SetPhysicsProcess(false);
         StaticRefs.gameManager.OnPlayerDie();
         Weapon.Visible = false;
+        StaticRefs.CurrentCamera.ShakeForSeconds(0.6f,15);
     }
     public void IncreaseHealth(float p)
     {

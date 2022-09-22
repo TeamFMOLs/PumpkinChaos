@@ -90,7 +90,7 @@ font_data = SubResource( 53 )
 font_path = "res://Fonts/Minecraft.ttf"
 
 [sub_resource type="DynamicFont" id=52]
-size = 40
+size = 41
 outline_size = 2
 outline_color = Color( 0.639216, 0.141176, 0.443137, 1 )
 font_data = SubResource( 51 )
@@ -371,7 +371,6 @@ position = Vector2( 26.0005, 23.9996 )
 rotation = 1.5708
 scale = Vector2( 0.583479, 0.583479 )
 frames = SubResource( 76 )
-frame = 5
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DashCd"]

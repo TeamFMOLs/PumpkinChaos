@@ -81,6 +81,7 @@ public class BasicEnemy : CharacterController, IDestructible, IScoreObject
     protected virtual void OnHurt()
     {
         GetNode<AnimationPlayer>("AnimationPlayer").Play("get_hurt");
+        
     }
 
     public virtual void AttackPos(Vector2 pos)
