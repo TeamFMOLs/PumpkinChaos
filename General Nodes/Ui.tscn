@@ -324,6 +324,20 @@ margin_bottom = 146.182
 rect_scale = Vector2( 0.712728, 0.712728 )
 texture = ExtResource( 3 )
 
+[node name="Label" type="Label" parent="Level/TextureRect/TextureRect2"]
+margin_left = -35.0765
+margin_top = -41.4539
+margin_right = 164.924
+margin_bottom = 180.546
+custom_fonts/font = SubResource( 52 )
+text = "
+
+0
+
+"
+align = 1
+valign = 1
+
 [node name="DashCd" type="Control" parent="."]
 margin_left = 155.0
 margin_top = 420.0
@@ -359,7 +373,7 @@ position = Vector2( 26.0005, 23.9996 )
 rotation = 1.5708
 scale = Vector2( 0.583479, 0.583479 )
 frames = SubResource( 76 )
-frame = 4
+frame = 6
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DashCd"]

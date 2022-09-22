@@ -40,16 +40,15 @@ public class KogEnemy : BasicEnemy
     public void AttackPos()
     {
         var pos = StaticRefs.CurrentPlayer.GlobalPosition;
+        var Mark = TargetMark.Instance() as Node2D;
         var blt = EnemyProjectile.Instance() as KogBullet;
         blt.Damage = KogShotDamage;
-        blt.Target = pos;
         StaticRefs.CurrentLevel.AddChild(blt);
+        StaticRefs.CurrentLevel.AddChild(Mark);
+        blt.Target = pos;
+        Mark.GlobalPosition = pos;
         blt.GlobalPosition = pos + Vector2.Up * 400;
         blt.Velocity = (ProjectileSpeed) * Vector2.Down;
-
-        var Mark = TargetMark.Instance() as Node2D;
-        Mark.GlobalPosition = pos;
-        StaticRefs.CurrentLevel.AddChild(Mark);
         _Shooting = false;
     }
     public override void SpreadAttack(Vector2 pos, int n)
