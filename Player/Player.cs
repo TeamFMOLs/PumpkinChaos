@@ -151,6 +151,8 @@ public class Player : CharacterController, IDestructible
         DashGhost.Hframes = mySprite.Hframes;
         DashGhost.Frame = mySprite.Frame;
         DashGhost.FlipH = mySprite.FlipH;
+        DashGhost.Scale = mySprite.Scale ;
+        GetTree().Root.AddChild(DashGhost);
         StaticRefs.CurrentLevel.AddChild(DashGhost);
     }
     public void AddAmmo(Ammo it)

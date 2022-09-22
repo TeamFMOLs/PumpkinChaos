@@ -275,7 +275,7 @@ anim_speed_curve = SubResource( 57 )
 resource_name = "Dash"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("SpriteParent/DustTrail:emitting")
+tracks/0/path = NodePath("CollisionShape2D/SpriteParent/DustTrail:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -287,7 +287,7 @@ tracks/0/keys = {
 "values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("SpriteParent/DustCloud:emitting")
+tracks/1/path = NodePath("CollisionShape2D/SpriteParent/DustCloud:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -330,7 +330,7 @@ loop = true
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:collision_mask")
+tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -339,10 +339,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 25 ]
+"values": [ 0.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:collision_layer")
+tracks/1/path = NodePath(".:collision_mask")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -351,10 +351,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 2 ]
+"values": [ 25 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("SpriteParent:material:shader_param/white_progress")
+tracks/2/path = NodePath(".:collision_layer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -363,7 +363,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0 ]
+"values": [ 2 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("SpriteParent/AnimatedSprite:position")
@@ -410,7 +410,7 @@ tracks/1/keys = {
 resource_name = "get_hurt"
 length = 0.15
 tracks/0/type = "value"
-tracks/0/path = NodePath("SpriteParent:material:shader_param/white_progress")
+tracks/0/path = NodePath("CollisionShape2D/SpriteParent:material:shader_param/white_progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
