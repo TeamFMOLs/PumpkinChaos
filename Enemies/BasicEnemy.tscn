@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Enemies/BasicEnemy.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/Navigator.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Sounds/switch_01.ogg" type="AudioStream" id=10]
 [ext_resource path="res://General Nodes/PumpDrink.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/dfa6770603ecf5afb82ee7e880375bc68c681ee5.png" type="Texture" id=12]
+[ext_resource path="res://General Nodes/Heart.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CircleShape2D" id=34]
 radius = 38.0
@@ -258,7 +259,7 @@ MinMaxAttackInterval = Vector2( 2.5, 15 )
 SpreadAttackProb = 0.333
 EnemyProjectile = ExtResource( 5 )
 ProjectileSpeed = 320.0
-PrizesToDrop = [ ExtResource( 7 ), ExtResource( 11 ) ]
+PrizesToDrop = [ ExtResource( 7 ), ExtResource( 11 ), ExtResource( 13 ) ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 34 )
@@ -271,7 +272,7 @@ use_parent_material = true
 position = Vector2( 4, -1 )
 frames = SubResource( 59 )
 animation = "front"
-frame = 1
+frame = 2
 playing = true
 
 [node name="Navigator" parent="." instance=ExtResource( 2 )]

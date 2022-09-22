@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/waveform1.png-9ce19e8f23455a4e1be92fb72bf799ca.stex"
+path="res://.import/spark-preview3.png-5e905fcd9ab87edd9d5a84b35c34f9eb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Effect/waveform/frames/waveform1.png"
-dest_files=[ "res://.import/waveform1.png-9ce19e8f23455a4e1be92fb72bf799ca.stex" ]
+source_file="res://Assets/Effect/spark/frames/spark-preview3.png"
+dest_files=[ "res://.import/spark-preview3.png-5e905fcd9ab87edd9d5a84b35c34f9eb.stex" ]
 
 [params]
 

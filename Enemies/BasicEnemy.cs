@@ -89,8 +89,6 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
         blt.GlobalRotation = vec.Angle();
         blt.Velocity = ProjectileSpeed * vec;
         blt.Damage = ProjectileDamage;
-        
-
     }
     public virtual void SpreadAttack(Vector2 pos, int n)
     {
@@ -100,14 +98,14 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
             for (int j = 0; j < 2; j++)
             {
                 var blt = EnemyProjectile.Instance() as Bullet;
-            GetTree().Root.AddChild(blt);
-            var vec = (pos - GlobalPosition).Normalized();
-            var angle = vec.Angle();
-            angle += Mathf.Pi / 8 * i * Mathf.Pow(-1, j);
-            vec = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-            blt.GlobalPosition = GlobalPosition;
-            blt.GlobalRotation = vec.Angle();
-            blt.Velocity = ProjectileSpeed * vec;
+                GetTree().Root.AddChild(blt);
+                var vec = (pos - GlobalPosition).Normalized();
+                var angle = vec.Angle();
+                angle += Mathf.Pi / 8 * i * Mathf.Pow(-1, j);
+                vec = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+                blt.GlobalPosition = GlobalPosition;
+                blt.GlobalRotation = vec.Angle();
+                blt.Velocity = ProjectileSpeed * vec;
             }
         }
     }
@@ -136,6 +134,15 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
             var index = rnd.RandiRange(0,PrizesToDrop.Length-1);
             var pos = Vector2.Right*rnd.RandfRange(-64,64) + Vector2.Up*rnd.RandfRange(-64,64)  + GlobalPosition;
             var prize = PrizesToDrop[index].Instance<Loot>();
+            if(index==2&&rnd.RandfRange(0f,1.0f)<=0.2f){
+                prize = PrizesToDrop[2].Instance<Loot>();
+            }
+            else if(index!=2){
+                prize = PrizesToDrop[index].Instance<Loot>();
+            }
+            else{
+                prize = PrizesToDrop[0].Instance<Loot>();
+            }
             GetTree().Root.AddChild(prize);
             prize.GlobalPosition = GlobalPosition;
             prize.StartTweenPos(pos , 0.6f); 

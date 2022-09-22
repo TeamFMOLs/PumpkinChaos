@@ -168,7 +168,14 @@ public class Player : CharacterController, IDestructible
         Score += amount;
         StaticRefs.PlayerUi.UpdateScore(Score);
     }
-
+    public void GiveHp(int amount)
+    {
+        if(healthSystem.Health+amount>=healthSystem.MaxHealth)
+            healthSystem.Health = healthSystem.MaxHealth;
+        else
+            healthSystem.Health += amount;
+        StaticRefs.PlayerUi.UpdateHp(healthSystem);
+    }
     public void GetPushed(Vector2 dir, int damage)
     {
         healthSystem.TakeDamage(damage);

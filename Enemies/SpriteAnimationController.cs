@@ -21,7 +21,6 @@ public class SpriteAnimationController : Node2D
     {
         var angle = characterController.Velocity.Angle() * 180 / Mathf.Pi;
         Vector2 newDir;
-        GD.Print(angle);
         if (angle >= -45 && angle < 45)
             newDir = Vector2.Right;
         else if (angle >= 45 && angle < 135)
@@ -30,7 +29,6 @@ public class SpriteAnimationController : Node2D
             newDir = Vector2.Left;
         else
             newDir = Vector2.Up;
-         GD.Print(newDir);
         if (lastDir != newDir)
         {
             lastChangeTime += delta;
