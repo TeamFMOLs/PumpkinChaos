@@ -282,7 +282,6 @@ margin_bottom = 171.0
 [node name="Start" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
 margin_right = 316.0
 margin_bottom = 31.0
-rect_scale = Vector2( 0.962832, 0.962832 )
 custom_fonts/font = SubResource( 1 )
 custom_styles/hover = SubResource( 2 )
 custom_styles/normal = SubResource( 4 )
@@ -354,7 +353,7 @@ animation = "New Anim 1"
 position = Vector2( 572, 214 )
 frames = SubResource( 25 )
 animation = "Side"
-frame = 3
+frame = 2
 playing = true
 
 [node name="Light2D" type="Light2D" parent="CanvasLayer/Control/Enemy1"]
@@ -368,7 +367,7 @@ energy = 1.2
 position = Vector2( 212, 208 )
 frames = SubResource( 25 )
 animation = "Side"
-frame = 2
+frame = 1
 playing = true
 flip_h = true
 
@@ -384,6 +383,7 @@ position = Vector2( 343, 53 )
 scale = Vector2( 0.694865, 0.702712 )
 frames = SubResource( 25 )
 animation = "front"
+frame = 2
 playing = true
 
 [node name="Light2D3" type="Light2D" parent="CanvasLayer/Control/Enemy2"]

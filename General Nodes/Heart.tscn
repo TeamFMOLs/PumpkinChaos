@@ -17,7 +17,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" parent="CollisionShape2D" index="0"]
 rotation = -1.5708
-scale = Vector2( 0.137, 0.137 )
+scale = Vector2( 0.116982, 0.116982 )
 texture = ExtResource( 1 )
 
 [node name="AnimationPlayer" parent="." index="1"]

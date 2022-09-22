@@ -99,7 +99,6 @@ shape = SubResource( 1 )
 
 [node name="GameManager" parent="." instance=ExtResource( 4 )]
 scale = Vector2( 0.1, 0.1 )
-GamePauseNodePath = null
 
 [node name="AmmoSpawner" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -122,7 +121,6 @@ SecondEnemy = ExtResource( 9 )
 ThirdEnemy = ExtResource( 11 )
 FirstBoss = ExtResource( 8 )
 SecondEnemyChance = 0.3
-StartingWaveNumber = 1
 MinMaxTimeBetweenWaves = Vector2( 60, 110 )
 
 [node name="SrartPos" type="Node2D" parent="EnemySpawner"]
