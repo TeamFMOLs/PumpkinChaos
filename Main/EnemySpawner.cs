@@ -40,7 +40,7 @@ public class EnemySpawner : Node2D
     private BasicEnemy SpawnEnemy(PackedScene enemy, Vector2 pos)
     {
         var newEnemy = enemy.Instance<BasicEnemy>();
-        GetTree().Root.AddChild(newEnemy);
+        StaticRefs.CurrentLevel.AddChild(newEnemy);
         newEnemy.GlobalPosition = pos;
         enemies.Add(newEnemy);
         return newEnemy;
@@ -115,10 +115,11 @@ public class EnemySpawner : Node2D
         GetTree().CreateTimer(rnd.RandfRange(MinMaxTimeBetweenWaves.x, MinMaxTimeBetweenWaves.y), false).Connect("timeout", this, nameof(SpawnNext));
     }
 
-    public void KillAll() {
+    public void StopAll() {
         foreach (var item in enemies)
         {
-            item.QueueFree();   
+            item.SetProcess(false);  
+            item.SetPhysicsProcess(false);  
         }
     }
 

@@ -21,7 +21,7 @@ public class ThirdEnemy : BasicEnemy
     public override void AttackPos(Vector2 pos)
     {
         var blt = EnemyProjectile.Instance() as Bullet;
-        GetTree().Root.AddChild(blt);
+        StaticRefs.CurrentLevel.AddChild(blt);
         var vec = (pos - GlobalPosition).Normalized();
         blt.GlobalPosition = GlobalPosition + vec*60;
         blt.GlobalRotation = vec.Angle();
@@ -38,7 +38,7 @@ public class ThirdEnemy : BasicEnemy
             {
                 var blt = EnemyProjectile.Instance() as Bullet;
                 blt.Damage = ShotDamage;
-                GetTree().Root.AddChild(blt);
+                StaticRefs.CurrentLevel.AddChild(blt);
                 var vec = (pos - GlobalPosition).Normalized();
                 var angle = vec.Angle();
                 angle += Mathf.Pi / 8 * i * Mathf.Pow(-1, j);

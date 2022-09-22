@@ -1,12 +1,13 @@
 using Godot;
 using System;
 
-public class BasicEnemy : CharacterController, IDestructible , IScoreObject
+
+public class BasicEnemy : CharacterController, IDestructible, IScoreObject
 {
     [Export]
     public float Speed = 100;
     [Export]
-    public int Score {get; set;}    
+    public int Score { get; set; }
     [Export]
     public int OnHitDamage;
     [Export]
@@ -46,7 +47,9 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
     }
     public override void _Process(float delta)
     {
+
         _navigator.GoToLocation(StaticRefs.CurrentPlayer.GlobalPosition, Speed);
+
     }
 
     public override void _PhysicsProcess(float delta)
@@ -56,7 +59,7 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
         if (it != null && it.Collider is Player)
         {
             var plyr = it.Collider as Player;
-            plyr.GetPushed((plyr.GlobalPosition-GlobalPosition),OnHitDamage);
+            plyr.GetPushed((plyr.GlobalPosition - GlobalPosition), OnHitDamage);
         }
         else if (it != null && it.Collider is BasicEnemy)
         {
@@ -72,7 +75,7 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
         GiveScore();
         StaticRefs.EnemySpawner.OnEnemyDied(this);
         GetNode<AnimationPlayer>("AnimationPlayer").Play("die");
-        CreateTween().TweenCallback(this,"queue_free").SetDelay(0.4f);
+        CreateTween().TweenCallback(this, "queue_free").SetDelay(0.4f);
     }
 
     protected virtual void OnHurt()
@@ -83,7 +86,7 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
     public virtual void AttackPos(Vector2 pos)
     {
         var blt = EnemyProjectile.Instance() as Bullet;
-        GetTree().Root.AddChild(blt);
+        StaticRefs.CurrentLevel.AddChild(blt);
         var vec = (pos - GlobalPosition).Normalized();
         blt.GlobalPosition = GlobalPosition;
         blt.GlobalRotation = vec.Angle();
@@ -93,12 +96,12 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
     public virtual void SpreadAttack(Vector2 pos, int n)
     {
         AttackPos(pos);
-        for (int i = 1; i < n/2+1; i++)
+        for (int i = 1; i < n / 2 + 1; i++)
         {
             for (int j = 0; j < 2; j++)
             {
                 var blt = EnemyProjectile.Instance() as Bullet;
-                GetTree().Root.AddChild(blt);
+                StaticRefs.CurrentLevel.AddChild(blt);
                 var vec = (pos - GlobalPosition).Normalized();
                 var angle = vec.Angle();
                 angle += Mathf.Pi / 8 * i * Mathf.Pow(-1, j);
@@ -120,32 +123,38 @@ public class BasicEnemy : CharacterController, IDestructible , IScoreObject
         _attackTimer.Start(rnd.RandfRange(MinMaxAttackInterval.x, MinMaxAttackInterval.y));
 
     }
-    public void PushBack(){
-        Vector2 dir=new Vector2 (60,60);
-        GlobalPosition-= (GlobalPosition/GlobalPosition)* dir;
+    public void PushBack()
+    {
+        Vector2 dir = new Vector2(60, 60);
+        GlobalPosition -= (GlobalPosition / GlobalPosition) * dir;
     }
-    public virtual  void GiveScore() {
+    public virtual void GiveScore()
+    {
         StaticRefs.CurrentPlayer.IncreaseScore(Score);
     }
 
-    protected virtual void DropPrizes() {
+    protected virtual void DropPrizes()
+    {
         for (int i = 0; i < NumberOfPrizes; i++)
         {
-            var index = rnd.RandiRange(0,PrizesToDrop.Length-1);
-            var pos = Vector2.Right*rnd.RandfRange(-64,64) + Vector2.Up*rnd.RandfRange(-64,64)  + GlobalPosition;
+            var index = rnd.RandiRange(0, PrizesToDrop.Length - 1);
+            var pos = Vector2.Right * rnd.RandfRange(-64, 64) + Vector2.Up * rnd.RandfRange(-64, 64) + GlobalPosition;
             var prize = PrizesToDrop[index].Instance<Loot>();
-            if(index==2&&rnd.RandfRange(0f,1.0f)<=0.2f){
+            if (index == 2 && rnd.RandfRange(0f, 1.0f) <= 0.2f)
+            {
                 prize = PrizesToDrop[2].Instance<Loot>();
             }
-            else if(index!=2){
+            else if (index != 2)
+            {
                 prize = PrizesToDrop[index].Instance<Loot>();
             }
-            else{
+            else
+            {
                 prize = PrizesToDrop[0].Instance<Loot>();
             }
-            GetTree().Root.AddChild(prize);
+            StaticRefs.CurrentLevel.AddChild(prize);
             prize.GlobalPosition = GlobalPosition;
-            prize.StartTweenPos(pos , 0.6f); 
+            prize.StartTweenPos(pos, 0.6f);
         }
     }
 }

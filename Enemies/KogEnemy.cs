@@ -18,7 +18,6 @@ public class KogEnemy : BasicEnemy
     public override void _Ready()
     {
         base._Ready();
-        MinMaxAttackInterval.x = 3f; MinMaxAttackInterval.y = 7;
         AwayRadius = new Vector2(200, 200);
         _AniTimer = GetNode("_AniTimer") as Timer;
         _AniTimer.WaitTime = 2.1f;
@@ -30,7 +29,7 @@ public class KogEnemy : BasicEnemy
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        if (!_Shooting)
+        if (!_Shooting )
         {
             _navigator.GoToLocation(StaticRefs.CurrentPlayer.GlobalPosition - AwayRadius, Speed);
 
@@ -44,7 +43,7 @@ public class KogEnemy : BasicEnemy
         var blt = EnemyProjectile.Instance() as KogBullet;
         blt.Damage = KogShotDamage;
         blt.Target = pos;
-        GetTree().Root.AddChild(blt);
+        StaticRefs.CurrentLevel.AddChild(blt);
 
         var vec = (pos * Vector2.Up).Normalized();
         blt.GlobalPosition = pos + Vector2.Up * 400;
@@ -52,7 +51,7 @@ public class KogEnemy : BasicEnemy
 
         var Mark = TargetMark.Instance() as Node2D;
         Mark.GlobalPosition = pos;
-        GetTree().Root.AddChild(Mark);
+        StaticRefs.CurrentLevel.AddChild(Mark);
         _Shooting = false;
     }
     public override void SpreadAttack(Vector2 pos, int n)
@@ -61,7 +60,7 @@ public class KogEnemy : BasicEnemy
         {
             var blt = KogProjectile.Instance() as Bullet;
             blt.Damage = ProjectileDamage;
-            GetTree().Root.AddChild(blt);
+            StaticRefs.CurrentLevel.AddChild(blt);
             var vec = (pos - GlobalPosition).Normalized();
             var angle = vec.Angle();
             angle += Mathf.Pi / 6 * i * Mathf.Pow(-1, i);

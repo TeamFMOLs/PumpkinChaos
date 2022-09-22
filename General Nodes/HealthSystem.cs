@@ -67,7 +67,7 @@ public class HealthSystem : Node2D
     private void DisplayDamage(int d)
     {
         var newlabel = DamageLabelNode.Instance<DamageLabel>();
-        GetTree().Root.AddChild(newlabel);
+        StaticRefs.CurrentLevel.AddChild(newlabel);
         newlabel.GlobalPosition = GlobalPosition;
         newlabel.Text = d.ToString();
     }
