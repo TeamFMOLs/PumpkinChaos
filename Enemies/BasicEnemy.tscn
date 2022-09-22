@@ -269,7 +269,7 @@ shape = SubResource( 34 )
 [node name="SpriteParent" type="Node2D" parent="."]
 material = SubResource( 40 )
 
-[node name="Sprite" type="Sprite" parent="SpriteParent"]
+[node name="Shadow" type="Sprite" parent="SpriteParent"]
 position = Vector2( 0, 16 )
 texture = ExtResource( 13 )
 
@@ -278,6 +278,7 @@ use_parent_material = true
 position = Vector2( 4, -1 )
 frames = SubResource( 59 )
 animation = "front"
+frame = 2
 playing = true
 
 [node name="Navigator" parent="." instance=ExtResource( 2 )]

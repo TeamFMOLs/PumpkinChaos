@@ -38,7 +38,7 @@ public class AmmoSpawner : Node2D
         var endPos = PickRandomPoint();
         var it = AmmoScene.Instance() as Ammo;
         it.GlobalPosition = startPos;
-        GetTree().Root.AddChild(it);
+        StaticRefs.CurrentLevel.AddChild(it);
         it.StartTweenPos(endPos, FallTime);
         GetTree().CreateTimer(rnd.RandfRange(MinMaxTimeToSpawn.x, MinMaxTimeToSpawn.y), false).Connect("timeout", this, nameof(SpawnAmmo));
 

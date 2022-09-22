@@ -40,7 +40,7 @@ public class Bullet : Area2D
         if (HitEffect != null)
         {
             var it = HitEffect.Instance() as Node2D;
-            GetTree().Root.AddChild(it);
+            StaticRefs.CurrentLevel.AddChild(it);
             it.GlobalPosition = GlobalPosition;
         }
         QueueFree();

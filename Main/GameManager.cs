@@ -26,6 +26,7 @@ public class GameManager : Node2D
     {
         GetTree().CreateTimer(1f, false).Connect("timeout", this, nameof(PlayerDeathComplete));
         StaticRefs.CurrentPlayer.StopMovement = true;
+        StaticRefs.EnemySpawner.StopAll();
         _isPlayerDead = true;
     }
 
@@ -33,7 +34,6 @@ public class GameManager : Node2D
     {
         if (_isPlayerDead)
         {
-            StaticRefs.EnemySpawner.KillAll();
             GetTree().ReloadCurrentScene();
         }
     }

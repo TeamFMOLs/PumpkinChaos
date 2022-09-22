@@ -74,7 +74,11 @@ public class Player : CharacterController, IDestructible
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        Weapon.WeaponPointAt(_inputHandler.MousePos);
+        if (!StopMovement)
+        {
+            Weapon.WeaponPointAt(_inputHandler.MousePos);
+        }
+        
     }
 
     public override void _PhysicsProcess(float delta)
@@ -102,7 +106,7 @@ public class Player : CharacterController, IDestructible
 
     public void Attack(Vector2 target)
     {
-        if (Weapon.Attack(target))
+        if (Weapon.Attack(target) && ! StopMovement)
         {
             StaticRefs.CurrentCamera.ShakeForSeconds(0.2f, 6f);
         }
@@ -113,7 +117,8 @@ public class Player : CharacterController, IDestructible
     }
     public void Dash()
     {
-        if (_Dashing || !_CanDash) { return; }
+
+        if (_Dashing || !_CanDash || StopMovement) { return; }
         DashTimer.Start();
         DashGhostTimer.Start();
         DashCdTimer.Start();
@@ -146,7 +151,7 @@ public class Player : CharacterController, IDestructible
         DashGhost.Hframes = mySprite.Hframes;
         DashGhost.Frame = mySprite.Frame;
         DashGhost.FlipH = mySprite.FlipH;
-        GetTree().Root.AddChild(DashGhost);
+        StaticRefs.CurrentLevel.AddChild(DashGhost);
     }
     public void AddAmmo(Ammo it)
     {
@@ -160,6 +165,7 @@ public class Player : CharacterController, IDestructible
         {
             animationPlayer.Play("get_hurt");
             StaticRefs.CurrentCamera.ShakeForSeconds(0.35f, 10f);
+            GD.Print("sdad");
             GD.Print(healthSystem.Health);
             GD.Print(healthSystem.MaxHealth);
             StaticRefs.PlayerUi.UpdateHp(healthSystem);
@@ -201,8 +207,11 @@ public class Player : CharacterController, IDestructible
             return;
         }
         StopMovement = true;
-        //animationPlayer.Play("die");
+        animationPlayer.Play("die");
+        GetNode<SpriteAnimationController>("SpriteAnimationController").SetProcess(false);
+        GetNode<SpriteAnimationController>("SpriteAnimationController").SetPhysicsProcess(false);
         StaticRefs.gameManager.OnPlayerDie();
+        Weapon.Visible = false;
     }
     public void IncreaseHealth(float p)
     {

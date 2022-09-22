@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://General Nodes/GunNode.tscn" type="PackedScene" id=2]
@@ -8,10 +8,12 @@
 [ext_resource path="res://Assets/Player/spritesheet.png" type="Texture" id=6]
 [ext_resource path="res://Enemies/SpriteAnimationController.cs" type="Script" id=7]
 [ext_resource path="res://Sounds/SFX- The Ultimate 2017 16 bit Mini pack/Ouch/Ogg/Ouch__001.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Player/Deathspritesheet.png" type="Texture" id=9]
 [ext_resource path="res://General Nodes/PlayerCamera.tscn" type="PackedScene" id=10]
 [ext_resource path="res://General Nodes/HealthSystem.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/Effect/dust.png" type="Texture" id=12]
 [ext_resource path="res://Objects/DashGhost.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/ground_shadow.png" type="Texture" id=14]
 [ext_resource path="res://General Nodes/UpgradeSystem.tscn" type="PackedScene" id=15]
 
 [sub_resource type="CapsuleShape2D" id=76]
@@ -64,6 +66,70 @@ region = Rect2( 0, 185, 48, 37 )
 [sub_resource type="AtlasTexture" id=73]
 atlas = ExtResource( 6 )
 region = Rect2( 48, 148, 48, 37 )
+
+[sub_resource type="AtlasTexture" id=84]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 34, 32 )
+
+[sub_resource type="AtlasTexture" id=85]
+atlas = ExtResource( 9 )
+region = Rect2( 34, 0, 34, 32 )
+
+[sub_resource type="AtlasTexture" id=86]
+atlas = ExtResource( 9 )
+region = Rect2( 68, 0, 34, 32 )
+
+[sub_resource type="AtlasTexture" id=87]
+atlas = ExtResource( 9 )
+region = Rect2( 102, 0, 34, 32 )
+
+[sub_resource type="AtlasTexture" id=88]
+atlas = ExtResource( 9 )
+region = Rect2( 136, 0, 34, 32 )
+
+[sub_resource type="AtlasTexture" id=89]
+atlas = ExtResource( 9 )
+region = Rect2( 170, 0, 34, 32 )
+
+[sub_resource type="AtlasTexture" id=90]
+atlas = ExtResource( 9 )
+region = Rect2( 204, 0, 34, 32 )
+
+[sub_resource type="AtlasTexture" id=91]
+atlas = ExtResource( 9 )
+region = Rect2( 238, 0, 34, 32 )
+
+[sub_resource type="AtlasTexture" id=92]
+atlas = ExtResource( 9 )
+region = Rect2( 272, 0, 34, 32 )
+
+[sub_resource type="AtlasTexture" id=93]
+atlas = ExtResource( 9 )
+region = Rect2( 306, 0, 34, 32 )
+
+[sub_resource type="AtlasTexture" id=94]
+atlas = ExtResource( 9 )
+region = Rect2( 340, 0, 34, 32 )
+
+[sub_resource type="AtlasTexture" id=95]
+atlas = ExtResource( 9 )
+region = Rect2( 374, 0, 34, 32 )
+
+[sub_resource type="AtlasTexture" id=96]
+atlas = ExtResource( 9 )
+region = Rect2( 408, 0, 34, 32 )
+
+[sub_resource type="AtlasTexture" id=97]
+atlas = ExtResource( 9 )
+region = Rect2( 442, 0, 34, 32 )
+
+[sub_resource type="AtlasTexture" id=98]
+atlas = ExtResource( 9 )
+region = Rect2( 476, 0, 34, 32 )
+
+[sub_resource type="AtlasTexture" id=99]
+atlas = ExtResource( 9 )
+region = Rect2( 136, 0, 34, 32 )
 
 [sub_resource type="AtlasTexture" id=67]
 atlas = ExtResource( 6 )
@@ -128,6 +194,11 @@ animations = [ {
 "loop": true,
 "name": "back_idle",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 84 ), SubResource( 85 ), SubResource( 86 ), SubResource( 87 ), SubResource( 88 ), SubResource( 89 ), SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ), SubResource( 94 ), SubResource( 95 ), SubResource( 96 ), SubResource( 97 ), SubResource( 98 ), SubResource( 99 ) ],
+"loop": false,
+"name": "death",
+"speed": 10.0
 }, {
 "frames": [ SubResource( 67 ), SubResource( 68 ), SubResource( 77 ), SubResource( 69 ), SubResource( 70 ) ],
 "loop": true,
@@ -252,9 +323,6 @@ tracks/3/keys = {
 "values": [ 32 ]
 }
 
-[sub_resource type="Animation" id=36]
-resource_name = "Die"
-
 [sub_resource type="Animation" id=25]
 resource_name = "Idle"
 loop = true
@@ -296,6 +364,46 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SpriteParent/AnimatedSprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -40 ) ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteParent/AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "death" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpriteParent/AnimatedSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -40 ), Vector2( 1.09139e-11, -16 ) ]
 }
 
 [sub_resource type="Animation" id=42]
@@ -344,13 +452,19 @@ shape = SubResource( 76 )
 [node name="SpriteParent" type="Node2D" parent="."]
 material = SubResource( 41 )
 
+[node name="Shadow" type="Sprite" parent="SpriteParent"]
+position = Vector2( 0, 8 )
+scale = Vector2( 1.08, 1.08 )
+texture = ExtResource( 14 )
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="SpriteParent"]
 use_parent_material = true
 position = Vector2( 0, -40 )
 rotation = 3.14159
 scale = Vector2( 5, -5 )
 frames = SubResource( 60 )
-animation = "front_idle"
+animation = "death"
+frame = 4
 
 [node name="SpriteShadow" type="Sprite" parent="SpriteParent"]
 visible = false
@@ -367,7 +481,6 @@ frame = 7
 visible = false
 material = SubResource( 51 )
 position = Vector2( -42, 36 )
-emitting = false
 amount = 25
 lifetime = 0.7
 one_shot = true
@@ -380,7 +493,6 @@ texture = ExtResource( 12 )
 visible = false
 material = SubResource( 51 )
 position = Vector2( -56, -2 )
-emitting = false
 amount = 20
 one_shot = true
 explosiveness = 1.0
@@ -396,9 +508,9 @@ BulletDamage = 124
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Dash = SubResource( 55 )
-anims/Die = SubResource( 36 )
 anims/Idle = SubResource( 25 )
 anims/RESET = SubResource( 2 )
+anims/die = SubResource( 36 )
 anims/get_hurt = SubResource( 42 )
 next/Idle = "Idle"
 next/RESET = "RESET"
@@ -441,6 +553,9 @@ one_shot = true
 
 [node name="SpriteAnimationController" type="Node2D" parent="."]
 script = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": "s"
+}
 IsPlayer = true
 AnimatedSpriteNodePath = NodePath("../SpriteParent/AnimatedSprite")
 TimeToChangeAnimationInterval = 0.0

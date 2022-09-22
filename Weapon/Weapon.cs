@@ -79,7 +79,7 @@ public class Weapon : Node2D
     {
         ammo--;
         var bullet = BulletScene.Instance() as Bullet;
-        GetTree().Root.AddChild(bullet);
+        StaticRefs.CurrentLevel.AddChild(bullet);
         GetNode<AnimationPlayer>("AnimationPlayer").Play("Fire");
         StaticRefs.PlayerUi.UpdateAmmoNumber(ammo);
         bullet.GlobalPosition = WeaponHead.GlobalPosition;
