@@ -21,7 +21,7 @@ The Game Is Simple,  Survive! Your Ammo Are Leaves That drop From Trees. And Evi
 - [Omar Emad](https://github.com/The-Sad-Zewalian)
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the Apache 2 License - see the [LICENSE](LICENSE) file for details
 
 ## Play the game
 - You can clone the repo and build the game yourself
